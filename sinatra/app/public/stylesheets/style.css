@@ -1,0 +1,143 @@
+.column { background-color:#92C348; height:400px; float:left; margin-top:20px; }
+.gutter { background-color:#BCDA86; height:400px; float:left; margin-top:20px; }
+.gutter_outer { background-color:#56644A; height:400px; float:left; margin-top:20px; }
+
+body { 
+    background-color: #fff; 
+    font-family:"HelveticaNeue-Light","HelveticaNeue","Helvetica,Arial,sans-serif"; 
+    font-size:12px;
+}
+.container { background-color:#333; }
+.container div p { background-color:#fff; }
+div p { border:1px solid #333; padding:10px; }
+h2 { color:#fff; }
+	
+#tab-ul {
+    border-color: #FFFFFF;
+}
+
+.yui-skin-sam .yui-navset .yui-nav li, .yui-skin-sam .yui-navset .yui-navset-top .yui-nav li {
+    padding: 10px 0 0;
+}
+
+.yui-skin-sam .yui-navset .yui-nav a, .yui-skin-sam .yui-navset .yui-navset-top .yui-nav a {
+    background: none;
+    border-width: 1px;
+}
+
+.yui-skin-sam .container div .yui-content p {
+    margin: 0px;
+    //height: 430px;
+    border: 0px;
+}
+
+// vista del producto
+.yui-navset .yui-content, .yui-navset .yui-content div {
+}
+
+.yui-skin-sam .container div .yui-content {
+    padding: 0px;
+}
+
+.tab {
+    background-color: white;
+}
+
+.tab-container {
+    //height: 35em;
+  //overflow: auto;
+}
+
+#tabs, #right {
+    float: left;
+    overflow: hidden;
+    margin: 0px;
+}
+
+#tabs {
+    margin-right:4px;
+    width:560px;
+}
+
+#right {
+    margin-left:4px;
+    width:440px;
+}
+
+#product-info {
+    background-color: white;
+    width: 450px;
+    margin: 0px;
+}
+
+.product {
+    //  height: 6em;
+//  margin: 0px;
+     margin: 5px 0 0 5px;
+
+}
+
+.product p {
+    padding: 0px;
+    line-height: 15px;
+}
+
+.container_24 .iconos {
+    width: 225px;
+    margin: 0px;
+}
+
+.iconos-right {
+    text-align: right;
+}
+
+div#product-info div.grid_10, div#product-info div.grid_3 {
+    margin: 0px;
+}
+
+.product div.grid_2 {
+    margin: 0px;
+}
+
+.container_24 .basic {
+    width: 290px;
+    margin:0px;
+}
+
+.container_24 .product-info div.grid_10 {
+    width: 450px;
+}
+
+.nombre {
+}
+
+.descripcion {
+}
+
+#product-list {
+    background-color: white;
+     overflow: hidden;
+     float: left;
+     height: 367px;
+//     width: 535px;
+//     margin: 5px 0 0 5px;
+}
+
+.product-list .product .precio {
+    margin: 20px 0 0 5px;
+}
+
+.product-list .product .pedir-btn {
+    margin: 20px 0 0;
+    padding-left: 5px;
+}
+
+#product-pagination {
+    float: left;
+    width:18px;
+}
+
+#product-show-container {
+    overflow: hidden;
+    height: 356px;
+}
