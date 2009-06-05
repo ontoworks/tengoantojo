@@ -4,13 +4,11 @@
 
 body { 
     background-color: #fff; 
-    font-family:"HelveticaNeue-Light","HelveticaNeue","Helvetica,Arial,sans-serif"; 
-    font-size:12px;
+    font-family:"HelveticaNeue-Light","HelveticaNeue",Helvetica,Arial,sans-serif;
+    font-size:14px;
 }
-.container { background-color:#333; }
 .container div p { background-color:#fff; }
-div p { border:1px solid #333; padding:10px; }
-h2 { color:#fff; }
+div p { border:1px solid #333; padding:10px; margin: 0px;}
 	
 #tab-ul {
     border-color: #FFFFFF;
@@ -25,38 +23,22 @@ h2 { color:#fff; }
     border-width: 1px;
 }
 
-.yui-skin-sam .container div .yui-content p {
-    margin: 0px;
-    //height: 430px;
-    border: 0px;
-}
-
-// vista del producto
-.yui-navset .yui-content, .yui-navset .yui-content div {
-}
-
 .yui-skin-sam .container div .yui-content {
     padding: 0px;
+}
+
+#content {
+  float: left;
 }
 
 .tab {
     background-color: white;
 }
 
-.tab-container {
-    //height: 35em;
-  //overflow: auto;
-}
-
 #tabs, #right {
     float: left;
     overflow: hidden;
     margin: 0px;
-}
-
-#tabs {
-    margin-right:4px;
-    width:560px;
 }
 
 #right {
@@ -70,16 +52,11 @@ h2 { color:#fff; }
     margin: 0px;
 }
 
-.product {
-    //  height: 6em;
-//  margin: 0px;
-     margin: 5px 0 0 5px;
-
-}
-
 .product p {
     padding: 0px;
     line-height: 15px;
+    margin: 0px;
+    border: 0px;
 }
 
 .container_24 .iconos {
@@ -104,10 +81,6 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
     margin:0px;
 }
 
-.container_24 .product-info div.grid_10 {
-    width: 450px;
-}
-
 .nombre {
 }
 
@@ -119,8 +92,6 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
      overflow: hidden;
      float: left;
      height: 367px;
-//     width: 535px;
-//     margin: 5px 0 0 5px;
 }
 
 .product-list .product .precio {
@@ -140,4 +111,8 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
 #product-show-container {
     overflow: hidden;
     height: 356px;
+}
+
+.cat {
+  background-color: white;
 }

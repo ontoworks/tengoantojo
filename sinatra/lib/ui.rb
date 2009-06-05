@@ -10,4 +10,6 @@ def content
   haml :body
 end
 
-
+def product_table
+  haml :product_table
+end

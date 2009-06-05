@@ -25,9 +25,9 @@ SCRIPT
   end
 
 
-  def content
-    haml :body
-  end
+  #def content
+  #  haml :body
+  #end
 
   def css_link(file)
     if file.index("/")==0
@@ -38,6 +38,12 @@ SCRIPT
     href=href+".css" unless file =~ /\.css$/
     haml "%link{:rel => 'stylesheet', :type => 'text/css', :media => 'screen', :href => '#{href}'}"
 #    "<link href=\"/stylesheets/#{file}\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
+  end
+
+  def grid_js_css
+    js_tag "thirdparty/960grids/javascripts/grid.js"
+    css_link "/javascripts/thirdparty/960grids/stylesheets/grid.css"
+    css_link "/javascripts/thirdparty/960grids/grids/grid"
   end
 
   def js_tag(file)
@@ -59,7 +65,7 @@ SCRIPT
   end
 
   def mock_products(count)
-    (haml :product)*count
+    (product_table)*count
   end
 
   def render_haml
@@ -75,5 +81,9 @@ SCRIPT
 
   def product_show_container
     product_list+product_pagination
+  end
+
+  def categorias_nav
+    haml :categorias_nav
   end
 #end

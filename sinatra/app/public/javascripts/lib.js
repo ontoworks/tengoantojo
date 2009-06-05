@@ -34,8 +34,6 @@
       }
     }
 
-
-    //      alert(scrollTo);
     YAHOO.util.Event.on('abajo', 'click', function() {
       recalculate_scroll(1);
     });
@@ -43,29 +41,4 @@
     YAHOO.util.Event.on('arriba', 'click', function() {
       recalculate_scroll(-1);
     });
-
-    /*    var scroll_attrs = {
-      scroll: { to: [scrollFrom, scrollTo] }
-    };
-    var scroll = new YAHOO.util.Scroll("product-list", scroll_attrs);
-
-    var do_scroll = function() {
-      scrollFrom += SCROLL_VALUE;
-      scrollTo += SCROLL_VALUE;
-      if (scrollTo/SCROLL_VALUE > 3) {
-	scrollFrom = 0;
-	scrollTo = SCROLL_VALUE;
-      }
-      //scroll.animate();
-      scroll.setAttribute("scroll", [scrollFrom, scrollTo]);
-      //      alert(scrollFrom+","+scrollTo);
-      //      alert(scroll.getAttribute("scroll"));
-    };
-
-    YAHOO.util.Event.on('abajo', 'click', function() {
-      do_scroll();
-});*/
-
-
-
 })();
