@@ -27,6 +27,11 @@ div p { border:1px solid #333; padding:10px; margin: 0px;}
     padding: 0px;
 }
 
+
+.search {
+  margin-bottom: 5px;
+}
+
 #content {
   float: left;
 }
@@ -42,8 +47,6 @@ div p { border:1px solid #333; padding:10px; margin: 0px;}
 }
 
 #right {
-    margin-left:4px;
-    width:440px;
 }
 
 #product-info {
@@ -113,6 +116,16 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
     height: 356px;
 }
 
-.cat {
-  background-color: white;
+#categorias-lista-1, #categorias-lista-4 {
+  display:none;
+}
+
+#categorias-container {
+  border: 1px solid;
+  padding: 5px;
+  margin: 0 0 5px;
+}
+
+.breadcrumb {
+  font-size: 14px;
 }
