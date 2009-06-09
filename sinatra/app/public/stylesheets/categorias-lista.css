@@ -1,0 +1,83 @@
+// styles for class 'categorias-lista'
+// 
+
+.categorias-lista {
+  position:static;
+  width:auto;
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+  margin:5px 0 5px;
+  padding:0;
+  border-color:#FFFFFF;
+}
+
+.categorias-lista li {
+  display:inline-block;display:-moz-inline-stack;*display:inline;
+  vertical-align:bottom;
+  cursor:pointer;
+  zoom:1;
+  margin:0 0.16em -1px 0;
+  padding:10px 0 0;
+}
+
+.categorias-lista li em {
+  font-style:normal;
+}
+
+.categorias-lista li a em {
+  display:block;
+}
+
+.categorias-lista .selected {
+  background:#2647A0 url(/javascripts/thirdparty/yui/build/assets/skins/sam/sprite.png) repeat-x scroll left -1400px;
+  color:#FFFFFF;
+  margin:0 0.16em -1px 0;
+}
+
+.categorias-lista .selected a, .categorias-lista .selected a em {
+  border-color:#243356;
+}  
+  
+.categorias-lista .selected a:hover {
+  background:#2647A0 url(/javascripts/thirdparty/yui/build/assets/skins/sam/sprite.png) repeat-x scroll left -1400px;
+  color:#FFFFFF;
+}
+
+.categorias-lista a {
+  border-width:1px;
+  border-color:#A3A3A3;
+  border-style:solid;
+  position:relative;
+  text-decoration:none;
+}
+
+.categorias-lista li a {
+  display:inline-block;
+  vertical-align:bottom;
+}
+
+.categorias-lista a em {
+  border-color:#A3A3A3;
+  border-style:solid;
+  border-width:1px 0 0;
+  bottom:0;
+  left:0;
+  padding:0.25em 0.75em;
+  position:relative;
+  right:0;
+  top:-1px;
+}
+
+.categorias-lista .selected a em {
+  padding:0.35em 0.75em;
+}
+
+#categorias-lista-1, #categorias-lista-4 {
+  display:none;
+}
+
+.categorias-lista a:hover, .categorias-lista a:focus {
+  background:#bfdaff url(/javascripts/thirdparty/yui/build/assets/skins/sam/sprite.png) repeat-x left -1300px;
+  outline:0;
+}
