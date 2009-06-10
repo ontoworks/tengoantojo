@@ -79,6 +79,10 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
     margin: 0px;
 }
 
+.product p {
+  font-size:12px;
+}
+
 .container_24 .basic {
     width: 290px;
     margin:0px;
