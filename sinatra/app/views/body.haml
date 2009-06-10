@@ -7,30 +7,57 @@
     #content.grid_13.content-container
       = #categorias_nav
       %div.yui-navset.yui-navset-top#tabs
-        %ul.yui-nav#tab-ul
+        %ul.yui-nav.navigation#tab-ul
           %li.selected
-            %a{:href=>"#tab1"}
-              %em Inicio
+            %a{:id=>"search-btn",:href=>"#inicio"}
+              %em buscar
           %li
-            %a{:href=>"#tab2"}
-              %em Dos
+            %a{:id=>"favoritos-btn",:href=>"#favoritos"}
+              %em favoritos
           %li
-            %a{:href=>"#tab3"}
-              %em Tres
-        %div.yui-content
-          %div.tab#tab1
-            %div.tab-container
-              =categorias_nav
-              %div.clear &nbsp;
-              %div.tab-control-container
-                %button#arriba Arriba
-                %button#abajo Abajo
-              %div.product-list#product-list
-                =mock_products 15
-          %div.tab#tab2
-            %p Main B - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat
-          %div.tab#tab3
-            %p Tengo antojo de cualquier cosa muy deliciosa
+            %a{:id=>"recomendados-btn",:href=>"#recomendados"}
+              %em recomendados
+          %li
+            %a{:id=>"promociones-btn",:href=>"#promociones"}
+              %em promociones
+        %div.scroll
+          %div.yui-content.scrollContainer#listings-container
+            %div.panel.tab#inicio
+              %div.tab-container
+                =categorias_nav
+                %div.clear &nbsp;
+                %div.tab-control-container
+                  %button#arriba Arriba
+                  %button#abajo Abajo
+                %div.product-list#product-list
+                  =mock_products 15
+            %div.panel.tab#favoritos
+              %div.tab-container
+                =categorias_nav
+                %div.clear &nbsp;
+                %div.tab-control-container
+                  %button#arriba Arriba
+                  %button#abajo Abajo
+                %div.product-list#product-list
+                  =mock_products 15
+            %div.panel.tab#recomendados
+              %div.tab-container
+                =categorias_nav
+                %div.clear &nbsp;
+                %div.tab-control-container
+                  %button#arriba Arriba
+                  %button#abajo Abajo
+                %div.product-list#product-list
+                  =mock_products 15
+            %div.panel.tab#promociones
+              %div.tab-container
+                =categorias_nav
+                %div.clear &nbsp;
+                %div.tab-control-container
+                  %button#arriba Arriba
+                  %button#abajo Abajo
+                %div.product-list#product-list
+                  =mock_products 15
     #right.grid_11
       %p Main B - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat
 =js_tag "lib"

@@ -1,0 +1,75 @@
+ 
+#slider {
+    width: 536px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.scroll {
+    /*height: 390px;*/
+    width: 536px;
+    overflow: auto;
+    overflow-x: hidden;
+    position: relative;
+    clear: left;
+    background: #FFFFFF url(images/content_pane-gradient.gif) repeat-x scroll left bottom;
+}
+
+.scrollContainer div.panel {
+    /*padding: 20px;*/
+    /*height: 390px;*/
+    width: 536px;
+}
+
+#shade {
+    background: #EDEDEC url(images/shade.jpg) no-repeat 0 0;
+    height: 50px;
+}
+
+ul.navigation {
+    /*list-style: none;
+    margin: 0;
+    padding: 0;
+/*     padding-bottom: 9px;*/
+}
+
+ul.navigation li {
+    /*display: inline;
+    margin-right: 10px;*/
+}
+
+ul.navigation a {
+    /*padding: 10px;
+    color: #000;
+    text-decoration: none;*/
+}
+
+ul.navigation a:hover {
+    /*background-color: #f6f6f6;*/
+}
+
+ul.navigation a.selected {
+    /*background-color: #fff;*/
+}
+
+ul.navigation a:focus {
+    /*outline: none;*/
+}
+
+.scrollButtons {
+    position: absolute;
+    top: 150px;
+    cursor: pointer;
+}
+
+.scrollButtons.left {
+    left: -20px;
+}
+
+.scrollButtons.right {
+    right: -20px;
+}
+
+.hide {
+    display: none;
+}

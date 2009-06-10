@@ -1,7 +1,7 @@
 (function() {
   var SCROLL_VALUE = 367;
 
-    var tabView = new YAHOO.widget.TabView('tabs');
+    //var tabView = new YAHOO.widget.TabView('tabs');
 
     //    var product_list = YAHOO.util.Selector.query('.product-list');
 

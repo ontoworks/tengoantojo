@@ -81,6 +81,7 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
 
 .product p {
   font-size:12px;
+  color:#000;
 }
 
 .container_24 .basic {
@@ -98,7 +99,7 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
     background-color: white;
      overflow: hidden;
      float: left;
-     height: 367px;
+     height: 390px;
 }
 
 .product-list .product .precio {
@@ -132,4 +133,41 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
 
 .breadcrumb {
   font-size: 14px;
+}
+
+.product table {
+  border-top: 1px solid;
+  border-color: #EFEFEF;
+}
+
+#search-btn {
+  background-image:url('/images/casita-icon.png');
+  background-repeat:no-repeat;
+  /*background-attachment:fixed;*/
+  background-position:2px 4px;
+}
+
+#favoritos-btn {
+  background-image:url('/images/corazon-solido-icon.png');
+  background-repeat:no-repeat;
+  /*background-attachment:fixed;*/
+  background-position:2px 4px;
+}
+
+#recomendados-btn {
+  background-image:url('/images/dialogo-icon.png');
+  background-repeat:no-repeat;
+  /*background-attachment:fixed;*/
+  background-position:2px 4px;
+}
+
+#promociones-btn {
+  background-image:url('/images/estrella-icon.png');
+  background-repeat:no-repeat;
+  /*background-attachment:fixed;*/
+  background-position:2px 4px;
+}
+
+#listings-container {
+  border-style:none;
 }

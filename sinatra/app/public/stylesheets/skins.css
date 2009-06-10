@@ -43,7 +43,28 @@
   margin: 0;
 }
 
-/* selected */
+/* selected yuinav */
+.yui-skin-sam .yui-navset .yui-nav a em {
+    /*padding:0.35em 0.75em; /* raise selected tab */
+    padding:0.25em 0.5em 0.25em 1.8em;*/
+}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a,
+.yui-skin-sam .yui-navset .yui-nav .selected a:focus, /* no focus effect for selected */
+.yui-skin-sam .yui-navset .yui-nav .selected a:hover { /* no hover effect for selected */
+    /*background:#2647a0 url(/javascripts/thirdparty/yui/build/assets/skins/sam/sprite.png) repeat-x left -1400px; /* selected tab background */
+    background:none;
+    /*background-color:#CD2E13;*/
+    color:#000;
+    /*padding:0.35em 0.75em 0.35em 1.0em;*/
+}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a em {
+    /*padding:0.35em 0.75em; /* raise selected tab */
+    padding:0.35em 0.5em 0.35em 1.8em;
+}
+
+/* selected catnav */
 .yui-skin-sam .yui-navset .cat-nav .selected,
 .yui-skin-sam .yui-navset .yui-navset-top .cat-nav .selected { 
     /*margin:0 0.16em -1px 0; /* for overlap */
