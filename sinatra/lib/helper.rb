@@ -83,9 +83,9 @@ SCRIPT
     Haml::Engine.new(textohaml).render    
   end
 
-  def product_list
-    list=list+product
-  end
+  #def product_list
+  #  list=list+product
+  #end
 
   def product_pagination
   end
