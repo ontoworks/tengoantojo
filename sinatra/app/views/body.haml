@@ -21,14 +21,15 @@
             %a{:id=>"promociones-btn",:href=>"#promociones"}
               %em promociones
         %div.scroll
+          %div
           %div.yui-content.scrollContainer#listings-container
             %div.panel.tab#inicio
               %div.tab-container
                 =categorias_nav
                 %div.clear &nbsp;
                 %div.tab-control-container
-                  %button#arriba Arriba
-                  %button#abajo Abajo
+                  %button#arriba arriba
+                  %button#abajo abajo
                 %div.product-list#product-list
                   =mock_products 15
             %div.panel.tab#favoritos
@@ -60,4 +61,5 @@
                   =mock_products 15
     #right.grid_11
       %p Main B - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat
+  = #product_overlay_fixedbox
 =js_tag "lib"

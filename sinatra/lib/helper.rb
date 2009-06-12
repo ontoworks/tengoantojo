@@ -65,11 +65,22 @@ SCRIPT
   end
 
   def mock_products(count)
-    (product_table)*count
+    #render_haml("%div.product-overlay")+(product_table)*count
+    dame_haml("%div.product-overlay")+
+    products(count)
   end
 
-  def render_haml
-    Haml::Engine.new("textohaml").render    
+  def products(count)
+    list = ""
+    count.times do |i|
+      @id="product-"+i.to_s
+      list << product_table
+    end
+    list
+  end
+
+  def dame_haml(textohaml)
+    Haml::Engine.new(textohaml).render    
   end
 
   def product_list
@@ -86,4 +97,14 @@ SCRIPT
   def categorias_nav
     haml :categorias_nav
   end
+
+  def product_overlay
+    haml :product_overlay
+  end
+
+  def product_overlay_fixedbox
+    haml :product_overlay_fixedbox
+  end
+
 #end
+

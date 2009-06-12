@@ -7,6 +7,34 @@ body {
     font-family:"HelveticaNeue-Light","HelveticaNeue",Helvetica,Arial,sans-serif;
     font-size:14px;
 }
+
+:focus {
+  -moz-outline-style:none;
+}
+
+
+/* yui overlay */
+.yui-overlay { 
+  position:absolute;
+  background:#000;
+  border:1px dotted black;
+  padding:5px;
+  margin:0px;
+  opacity:0.7;
+  font-color:#fff;
+}
+  
+.yui-overlay .hd { border:1px solid red;padding:5px; }
+.yui-overlay .bd { border:1px solid green;padding:5px; }
+.yui-overlay .ft { border:1px solid blue;padding:5px; }
+
+#ctx { background:orange;width:100px;height:25px; }
+        
+#example {height:15em;}
+
+
+
+
 .container div p { background-color:#fff; }
 div p { border:1px solid #333; padding:10px; margin: 0px;}
 	
@@ -89,17 +117,12 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
     margin:0px;
 }
 
-.nombre {
-}
-
-.descripcion {
-}
-
 #product-list {
     background-color: white;
      overflow: hidden;
      float: left;
-     height: 390px;
+     height: 455px;
+     position:relative;
 }
 
 .product-list .product .precio {
@@ -170,4 +193,41 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
 
 #listings-container {
   border-style:none;
+}
+
+#ver-mas-prod p {
+  font-size:10px;
+  color:#92B7E8;
+}
+
+/*.descripcion p, .nombre p {
+  font-size:10px;
+}*/
+
+.product .precio {
+  font-size:14px;
+}
+
+.product .comprar-btn {
+  text-decoration:none;
+  color:#E8E8E8;
+  border: 1px solid;
+  border-color:#E8E8E8;
+  font-size: 12px;
+  background-color:#ACACAC;
+  padding: 1px 2px;
+}
+
+.product-overlay { 
+  position:absolute;
+  background:#000;
+  border:1px dotted black;
+  padding:5px;
+  margin:0px;
+  /*opacity:0.7;*/
+  font-color:#fff;
+  left:43px;
+  width:0px;
+  height:450px;
+  display:none;
 }

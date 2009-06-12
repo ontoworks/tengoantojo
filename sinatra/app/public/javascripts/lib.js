@@ -1,5 +1,6 @@
+var overlay2;
 (function() {
-  var SCROLL_VALUE = 367;
+    var SCROLL_VALUE = 367;
 
     //var tabView = new YAHOO.widget.TabView('tabs');
 
@@ -42,3 +43,14 @@
       recalculate_scroll(-1);
     });
 })();
+
+jQuery(document).ready(function($){
+  $(".product-overlay").css({opacity:0.7});
+  $(".product").click(function() {
+    $(".product-overlay").toggle();
+    $(".product-overlay").animate({ width:"475px" });
+  });
+
+});
+
+
