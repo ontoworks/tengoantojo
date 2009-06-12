@@ -46,11 +46,19 @@ var overlay2;
 
 jQuery(document).ready(function($){
   $(".product-overlay").css({opacity:0.7});
+  $(".image-overlay").css({opacity:0.7});
   $(".product").click(function(e) {
     product = $(e.target).closest(".product");
-    overlay = product.closest(".product-list").children(".product-overlay");
-    overlay.css({width:"0px"});
-    $(".product-overlay").animate({ width:"475px" });
+    image_overlay = product.children(".image-overlay");
+    product_overlay = product.closest(".product-list").children(".product-overlay");
+
+    product_overlay.css({width:"0px"});
+    product_overlay.animate({ width:"475px" });
+    
+    $(".image-overlay.selected").toggle();
+    $(".image-overlay.selected").toggleClass("selected");
+    image_overlay.toggle();
+    image_overlay.toggleClass("selected");
   });
 
 });

@@ -231,3 +231,17 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
   height:450px;
   display:none;
 }
+
+.image-overlay { 
+  position:absolute;
+  background:#000;
+  border:1px dotted black;
+  padding:5px;
+  margin:0px;
+  /*opacity:0.7;*/
+  font-color:#fff;
+  left:0px;
+  width:31px;
+  height:43px;
+  display:none;
+}
