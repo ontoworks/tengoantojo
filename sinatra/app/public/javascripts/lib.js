@@ -46,8 +46,10 @@ var overlay2;
 
 jQuery(document).ready(function($){
   $(".product-overlay").css({opacity:0.7});
-  $(".product").click(function() {
-    $(".product-overlay").toggle();
+  $(".product").click(function(e) {
+    product = $(e.target).closest(".product");
+    overlay = product.closest(".product-list").children(".product-overlay");
+    overlay.css({width:"0px"});
     $(".product-overlay").animate({ width:"475px" });
   });
 

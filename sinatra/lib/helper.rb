@@ -66,16 +66,16 @@ SCRIPT
 
   def mock_products(count)
     #render_haml("%div.product-overlay")+(product_table)*count
-    dame_haml("%div.product-overlay")+
-    products(count)
+    product_list(count)
   end
 
-  def products(count)
+  def product_list(count)
     list = ""
     count.times do |i|
       @id="product-"+i.to_s
       list << product_table
     end
+    dame_haml("%div.product-overlay")+
     list
   end
 
