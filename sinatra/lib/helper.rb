@@ -28,6 +28,10 @@ SCRIPT
   #def content
   #  haml :body
   #end
+  def img(uri, ops={})
+    id=ops.delete(:id)
+    dame_haml("%img#{id.nil? ? "" : "#"+id}{:src=>'#{uri}'}")
+  end
 
   def css_link(file)
     if file.index("/")==0
@@ -75,7 +79,7 @@ SCRIPT
       @id="product-"+i.to_s
       list << product_table
     end
-    dame_haml("%div.product-overlay")+
+    (haml :product_overlay)+
     list
   end
 

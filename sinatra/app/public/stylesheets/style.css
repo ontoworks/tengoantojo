@@ -33,7 +33,12 @@ body {
 #example {height:15em;}
 
 
-
+a {
+  text-decoration:none;
+}
+a:hover {
+  border:0;
+}
 
 .container div p { background-color:#fff; }
 div p { border:1px solid #333; padding:10px; margin: 0px;}
@@ -221,12 +226,12 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
 .product-overlay { 
   position:absolute;
   background:#000;
-  border:1px dotted black;
+  /*border:1px dotted black;*/
   padding:5px;
   margin:0px;
   /*opacity:0.7;*/
   font-color:#fff;
-  left:43px;
+  left:46px;
   width:0px;
   height:450px;
   display:none;
@@ -235,13 +240,112 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
 .image-overlay { 
   position:absolute;
   background:#000;
-  border:1px dotted black;
-  padding:5px;
+  /*border:1px dotted black;*/
+  padding:0px;
   margin:0px;
   /*opacity:0.7;*/
   font-color:#fff;
   left:0px;
-  width:31px;
-  height:43px;
+  width:46px;
+  height:56px;
   display:none;
+}
+
+.image-overlay-hole {
+  width:23px;
+  background:#fff;
+  z-index:9000;
+}
+
+.brief {
+/*  background:#fff;*/
+  color:#fff;
+  height:140px;
+}
+
+.brief p {
+  border:none;
+  padding: 0px 5px;
+}
+
+.container .product-overlay p {
+  background:none;
+  border-color:#fff;
+}
+
+.product-image {
+  padding-top:4px;
+}
+
+.product-image img {
+  background:transparent;
+  margin: 0 3px;
+  border: 2px solid #fff;
+}
+
+.overlay-iconos-top {
+  left:48px;
+  top:5px;
+  position:absolute;
+  z-index:2;
+  display:none;
+}
+
+.container .overlay-iconos-right p {
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:12px;
+  padding:0px 0px 0px 5px;
+}
+
+.overlay-iconos-right {
+  left:466px;
+  top:37px;
+  position:absolute;
+  z-index:2;
+  display:none;
+}
+
+.overlay-iconos-bottom {
+  left:64px;
+  top:110px;
+  position:absolute;
+  z-index:2;
+  display:none;
+}
+
+.container .overlay-iconos-right td {
+  vertical-align:top;
+}
+
+
+.ver-vendedor {
+  color:#3FFBFF;
+  font-size:10px;
+}
+
+.container .product-overlay .precio {
+  background:#505050;
+  padding: 3px 2px;
+}
+
+.container .product-overlay .descripcion {
+  font-size:12px;
+}
+
+.container .product-overlay .descripcion-td {
+  vertical-align:top;
+}
+
+.overlay-iconos-bottom a {
+background:#101010 none repeat scroll 0 0;
+color:#FFFFFF;
+margin-left:72px;
+/*opacity:0.8;*/
+padding:1px 49px;
+}
+
+.cerrar {
+  cursor:pointer;
 }
