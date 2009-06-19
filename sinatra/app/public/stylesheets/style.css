@@ -349,3 +349,11 @@ padding:1px 49px;
 .cerrar {
   cursor:pointer;
 }
+
+.container .comentarios-label p {
+  color:#fff;
+  background:#303030;
+  border:none;
+  padding:0px;
+  font-size:12px;
+}
