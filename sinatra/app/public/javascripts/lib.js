@@ -1,4 +1,3 @@
-var overlay2;
 (function() {
     var SCROLL_VALUE = 367;
 
@@ -78,6 +77,9 @@ jQuery(document).ready(function($){
       $(".product-image.selected").css({background:"#fff", opacity:1});
     });
   });
+
+  // load from google?
+  $.get("/search/mp3+player");
 
 });
 
