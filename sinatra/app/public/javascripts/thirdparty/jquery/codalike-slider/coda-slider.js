@@ -1,6 +1,6 @@
 // when the DOM is ready...
-$(document).ready(function () {
-
+//$(document).ready(function () {
+function coda_slider() {
     var $panels = $('#tabs .scrollContainer > div');
     var $container = $('#tabs .scrollContainer');
 
@@ -14,7 +14,6 @@ $(document).ready(function () {
             'float' : 'left',
             'position' : 'relative' // IE fix to ensure overflow is hidden
         });
-
         // calculate a new width for the container (so it holds all panels)
         $container.css('width', $panels[0].offsetWidth * $panels.length);
     }
@@ -45,6 +44,7 @@ $(document).ready(function () {
     function trigger(data) {
         var el = $('#tabs .navigation').find('a[href$="' + data.id + '"]').get(0);
         selectNav.call(el);
+	//alert(el);
     }
 
     if (window.location.hash) {
@@ -96,7 +96,7 @@ $(document).ready(function () {
 
     // now apply localScroll to hook any other arbitrary links to trigger 
     // the effect
-    $.localScroll(scrollOptions);
+    $('.navigation').localScroll(scrollOptions);
 
     // finally, if the URL has a hash, move the slider in to position, 
     // setting the duration to 1 because I don't want it to scroll in the
@@ -105,4 +105,4 @@ $(document).ready(function () {
     scrollOptions.duration = 1;
     $.localScroll.hash(scrollOptions);
 
-});
+}

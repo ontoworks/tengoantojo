@@ -1,6 +1,6 @@
 // when the DOM is ready...
-$(document).ready(function () {
-
+//$(document).ready(function () {
+function coda_slider() {
     var $panels = $('#tabs .scrollContainer > div');
     var $container = $('#tabs .scrollContainer');
 
@@ -14,7 +14,6 @@ $(document).ready(function () {
             'float' : 'left',
             'position' : 'relative' // IE fix to ensure overflow is hidden
         });
-
         // calculate a new width for the container (so it holds all panels)
         $container.css('width', $panels[0].offsetWidth * $panels.length);
     }
@@ -24,9 +23,9 @@ $(document).ready(function () {
     var $scroll = $('#tabs .scroll').css('overflow', 'hidden');
 
     // apply our left + right buttons
-    $scroll
+    /*$scroll
         .before('<img class="scrollButtons left" src="images/scroll_left.png" />')
-        .after('<img class="scrollButtons right" src="images/scroll_right.png" />');
+        .after('<img class="scrollButtons right" src="images/scroll_right.png" />');*/
 
     // handle nav selection
     function selectNav() {
@@ -45,6 +44,7 @@ $(document).ready(function () {
     function trigger(data) {
         var el = $('#tabs .navigation').find('a[href$="' + data.id + '"]').get(0);
         selectNav.call(el);
+	//alert(el);
     }
 
     if (window.location.hash) {
@@ -71,8 +71,8 @@ $(document).ready(function () {
         navigation: '.navigation a',
 
         // selectors are NOT relative to document, i.e. make sure they're unique
-        prev: 'img.left', 
-        next: 'img.right',
+        //prev: 'img.left', 
+        //next: 'img.right',
 
         // allow the scroll effect to run both directions
         axis: 'xy',
@@ -96,13 +96,13 @@ $(document).ready(function () {
 
     // now apply localScroll to hook any other arbitrary links to trigger 
     // the effect
-    $.localScroll(scrollOptions);
+    $('.navigation').localScroll(scrollOptions);
 
     // finally, if the URL has a hash, move the slider in to position, 
     // setting the duration to 1 because I don't want it to scroll in the
     // very first page load.  We don't always need this, but it ensures
     // the positioning is absolutely spot on when the pages loads.
     scrollOptions.duration = 1;
-    $.localScroll.hash(scrollOptions);
+    $('.navigation').localScroll.hash(scrollOptions);
 
-});
+}

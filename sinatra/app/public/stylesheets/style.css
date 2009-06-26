@@ -1,6 +1,6 @@
-.column { background-color:#92C348; height:400px; float:left; margin-top:20px; }
+/*.column { background-color:#92C348; height:400px; float:left; margin-top:20px; }
 .gutter { background-color:#BCDA86; height:400px; float:left; margin-top:20px; }
-.gutter_outer { background-color:#56644A; height:400px; float:left; margin-top:20px; }
+.gutter_outer { background-color:#56644A; height:400px; float:left; margin-top:20px; }*/
 
 body { 
     background-color: #fff; 
@@ -45,11 +45,12 @@ div p { border:1px solid #333; padding:10px; margin: 0px;}
 	
 #tab-ul {
     border-color: #FFFFFF;
+    border-width:0 0 2px;
 }
 
-.yui-skin-sam .yui-navset .yui-nav li, .yui-skin-sam .yui-navset .yui-navset-top .yui-nav li {
+/*.yui-skin-sam .yui-navset .yui-nav li, .yui-skin-sam .yui-navset .yui-navset-top .yui-nav li {
     padding: 10px 0 0;
-}
+}*/
 
 .yui-skin-sam .yui-navset .yui-nav a, .yui-skin-sam .yui-navset .yui-navset-top .yui-nav a {
     background: none;
@@ -90,7 +91,7 @@ div p { border:1px solid #333; padding:10px; margin: 0px;}
 
 .product p {
     padding: 0px;
-    line-height: 15px;
+    line-height: 1.1;
     margin: 0px;
     border: 0px;
 }
@@ -122,12 +123,12 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
     margin:0px;
 }
 
-#product-list {
+.product-list{
     background-color: white;
-     overflow: hidden;
-     float: left;
-     height: 455px;
-     position:relative;
+    overflow: hidden;
+    float: left;
+    /*height: 455px;*/
+    position:relative;
 }
 
 .product-list .product .precio {
@@ -231,10 +232,12 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
   margin:0px;
   /*opacity:0.7;*/
   font-color:#fff;
+  top:25px;
   left:46px;
   width:0px;
-  height:450px;
+  height:554px;
   display:none;
+  z-index:2;
 }
 
 .image-overlay { 
@@ -284,10 +287,10 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
 }
 
 .overlay-iconos-top {
-  left:48px;
-  top:5px;
+  left:50px;
+  top:30px;
   position:absolute;
-  z-index:2;
+  z-index:4;
   display:none;
 }
 
@@ -309,9 +312,27 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
 
 .overlay-iconos-bottom {
   left:64px;
-  top:110px;
+  top:130px;
   position:absolute;
-  z-index:2;
+  z-index:3;
+  display:none;
+}
+
+.overlay-brief {
+  left:48px;
+  top:30px;
+  width:480px;
+  position:absolute;
+  z-index:3;
+  display:none;
+}
+
+.overlay-comentarios {
+  left:60px;
+  top:180px;
+  width:450px;
+  position:absolute;
+  z-index:3;
   display:none;
 }
 
@@ -325,16 +346,20 @@ div#product-info div.grid_10, div#product-info div.grid_3 {
   font-size:10px;
 }
 
-.container .product-overlay .precio {
+.container .overlay-brief p{
+  background:none;
+}
+
+.container .overlay-brief .precio {
   background:#505050;
   padding: 3px 2px;
 }
 
-.container .product-overlay .descripcion {
+.container .overlay-brief .descripcion {
   font-size:12px;
 }
 
-.container .product-overlay .descripcion-td {
+.container .overlay-brief .descripcion-td {
   vertical-align:top;
 }
 
@@ -356,4 +381,22 @@ padding:1px 49px;
   border:none;
   padding:0px;
   font-size:12px;
+}
+
+.product-list-scroll {
+  height: 620px;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-list-page {
+  margin-bottom:74px;
+}
+
+.product-list-page-offset {
+  border: 1px solid #000;
+  height:12px;
+  top:-70px;
+  position:relative;
+  padding:15px;
 }

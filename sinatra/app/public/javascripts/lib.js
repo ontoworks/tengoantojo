@@ -1,4 +1,34 @@
-(function() {
+/** 
+ * @returns:
+ * @author:
+ * @version:
+ * @requires:
+ */
+var product_list = (function() {
+  var size = Conf.product_list_size;
+  var page_size = Conf.product_list_page_size;
+  return {
+  size:function() {
+      return size;
+    },
+  }
+  })();
+  
+  product_list.prototype = {
+    scroll_up:function() {  
+      
+    },
+    scroll_down:function() {
+    },
+    next:function() {
+    },
+    previous:function() {
+    },
+    goto_page: function() {
+    }
+  }
+    
+/*(function() {
     var SCROLL_VALUE = 367;
 
     //var tabView = new YAHOO.widget.TabView('tabs');
@@ -41,46 +71,5 @@
     YAHOO.util.Event.on('arriba', 'click', function() {
       recalculate_scroll(-1);
     });
-})();
-
-/* product overlay */
-jQuery(document).ready(function($){
-  //$("body").supersleight();
-  //$("#png-image").supersleight();
-
-  $(".product-overlay").css({opacity:0.8});
-  $(".image-overlay").css({opacity:0.8});
-  //$(".image-overlay-hole").css({opacity:0});
-  $(".product").click(function(e) {
-    product = $(e.target).closest(".product");
-    image_overlay = product.children(".image-overlay");
-    product_overlay = product.closest(".product-list").children(".product-overlay");
-
-    product_overlay.css({width:"0px"});
-    product_overlay.animate({ width:"475px" });
-    
-    $(".product-image.selected").css({background:"#fff", opacity:1});
-    $(".product-image.selected").toggleClass("selected");
-    product.find(".product-image").toggleClass("selected");
-    product.find(".product-image").css({background:"#000", opacity:0.8});
-    product.find("img").css({opacity:1});
-    /*$(".image-overlay.selected").toggle();
-    $(".image-overlay.selected").toggleClass("selected");
-    image_overlay.toggle();
-    image_overlay.toggleClass("selected");*/
-    
-    overlays=$(".overlay-iconos-top, .overlay-iconos-right, .overlay-iconos-bottom");
-    overlays.show();
-    $(".cerrar").click(function(){
-      overlays.hide();
-      product_overlay.hide();
-      $(".product-image.selected").css({background:"#fff", opacity:1});
-    });
-  });
-
-  // load from google?
-  $.get("/search/mp3+player");
-
-});
-
+    })();*/
 

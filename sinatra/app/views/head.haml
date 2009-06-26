@@ -3,23 +3,22 @@
   %title tengoantojo.com
 
   =jquery
-  =js_tag "thirdparty/jquery/codalike-slider/jquery.scrollTo-1.3.3"
-  =js_tag "thirdparty/jquery/codalike-slider/jquery.localscroll-1.2.5"
-  =js_tag "thirdparty/jquery/codalike-slider/jquery.serialScroll-1.2.1"
-  =js_tag "thirdparty/jquery/codalike-slider/coda-slider.js"
-  
-  = #js_tag "thirdparty/jquery/overlay/overlay.js"
-  =js_tag "thirdparty/jquery/fixedbox/fixedbox.js"
-  =js_tag "thirdparty/jquery/supersleight/supersleight.js"
+  =jquery_plugin "scrollto/1.4.1/jquery.scrollTo-min"
+  =jquery_plugin "localscroll/1.2.7/jquery.localscroll-min"
+  =jquery_plugin "codalike-slider/jquery.serialScroll-1.2.1"
+  =jquery_plugin "codalike-slider/coda-slider"
+  =jquery_plugin "supersleight/supersleight.js"
+  = #jquery_plugin "truncate/2.3/jquery.truncate"
+  =jquery_plugin "truncator/truncator"
   
   =grid_js_css
  
-  =yui "yahoo-dom-event/yahoo-dom-event"
-  =yui "animation/animation-min"
-  =yui "container/container-min.js"
-  =yui "element/element-min"
-  =yui "selector/selector-min"
-  =yui "tabview/tabview-min"
+  = #yui "yahoo-dom-event/yahoo-dom-event"
+  = #yui "animation/animation-min"
+  = #yui "container/container-min.js"
+  = #yui "element/element-min"
+  = #yui "selector/selector-min"
+  = #yui "tabview/tabview-min"
   =css_link "/javascripts/thirdparty/yui/build/fonts/fonts-min.css"
   =css_link "/javascripts/thirdparty/yui/build/container/assets/skins/sam/container.css"
   =css_link "/javascripts/thirdparty/yui/build/tabview/assets/skins/sam/tabview.css"
@@ -30,3 +29,9 @@
   =css_link "skins"
 
   =css_link "codaslider"
+
+  =js_tag "globals"
+  =js_tag "product_overlay"
+  =js_tag "json_from_google"
+  =js_tag "miscroller"
+  =js_tag "myserialscroller"

@@ -21,6 +21,18 @@
     width: 536px;
 }
 
+.product-list-scroll {
+    width: 536px;
+    overflow: hidden;
+    position: relative;
+    clear: left;
+    background: #FFFFFF url(images/content_pane-gradient.gif) repeat-x scroll left bottom;
+}
+
+.product-list-scrollContainer div.product-list-page {
+    width: 536px;
+}
+
 #shade {
     background: #EDEDEC url(images/shade.jpg) no-repeat 0 0;
     height: 50px;

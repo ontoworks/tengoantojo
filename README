@@ -1,1 +1,8 @@
 sudo gem1.9 install rest-client
+
+
+4. sudo apt-get install libxml2
+3. sudo apt-get install libxml2-dev
+2. sudo gem1.9 install libxml-ruby
+1. sudo gem1.9 install ratom
+

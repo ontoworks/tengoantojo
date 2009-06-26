@@ -56,33 +56,54 @@
 
       %td 
         %a{:href=>"#meantoje"} me antoj&eacute;!
-.product-overlay#product-overlay
-  .brief
-    %table{:width=>"100%"}
-      %tbody
-        %tr
-          %td{:rowspan=>"2"}
-            %table
-              %tr
-                %td
-              %tr
-                %td
-              %tr
-                %td
-          %td
-            %p.nombre
-              %strong Pizza doble pepperoni
-          %td
-            %p.ver-vendedor ver vendedor
-          %td
-            %p.precio $15.000
-        %tr
-          %td.descripcion-td{:colspan=>"2"}
-            %p.descripcion 
-              So, we code web sites by hand. La mejor pizza de la ciudad y de los universos
-              So, we code web sites by hand. La mejor pizza de la ciudad y de los universos
-              So, we code web sites by hand. La mejor pizza de la ciudad y de los universos
-          %td
+.overlay-brief.brief
+  %table{:width=>"100%"}
+    %tbody
+      %tr
+        %td{:rowspan=>"2"}
+          %table
+            %tr
+              %td 
+            %tr
+              %td 
+            %tr
+              %td 
+        %td
+          %p.nombre
+            %strong Pizza doble pepperoni
+        %td
+          %p.ver-vendedor ver vendedor
+        %td
+          %p.precio $15.000
+      %tr
+        %td.descripcion-td{:colspan=>"2"}
+          %p.descripcion 
+            So, we code web sites by hand. La mejor pizza de la ciudad y de los universos
+            So, we code web sites by hand. La mejor pizza de la ciudad y de los universos
+            So, we code web sites by hand. La mejor pizza de la ciudad y de los universos
+        %td 
+          %table{:cellpadding=>"0", :cellspacing=>"0"}
+            %tr
+              %td
+                =img "/images/corazon-solido-icon-2.png"
+              %td
+                %p 12
+            %tr
+              %td
+                =img "/images/dialogo-icon-2.png"
+              %td
+                %p 15
+            %tr
+              %td
+                =img "/images/email.png"
+              %td
+                %p 12
+            %tr
+              %td
+                =img "/images/dialogo-icon-2.png"
+              %td
+                %p 15
+.overlay-comentarios
   .comentarios-label
     %p comentarios
   .comentarios
@@ -104,3 +125,4 @@
               %table
           %td
             S
+.product-overlay#product-overlay

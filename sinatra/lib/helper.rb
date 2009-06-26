@@ -1,4 +1,5 @@
 #module UIHelper
+helpers do
   def head
     haml :head
   end
@@ -20,6 +21,16 @@
 
     YAHOO.log("The example has finished loading; as you interact with it, you'll see log messages appearing here.", "info", "example");
 })();
+</script>
+SCRIPT
+  end
+
+  def json_from_gb
+<<SCRIPT
+<script>
+  function json_from_gb(root) {
+    alert(root);
+  }
 </script>
 SCRIPT
   end
@@ -63,10 +74,15 @@ SCRIPT
     js_tag "thirdparty/jquery/jquery-1.3"
   end
 
-  def product
-    (haml :product)+
-    (haml :product)
+  def jquery_plugin(plugin)
+    plugin=plugin+".js" unless plugin =~ /\.js$/
+    js_tag "thirdparty/jquery/#{plugin}"
   end
+
+  #def product
+  #  (haml :product)+
+  #  (haml :product)
+  #end
 
   def mock_products(count)
     #render_haml("%div.product-overlay")+(product_table)*count
@@ -79,19 +95,12 @@ SCRIPT
       @id="product-"+i.to_s
       list << product_table
     end
-    (haml :product_overlay)+
+    #(haml :product_overlay)+
     list
   end
 
   def dame_haml(textohaml)
     Haml::Engine.new(textohaml).render    
-  end
-
-  #def product_list
-  #  list=list+product
-  #end
-
-  def product_pagination
   end
 
   def product_show_container
@@ -106,9 +115,13 @@ SCRIPT
     haml :product_overlay
   end
 
+  def product_list_pages(pages)
+    (haml :product_list_page)*pages
+  end
+
   def product_overlay_fixedbox
     haml :product_overlay_fixedbox
   end
-
+end
 #end
 

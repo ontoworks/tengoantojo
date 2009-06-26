@@ -8,7 +8,7 @@ helpers do
   end
 
   def content
-    haml :body
+    haml :body1
   end
 
   def product_table
