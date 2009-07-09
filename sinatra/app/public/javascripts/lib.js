@@ -4,72 +4,95 @@
  * @version:
  * @requires:
  */
-var product_list = (function() {
-  var size = Conf.product_list_size;
-  var page_size = Conf.product_list_page_size;
-  return {
-  size:function() {
-      return size;
-    },
-  }
-  })();
-  
-  product_list.prototype = {
-    scroll_up:function() {  
-      
-    },
-    scroll_down:function() {
-    },
-    next:function() {
-    },
-    previous:function() {
-    },
-    goto_page: function() {
+function augment(receivingClass, givingClass) {
+  if (arguments[2]) {
+    for (var i=2, len=arguments.length; i<len; i++) {
+      receivingClass.prototype[arguments[i]] = givingClass.prototype[arguments[i]];
     }
-  }
-    
-/*(function() {
-    var SCROLL_VALUE = 367;
-
-    //var tabView = new YAHOO.widget.TabView('tabs');
-
-    //    var product_list = YAHOO.util.Selector.query('.product-list');
-
-    var scrollFrom = 0;
-    var scrollTo = 0;
-
-    var recalculate_scroll = function(dir) {
-      var scrolls = false;
-      var scroll_attrs = {
-	scroll: { to: [0, scrollTo] }
-      };
-
-      if (dir == 1) {
-	  if (scrollTo/SCROLL_VALUE < 2) {
-	    scrolls = true;
-	  }
-      } else if (dir == -1) {
-	  if (scrollTo/SCROLL_VALUE > 0) {
-	    scrolls = true;
-	  }
-      }
-
-      if (scrolls) {
-	scrollTo += SCROLL_VALUE*dir;
-	scroll_attrs = {
-	  scroll: { to: [0, scrollTo] }
-	};	
-	var scroll = new YAHOO.util.Scroll("product-list", scroll_attrs); 
-	scroll.animate();
+  } else { // give static methods 
+    for (methodName in givingClass) {
+      if(!receivingClass[methodName]) {
+	receivingClass[methodName] = givingClass[methodName];
       }
     }
+    for (methodName in givingClass.prototype) {
+      if(!receivingClass.prototype[methodName]) {
+	receivingClass.prototype[methodName] = givingClass.prototype[methodName];
+      }
+    }
+  }
+}
 
-    YAHOO.util.Event.on('abajo', 'click', function() {
-      recalculate_scroll(1);
-    });
+/** 
+ * @returns:
+ * @author:
+ * @version:
+ * @requires:
+ */
+var Resource = function() {
+  this.uri = "";
+};
+Resource.get = function(data, callback, scope) {
+    jQuery.getJSON(this.uri+data, (function(_scope) {
+	return function(data) {
+	  callback(data, _scope);
+	}
+	})(scope));
+};
+Resource.post = function() {
+};
+Resource.put = function() {
+};
+//Resource.delete = function() {}; // cannot be named like this
 
-    YAHOO.util.Event.on('arriba', 'click', function() {
-      recalculate_scroll(-1);
-    });
-    })();*/
+/** 
+ * @returns:
+ * @author:
+ * @version:
+ * @requires:
+ */
+var Query = function() {
+  this.proxy;
+  this.uri;
+};
+Query.prototype.query = function(query) {
+  this.proxy.get(query, this.callback, this);
+};
 
+/** 
+ * @returns:
+ * @author:
+ * @version:
+ * @requires:
+ */
+var List = function() {
+  this.items = [];
+};
+List.prototype = {
+  add: function(item) {
+    this.items.push(item);
+  },
+  each: function() {
+  },
+  next: function() {
+  },
+  prev: function() {
+  },
+  page_up: function() {
+  },
+  page_down: function() {
+  }
+  };
+
+/** 
+ * @returns:
+ * @author:
+ * @version:
+ * @requires:
+ */
+var UI = function() {
+  this.tpl;
+};
+UI.prototype.html = function() {
+  this.tpl;
+  };

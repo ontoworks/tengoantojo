@@ -7,6 +7,7 @@ require 'uri'
 require '../lib/ui'
 require '../lib/helper'
 require '../lib/rest'
+require '../lib/designer'
 
 
 get '/' do
@@ -18,4 +19,10 @@ get '/search/:query' do
   Rest.get('http://www.google.com/base/feeds/snippets')
 end
 
+get '/designer' do
+  haml :designer
+end
 
+get '/product' do
+  RestClient.get "http://www.google.com/base/feeds/snippets?"+request.query_string,:accept => "application/json"
+end

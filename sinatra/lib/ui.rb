@@ -14,6 +14,10 @@ helpers do
   def product_table
     haml :product_table
   end
+
+  def product_list_home
+    haml :product_list
+  end
 end
 
 get '/ui/product_table' do
@@ -27,4 +31,8 @@ OUT
   out << head
   out << %q{<div class="container container_24">}
   out << product_table*5 << %q{</div>}
+end
+
+get '/ui/product_list' do
+  product_list_home
 end

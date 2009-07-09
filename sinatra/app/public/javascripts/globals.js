@@ -5,17 +5,27 @@
  * @requires:
  */
 var Conf = {};
-
 jQuery(document).ready(function($){
-  // initial load from google
-  jQuery.getScript("http://www.google.com/base/feeds/snippets?q=macbook&alt=json-in-script&callback=json_from_gb&max-results=30");
+    // initial load from google
+  /*jQuery.getScript("http://www.google.com/base/feeds/snippets?q=macbook&alt=json-in-script&callback=json_from_gb&max-results=30");*/
 
   myserialscroller();
   coda_slider();
 
   Conf = (function () {
     return {
-      product_list: {
+      Product: {
+        //uri: "http://www.google.com/base/snippets",
+        //uri:"/product",
+        uri:"/data/snippets.json",
+	tpl: function() {
+	  return $(".product:first").clone();
+	 }
+      },
+      ProductList: {
+        tpl: jQuery(".product-list:first"),
+	page_size: 10,
+        query_string: "q="
       },
 
       product_tpl: function() {
@@ -35,11 +45,11 @@ jQuery(document).ready(function($){
     }
   })();
 
-  jQuery('#search').keyup(function(e) {
+  /*  jQuery('#search').keyup(function(e) {
     if(e.keyCode == 13) {
       var query = jQuery('#search').val();
       var url = "http://www.google.com/base/feeds/snippets?q="+query+"&alt=json-in-script&callback=json_from_gb&max-results=30"
       jQuery.getScript(url);
     }
-  });
+    });*/
 });

@@ -28,20 +28,7 @@
               %div.tab-container
                 =categorias_nav
                 %div.clear &nbsp;
-                %div.product-list#product-list-0
-                  =product_overlay
-                  %div#product-list-navigation
-                    %button#arriba arriba
-                    %button#abajo abajo
-                  .product-list-scroll
-                    .product-list-scrollContainer
-                      .product-list-page#page-0
-                        =mock_products 10
-                      .product-list-page#page-1
-                        =mock_products 10
-                      .product-list-page#page-2
-                        =mock_products 10
-                      .product-list-page-offset paga por m&iacute, mami&nbsp;
+                =product_list_home
             %div.panel.tab#favoritos
               %div.tab-container
                 =categorias_nav
