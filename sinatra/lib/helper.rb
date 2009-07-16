@@ -4,41 +4,15 @@ helpers do
     haml :head
   end
 
-  def scripts
-    <<SCRIPT
-<script>
-(function() {
-    var tabView = new YAHOO.widget.TabView('tabs');
-
-    var attributes = {
-        scroll: { to: [0, 500] }
-    };
-    var product_list = YAHOO.util.Selector.query('.product-list');
-    var anim = new YAHOO.util.Scroll("product-list", attributes);
-    YAHOO.util.Event.on('abajo', 'click', function() {
-        anim.animate();
-    });
-
-    YAHOO.log("The example has finished loading; as you interact with it, you'll see log messages appearing here.", "info", "example");
-})();
-</script>
-SCRIPT
+  def ie8
+    <<IE8
+<!--[if lte IE 7]>
+ <script src="/javascripts/thirdparty/ie7/IE8.js" type="text/javascript"></script>
+ <script src="/javascripts/thirdparty/ie7/ie7-squish.js" type="text/javascript"></script>
+<![endif]-->
+IE8
   end
 
-  def json_from_gb
-<<SCRIPT
-<script>
-  function json_from_gb(root) {
-    alert(root);
-  }
-</script>
-SCRIPT
-  end
-
-
-  #def content
-  #  haml :body
-  #end
   def img(uri, ops={})
     id=ops.delete(:id)
     dame_haml("%img#{id.nil? ? "" : "#"+id}{:src=>'#{uri}'}")
