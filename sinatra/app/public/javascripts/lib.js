@@ -33,11 +33,11 @@ var Resource = function() {
   this.uri = "";
 };
 Resource.get = function(data, callback, scope) {
-  /*jQuery.getJSON(this.uri+data, (function(_scope) {
+  jQuery.getJSON(this.uri+data, (function(_scope) {
 	return function(data) {
 	  callback(data, _scope);
 	}
-	})(scope));*/
+	})(scope));
 };
 Resource.post = function() {
 };

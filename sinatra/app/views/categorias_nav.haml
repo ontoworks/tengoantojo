@@ -13,13 +13,47 @@
     %li
       %a{:href=>"#tab3"}
         %em pan
-  %ul.categorias-lista
-    %li.selected
-      %a{:href=>"inicio"}
-        %em del mundo
-    %li
-      %a{:href=>"dos"}
-        %em callejera
-    %li
-      %a{:href=>"tres"}
-        %em reposter&iacute;a
+  .categorias-scroll
+    .categorias-scrollContainer
+      .categorias-lista-page.first#del-mundo
+        %ul.categorias-lista
+          %li.selected
+            %a
+              %em del mundo
+          %li
+            %a{:href=>"#callejera"}
+              %em callejera
+          %li
+            %a{:href=>"#reposteria"}
+              %em reposter&iacute;a
+      .categorias-lista-page#callejera
+        %ul.categorias-lista
+          %li.selected
+            %a
+              %em callejera
+          %li
+            %a{:href=>"#callejera-0"}
+              %em callejera 0
+          %li
+            %a{:href=>"#callejera-1"}
+              %em callejera 1
+          %li
+            %a{:href=>"#callejera-2"}
+              %em callejera 2
+          %li
+            %a{:href=>"#callejera-3"}
+              %em callejera-3
+      .categorias-lista-page#reposteria
+        %ul.categorias-lista
+          %li.selected
+            %a
+              %em reposteria 0
+          %li
+            %a{:href=>"#reposteria-1"}
+              %em reposteria 1
+          %li
+            %a{:href=>"#reposteria-2"}
+              %em reposteria 2
+          %li
+            %a{:href=>"#reposteria-3"}
+              %em reposteria 3

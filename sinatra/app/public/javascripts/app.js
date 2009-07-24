@@ -61,5 +61,18 @@ jQuery(document).ready(function($) {
 	tpl:Conf.ProductList.tpl,
 	callback: product_list_callback});
   product_list_0.query(product_list_query);
+
+  // product overlay
+  $(".meantoje a").click(function() {
+      $(this).css({
+	background:"#ccc",
+	color:"#000"
+	});
+      $(".meantoje").css({
+	background:"#ccc",
+	color:"#000"
+	});
+      $("#meantoje-overlay").slideToggle();
+    });
 });
 

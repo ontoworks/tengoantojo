@@ -58,49 +58,57 @@
                 %td
                   %p 15
     .overlay-iconos-bottom
-      %table
-        %tr
-          %td
-            %table
-              %tr
-                %td
-                  =img "/images/motico.png"
-                %td
-                  =img "/images/ollita.png"
-                %td
-                  =img "/images/gorrito.png"
-                %td
-                  =img "/images/hielo.png"
-                %td
-                  =img "/images/mano.png"
-                %td
-                  =img "/images/pluma.png"
-                %td
-                  =img "/images/caja.png"
-                %td
-                  =img "/images/bolitas.png"
-          %td 
-            %a{:href=>"#meantoje"} me antoj&eacute;!
-    .overlay-comentarios
-      .comentarios-label
-        %p comentarios
-      .comentarios
-        .enviar-comentario
-          %table
-        .comentario-list
+      %ul
+        %li.feature-icon
+          =img "/images/motico.png"
+        %li.feature-icon
+          =img "/images/ollita.png"
+        %li.feature-icon
+          =img "/images/gorrito.png"
+        %li.feature-icon
+          =img "/images/hielo.png"
+        %li.feature-icon
+          =img "/images/mano.png"
+        %li.feature-icon
+          =img "/images/pluma.png"
+        %li.feature-icon
+          =img "/images/caja.png"
+        %li.feature-icon
+          =img "/images/bolitas.png"
+    .meantoje
+      #meantoje-overlay
+        .meantoje-datos
+          %p.title Datos del vendedor
+          %p La bu&ntilde;uequita consentida
+          %p Tel: 2345678
+          %p Dir: Cll. 1 # 1-1
+          %p.title Datos del comprador
           %table
             %tr
+              %td Nombre:
               %td
-                .comentario#comentario-0
-                  %table
-                .comentario#comentario-1
-                  %table
-                .comentario#comentario-2
-                  %table
-                .comentario#comentario-3
-                  %table
-                .comentario#comentario-4
-                  %table
+                %input{:type=>"text"}
+            %tr
+              %td Tel&eacute;fono:
               %td
-                S
+                %input{:type=>"text"}
+            %tr
+              %td E-mail:
+              %td
+                %input{:type=>"text"}
+            %tr
+              %td Cantidad
+              %td
+                %input{:type=>"text"}
+          %p Comentarios:
+          %textarea
+      %a{:href=>"#meantoje"} Me antoj&eacute;!!
+  .overlay-comentarios
+    %p.comentarios-label comentarios
+    .post-comment-container
+      .poster-pic
+      .posting-area
+        %textarea
+    .comments-container
+        
 .product-overlay-bg#product-overlay-bg

@@ -6,11 +6,9 @@
  */
 var Conf = {};
 jQuery(document).ready(function($){
-    // initial load from google
-  /*jQuery.getScript("http://www.google.com/base/feeds/snippets?q=macbook&alt=json-in-script&callback=json_from_gb&max-results=30");*/
-
   myserialscroller();
   coda_slider();
+  //categorias_scroller();
 
   Conf = (function () {
     return {
