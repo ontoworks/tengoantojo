@@ -30,7 +30,7 @@ var ProductOverlay = function() {
       jQuery(".product-image.selected").css({background:"#fff", opacity:1});
     });
 
-    var brief = jQuery(".overlay-brief");
+    var brief = jQuery(".brief");
     brief.find(".nombre").html(product.find(".nombre").html());
     brief.find(".descripcion").html(product.find(".descripcion").html());
   };

@@ -10,105 +10,150 @@
       %tr
         %td
           =img "/images/minidialogo.png"
-  .overlay-brief.brief
-    %table{:width=>"100%"}
-      %tbody
-        %tr
-          %td{:rowspan=>"2"}
+  .product-overlay-content
+    .brief
+      %table{:width=>"100%"}
+        %tbody
+          %tr
+            %td{:rowspan=>"2"}
+              %table
+                %tr
+                  %td 
+                %tr
+                  %td 
+                %tr
+                  %td 
+            %td
+              %p.nombre
+                %strong Pizza doble pepperoni
+            %td
+              %p.ver-vendedor ver vendedor
+            %td
+              %p.precio $15.000
+          %tr
+            %td.descripcion-td{:colspan=>"2"}
+              %p.descripcion 
+                So, we code web sites by hand. La mejor pizza de la ciudad y de los universos
+                So, we code web sites by hand. La mejor pizza de la ciudad y de los universos
+                So, we code web sites by hand. La mejor pizza de la ciudad y de los universos
+            %td 
+              %table{:cellpadding=>"0", :cellspacing=>"0"}
+                %tr
+                  %td
+                    =img "/images/corazon-solido-icon-2.png"
+                  %td
+                    %p 12
+                %tr
+                  %td
+                    =img "/images/dialogo-icon-2.png"
+                  %td
+                    %p 15
+                %tr
+                  %td
+                    =img "/images/email.png"
+                  %td
+                    %p 12
+                %tr
+                  %td
+                    =img "/images/dialogo-icon-2.png"
+                  %td
+                    %p 15
+      .overlay-iconos-bottom
+        %ul
+          %li.feature-icon
+            =img "/images/motico.png"
+          %li.feature-icon
+            =img "/images/ollita.png"
+          %li.feature-icon
+            =img "/images/gorrito.png"
+          %li.feature-icon
+            =img "/images/hielo.png"
+          %li.feature-icon
+            =img "/images/mano.png"
+          %li.feature-icon
+            =img "/images/pluma.png"
+          %li.feature-icon
+            =img "/images/caja.png"
+          %li.feature-icon
+            =img "/images/bolitas.png"
+      .meantoje
+        #meantoje-overlay
+          .meantoje-datos
+            %p.title Datos del vendedor
+            %p La bu&ntilde;uequita consentida
+            %p Tel: 2345678
+            %p Dir: Cll. 1 # 1-1
+            %p.title Datos del comprador
+            %table
+              %tr
+                %td Nombre:
+                %td
+                  %input{:type=>"text"}
+              %tr
+                %td Tel&eacute;fono:
+                %td
+                  %input{:type=>"text"}
+              %tr
+                %td E-mail:
+                %td
+                  %input{:type=>"text"}
+              %tr
+                %td Cantidad
+                %td
+                  %input{:type=>"text"}
+            %p Comentarios:
+            %textarea
+        %a{:href=>"#meantoje"} Me antoj&eacute;!!
+    .overlay-comentarios
+      %p.comentarios-label comentarios
+      .post-comment-container
+        .poster-pic
+          %p PIC
+        .posting-area
+          %textarea
+      .comments-container
+        .comment
+          .poster-pic
+            %p PIC
+          .comment-text
             %table
               %tr
                 %td 
+                  %p.name Bu&ntilde;uequita
               %tr
                 %td 
+                  %p te qued&oacute; s&uacute;per asqueroso todo mi pumis te qued&oacute; s&uacute;per asqueroso todo mi pumis te qued&oacute; s&uacute;per asqueroso todo mi pumis te qued&oacute; s&uacute;per asqueroso todo mi pumis
+        .comment
+          .poster-pic
+            %p PIC
+          .comment-text
+            %table
               %tr
                 %td 
-          %td
-            %p.nombre
-              %strong Pizza doble pepperoni
-          %td
-            %p.ver-vendedor ver vendedor
-          %td
-            %p.precio $15.000
-        %tr
-          %td.descripcion-td{:colspan=>"2"}
-            %p.descripcion 
-              So, we code web sites by hand. La mejor pizza de la ciudad y de los universos
-              So, we code web sites by hand. La mejor pizza de la ciudad y de los universos
-              So, we code web sites by hand. La mejor pizza de la ciudad y de los universos
-          %td 
-            %table{:cellpadding=>"0", :cellspacing=>"0"}
+                  %p.name Bu&ntilde;uequita
               %tr
-                %td
-                  =img "/images/corazon-solido-icon-2.png"
-                %td
-                  %p 12
+                %td 
+                  %p te qued&oacute; s&uacute;per asqueroso todo mi pumis
+        .comment
+          .poster-pic
+            %p PIC
+          .comment-text
+            %table
               %tr
-                %td
-                  =img "/images/dialogo-icon-2.png"
-                %td
-                  %p 15
+                %td 
+                  %p.name Bu&ntilde;uequita
               %tr
-                %td
-                  =img "/images/email.png"
-                %td
-                  %p 12
+                %td 
+                  %p te qued&oacute; s&uacute;per asqueroso todo mi pumis
+        .comment
+          .poster-pic
+            %p PIC
+          .comment-text
+            %table
               %tr
-                %td
-                  =img "/images/dialogo-icon-2.png"
-                %td
-                  %p 15
-    .overlay-iconos-bottom
-      %ul
-        %li.feature-icon
-          =img "/images/motico.png"
-        %li.feature-icon
-          =img "/images/ollita.png"
-        %li.feature-icon
-          =img "/images/gorrito.png"
-        %li.feature-icon
-          =img "/images/hielo.png"
-        %li.feature-icon
-          =img "/images/mano.png"
-        %li.feature-icon
-          =img "/images/pluma.png"
-        %li.feature-icon
-          =img "/images/caja.png"
-        %li.feature-icon
-          =img "/images/bolitas.png"
-    .meantoje
-      #meantoje-overlay
-        .meantoje-datos
-          %p.title Datos del vendedor
-          %p La bu&ntilde;uequita consentida
-          %p Tel: 2345678
-          %p Dir: Cll. 1 # 1-1
-          %p.title Datos del comprador
-          %table
-            %tr
-              %td Nombre:
-              %td
-                %input{:type=>"text"}
-            %tr
-              %td Tel&eacute;fono:
-              %td
-                %input{:type=>"text"}
-            %tr
-              %td E-mail:
-              %td
-                %input{:type=>"text"}
-            %tr
-              %td Cantidad
-              %td
-                %input{:type=>"text"}
-          %p Comentarios:
-          %textarea
-      %a{:href=>"#meantoje"} Me antoj&eacute;!!
-  .overlay-comentarios
-    %p.comentarios-label comentarios
-    .post-comment-container
-      .poster-pic
-      .posting-area
-        %textarea
-    .comments-container
-        
+                %td 
+                  %p.name Bu&ntilde;uequita
+              %tr
+                %td 
+                  %p.text te qued&oacute; s&uacute;per asqueroso todo mi pumis
 .product-overlay-bg#product-overlay-bg

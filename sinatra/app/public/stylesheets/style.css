@@ -21,8 +21,7 @@ a:hover {
   border:0;
 }
 
-.container div p { background-color:#fff; }
-div p { border:1px solid #333; padding:10px; margin: 0px;}
+.search { background-color:#fff; border:1px solid #333; padding:10px; margin: 0px;}
 	
 #tab-ul {
     border-color: #FFFFFF;
@@ -231,7 +230,7 @@ div p { border:1px solid #333; padding:10px; margin: 0px;}
   padding: 0px 5px;
 }
 
-.container .product-overlay p {
+.product-overlay p {
   background:none;
   border-color:#fff;
 }
@@ -270,7 +269,7 @@ div p { border:1px solid #333; padding:10px; margin: 0px;}
   display:none;
 }
 
-.overlay-brief {
+.product-overlay-content {
   left:55px;
   top:30px;
   width:470px;
@@ -278,13 +277,12 @@ div p { border:1px solid #333; padding:10px; margin: 0px;}
   z-index:3;
 }
 
-.overlay-comentarios {
-  left:60px;
-  top:180px;
-  width:450px;
-  position:absolute;
-  z-index:3;
-  display:none;
+.product-overlay p {
+  color:#fff;
+}
+
+.comments-container {
+  clear:left;
 }
 
 .container .overlay-iconos-right td {
@@ -297,20 +295,20 @@ div p { border:1px solid #333; padding:10px; margin: 0px;}
   font-size:10px;
 }
 
-.container .overlay-brief p{
+.brief p{
   background:none;
 }
 
-.container .overlay-brief .precio {
+.brief .precio {
   background:#505050;
   padding: 3px 2px;
 }
 
-.container .overlay-brief .descripcion {
+.brief .descripcion {
   font-size:12px;
 }
 
-.container .overlay-brief .descripcion-td {
+.brief .descripcion-td {
   vertical-align:top;
 }
 
@@ -363,23 +361,57 @@ div p { border:1px solid #333; padding:10px; margin: 0px;}
 }
 
 .overlay-comentarios {
+  margin-top:20px;
 }
 
-.comentarios-label {
-  background:#cccccc;
+.overlay-comentarios p {
+  font-size: 12px;
+}
+
+p.comentarios-label {
+  background:#888;
   color:#fff;
+  padding: 2px 0 2px 10px;
 }
 
 .post-comment-container {
   height: 50px;
+  margin:10px 0 0 5px;
 }
 
 .poster-pic {
   float: left;
+  background:#fff;
+  height: 40px;
+  width: 40px;
+  margin-right: 5px;
 }
 
 .posting-area {
   float: left;
+}
+
+.posting-area textarea {
+  color: #fff;
+  font-size:12px;
+  width:380px;
+  background:#666;
+}
+
+.comment {
+  margin:0px 0 0 5px;
+  height:45px;
+  overflow:hidden;
+}
+
+.comment p {
+  font-size:10px;
+}
+
+.comment-text p.name {
+  border-bottom:1px solid #FFFFFF;
+  color:#3FFBFF;
+  line-height:0.90em;
 }
 
 /* end product overlay */
