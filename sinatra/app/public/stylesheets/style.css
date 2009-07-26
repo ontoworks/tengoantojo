@@ -351,6 +351,10 @@ a:hover {
   padding: 0 5px;
 }
 
+.meantoje-datos p {
+  color:#000;
+}
+
 #meantoje-overlay p.title {
   font-size:13px;
   background:#fff;
@@ -394,8 +398,11 @@ p.comentarios-label {
 .posting-area textarea {
   color: #fff;
   font-size:12px;
-  width:380px;
-  background:#666;
+  width:400px;
+  background:#000;
+  border:none;
+  opacity:0.5;
+    
 }
 
 .comment {
@@ -409,7 +416,7 @@ p.comentarios-label {
 }
 
 .comment-text p.name {
-  border-bottom:1px solid #FFFFFF;
+  border-bottom:1px outset #FFFFFF;
   color:#3FFBFF;
   line-height:0.90em;
 }

@@ -32,13 +32,28 @@ function augment(receivingClass, givingClass) {
 var Resource = function() {
   this.uri = "";
 };
-Resource.get = function(data, callback, scope) {
+Resource.get = function(data, callback, scope, jsonp) {
+  if (jsonp==true) {
+    this.getScript(data, callback, scope); 
+  }
+
   jQuery.getJSON(this.uri+data, (function(_scope) {
 	return function(data) {
 	  callback(data, _scope);
 	}
-	})(scope));
+      })(scope));
+    
 };
+
+Resource.getScript = function(data, callback, scope) {
+  jQuery.getScript(this.uri+data, (function(_scope) {
+	return function(data) {
+	  //  alert(data);
+	  callback(data, _scope);
+	}
+      })(scope));
+
+}
 Resource.post = function() {
 };
 Resource.put = function() {
@@ -55,8 +70,8 @@ var Query = function() {
   this.proxy;
   this.uri;
 };
-Query.prototype.query = function(query) {
-  this.proxy.get(query, this.callback, this);
+Query.prototype.query = function(query, jsonp) {
+  this.proxy.get(query, this.callback, this, jsonp);
 };
 
 /** 

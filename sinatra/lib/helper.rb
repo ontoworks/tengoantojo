@@ -2,6 +2,10 @@ helpers do
   include UIHelpers
   include AssetsHelpers
 
+  def haml_times(tpl, times)
+    (haml tpl.to_sym)*times
+  end
+
   def mock_products(count)
     #render_haml("%div.product-overlay")+(product_table)*count
     product_list(count)

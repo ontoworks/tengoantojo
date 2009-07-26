@@ -13,9 +13,9 @@ jQuery(document).ready(function($){
   Conf = (function () {
     return {
       Product: {
-        //uri: "http://www.google.com/base/snippets",
-        //uri:"/product",
-        uri:"/data/snippets.json",
+        uri: "http://www.google.com/base/feeds/snippets",
+        uri:"/product.json",
+        //uri:"/data/snippets.json",
 	tpl: function() {
 	  return $(".product:first").clone();
 	 }
@@ -42,8 +42,8 @@ jQuery(document).ready(function($){
       }
     }
   })();
-
-  /*  jQuery('#search').keyup(function(e) {
+  /*
+    jQuery('#search').keyup(function(e) {
     if(e.keyCode == 13) {
       var query = jQuery('#search').val();
       var url = "http://www.google.com/base/feeds/snippets?q="+query+"&alt=json-in-script&callback=json_from_gb&max-results=30"

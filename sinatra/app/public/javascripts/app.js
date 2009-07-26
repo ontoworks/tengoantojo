@@ -23,6 +23,7 @@ jQuery(document).ready(function($) {
   // load all product lists
   function product_list_callback (data, list) {
     var page_size = Conf.ProductList.page_size;
+    //alert(list.tpl.attr("id"));
     var feed = data.feed;
     var entries = feed.entry;
 
@@ -55,12 +56,18 @@ jQuery(document).ready(function($) {
     $(".nombre").truncate({max_length: 50});
     $(".descripcion").truncate({max_length: 100});
   };
+
+  function google_query(q, max_results) {
+    var alt="json";
+    var query="?q="+q+"&alt="+alt+"&max-results="+max_results;
+    return query;
+    }
   var product_list_query = "?q=macbook&alt=json&max-results=30";
   var product_list_0 = new ProductList({id:"product-list-0",
 	proxy:ProductProxy,
 	tpl:Conf.ProductList.tpl,
 	callback: product_list_callback});
-  product_list_0.query(product_list_query);
+  product_list_0.query(product_list_query, true);
 
   // product overlay
   $(".meantoje a").click(function() {
@@ -74,5 +81,15 @@ jQuery(document).ready(function($) {
 	});
       $("#meantoje-overlay").slideToggle();
     });
+
+  jQuery('#search').keyup(function(e) {
+      if(e.keyCode == 13) {
+	var query = jQuery('#search').val();
+	query=google_query(query, 30);
+	product_list_0.query(query, true);
+      }
+      });
+  
+
 });
 
