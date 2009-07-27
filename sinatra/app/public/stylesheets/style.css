@@ -21,19 +21,30 @@ a:hover {
   border:0;
 }
 
-.search { background-color:#fff; border:1px solid #333; padding:10px; margin: 0px;}
+/* search */
+
+.search { background-color:#fff; border:1px solid #fff; padding:10px; margin:0; margin-bottom: 5px; border-top:0;}
+.search {
+    /*background:transparent url(/images/firefox-personal-bg.jpg) no-repeat scroll center top;*/
+    background:transparent url(/images/firefox-header-background.png) no-repeat scroll left bottom;
+}
+
+.search p {
+  font-size:25px;
+  color:#fff;
+}
+/* end search */
 	
 #tab-ul {
     border-color: #FFFFFF;
     border-width:0 0 2px;
 }
 
-.search {
-  margin-bottom: 5px;
-}
 
 #content {
   float: left;
+  margin:0;
+  margin-left:10px;
 }
 
 .tab {
@@ -41,8 +52,6 @@ a:hover {
 }
 
 #tabs, #right {
-    float: left;
-    overflow: hidden;
     margin: 0px;
 }
 
@@ -208,6 +217,17 @@ a:hover {
   z-index:3;
 }
 
+.scroll-slider-overlay {
+  position:absolute;
+  padding:5px;
+  margin:0px;
+  font-color:#fff;
+  top:120px;
+  left:433px;
+  width:0px;
+  z-index:3;
+}
+
 .image-overlay { 
   position:absolute;
   background:#000;
@@ -283,6 +303,9 @@ a:hover {
 
 .comments-container {
   clear:left;
+  width:420px;
+  height:540px;
+  overflow:hidden;
 }
 
 .container .overlay-iconos-right td {
@@ -389,6 +412,7 @@ p.comentarios-label {
   height: 40px;
   width: 40px;
   margin-right: 5px;
+  border: 1px inset #CCC;
 }
 
 .posting-area {
@@ -407,7 +431,7 @@ p.comentarios-label {
 
 .comment {
   margin:0px 0 0 5px;
-  height:45px;
+  height:60px;
   overflow:hidden;
 }
 
@@ -503,19 +527,25 @@ li a em {
 }
 
 #tab-ul {
-  padding: 0px;
+  padding-left: 10px;
   margin: 0;
   list-style:none;
+  border-bottom:1px solid #DADADA;
   /*zoom:1;*/
 }
 
 #tab-ul a {
-  border: 1px solid;
+  border-right: 1px solid #DADADA;
+  font-size:13px;
   color: #000;
 }
 
+#tab-ul a.first{
+}
+
+
 #tab-ul a em {
-  padding: 0.25em 0.5em 0.25em 1.8em;
+  padding: 0.25em 0.5em 0.45em 1.8em;
 }
 
 .tab-container {
@@ -527,3 +557,131 @@ li a em {
 }
 
 /*#listings-container:after{content:'';display:block;clear:both;}*/
+
+/* left */
+#arriba, #abajo {
+  font-size:12px;
+}
+/* end left */
+
+
+/* right */
+#right {
+  margin-left:10px;
+}
+
+.right-tab-btn {
+  background-image:url('/images/icono-social.png');
+  background-repeat:no-repeat;
+  /*background-attachment:fixed;*/
+  background-position:2px 4px;
+}
+
+.right-scroll {
+    width: 452px;
+    position: relative;
+    clear: left;
+  /*border: 1px solid;*/
+}
+
+
+#tab-ul.right-navigation {
+  margin-bottom:5px;
+}
+
+#right-tabs .panel {
+  width:450px;
+  /*border:1px solid;*/
+}
+
+#tab-ul.right-navigation a {
+  border-bottom:0;
+}
+
+#right-tabs #murmullo .murmullo {
+   
+}
+
+  /* murmullo */
+  #murmullo {
+    padding: 0 10px;
+    background:transparent url(/images/firefox-personal-bg.jpg) no-repeat scroll center top;
+  }
+  .murmullo-icons ul {
+    background:#fff;
+    margin:5px;
+  }
+  .murmullo-icons ul li {
+    float:left;
+    margin:0;
+  }
+  .murmullo-icons li a {
+    padding:0.50em 0.25em 0.50em 2em;
+    font-size:12px;
+    background:#FFF8DE;
+    opacity:0.7;
+  }
+.murmullo-post {
+    padding: 5px;
+    clear:left;
+    height:50px;
+  }
+  .murmullo-post input {
+    width:300px;
+  }
+  .murmullo .poster-pic {
+    color:#fff;
+    float:left;
+  }
+  #murmullo .posting-area p {
+    display:block;
+    color:#DB6F00;
+    text-size:14px;
+  }
+/*#murmullo .murmullo-icons a
+}*/
+
+#murmullo .murmullo-icons .antojados a {
+    background-image:url(/images/icono-el-murmullo-amarillo.png);
+    background-repeat:no-repeat;
+    background-position:5px 8px;
+}
+
+#murmullo .murmullo-icons .nuevos a {
+    background-image:url(/images/icono-el-murmullo-azul.png);
+    background-repeat:no-repeat;
+    background-position:5px 8px;
+}
+
+#murmullo .murmullo-icons .promociones a {
+    background-image:url(/images/icono-el-murmullo-rosado.png);
+    background-repeat:no-repeat;
+    background-position:5px 8px;
+}
+
+#murmullo .murmullo-icons .comentarios a {
+    background-image:url(/images/icono-chat.png);
+    background-repeat:no-repeat;
+    background-position:5px 8px;
+}
+/* end murmullo */
+/* end of right */
+
+#slider-vertical {
+  width:0.35em;
+  height:300px;
+}
+
+#slider-vertical .ui-slider-handle {
+  left:-0.1em;
+    width:0.4em;
+}
+
+#slider-vertical .ui-widget-header {
+  background:#FFDFE1;
+}
+
+#slider-vertical a {
+  background: #F8A2A6;
+  border-color:#FE6269;
+}

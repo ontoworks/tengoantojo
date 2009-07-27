@@ -1,6 +1,4 @@
-// when the DOM is ready...
-//$(document).ready(function () {
-function coda_slider() {
+function left_slider() {
     var $panels = $('#tabs .scrollContainer > div');
     var $container = $('#tabs .scrollContainer');
 

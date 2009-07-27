@@ -1,0 +1,31 @@
+.murmullo-help
+  .murmullo-intro
+  .config
+.murmullo-icons
+  %ul
+    %li.antojados
+      %a.ui-corner-left antojados
+    %li.comentarios
+      %a comentarios
+    %li.nuevos
+      %a nuevos productos
+    %li.promociones
+      %a.ui-corner-right promociones
+.murmullo-post
+  .poster-pic
+  .posting-area
+    %p tengo antojo de
+    %input{:type=>"text"}
+.comments-container
+  =haml :scroll_slider_overlay
+  .comment
+    .poster-pic
+    .comment-text
+      %table
+        %tr
+          %td 
+            %p.name Bu&ntilde;uequita
+        %tr
+          %td 
+            %p te qued&oacute; s&uacute;per asqueroso todo mi pumis te qued&oacute; s&uacute;per asqueroso todo mi pumis te qued&oacute; s&uacute;per asqueroso todo mi pumis te qued&oacute; s&uacute;per asqueroso todo mi pumis
+  =haml_times :comment, 25

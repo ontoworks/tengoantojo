@@ -72,7 +72,6 @@ module UIHelpers
   end
 
   def categorias_nav
-    puts "here"
     assets= Assets.new
     assets.lib = ["jquery"]
     assets.jquery_plugin = ["scrollto/1.4.1/jquery.scrollTo-min",
@@ -82,6 +81,33 @@ module UIHelpers
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
                        "style"]
     assets.script = "jQuery(document).ready(function() {categorias_scroller();})"
+    assets
+  end
+
+  def left
+    assets= Assets.new
+    assets.lib = ["jquery"]
+    assets.jquery_plugin = ["scrollto/1.4.1/jquery.scrollTo-min",
+                            "localscroll/1.2.7/jquery.localscroll-min",
+                            "codalike-slider/jquery.serialScroll-1.2.1",
+                            "codalike-slider/coda-slider"]
+    assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
+                       "style",
+                       "codaslider"]
+    assets.script = "jQuery(document).ready(function() {left_slider();})"
+    assets
+  end
+
+  def right
+    assets= Assets.new
+    assets.lib = ["jquery"]
+    assets.jquery_plugin = ["scrollto/1.4.1/jquery.scrollTo-min",
+                            "localscroll/1.2.7/jquery.localscroll-min",
+                            "codalike-slider/jquery.serialScroll-1.2.1"]
+    assets.js_tag = ["tab_slider"]
+    assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
+                       "style"]
+    assets.script = "jQuery(document).ready(function() {right_slider();})"
     assets
   end
 

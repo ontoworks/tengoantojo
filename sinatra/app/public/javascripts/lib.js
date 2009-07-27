@@ -32,26 +32,46 @@ function augment(receivingClass, givingClass) {
 var Resource = function() {
   this.uri = "";
 };
-Resource.get = function(data, callback, scope, jsonp) {
-  if (jsonp==true) {
-    this.getScript(data, callback, scope); 
-  }
+Resource.get = function(query, callback, scope, jsonp) {
 
-  jQuery.getJSON(this.uri+data, (function(_scope) {
-	return function(data) {
-	  callback(data, _scope);
+  if (jsonp==true) {
+    alert("here");
+    var _callback = (function(_scope) {
+	  return function(data) {
+	    alert("here2??");
+	    callback(data, _scope);
+	  }
+	  })(scope);
+    alert(_callback);
+    $.ajax({dataType:"jsonp",
+	  url: this.uri+query,
+	  type:"GET",
+	  error:function(data, textStatus, error_thrown) {
+	    alert(error_thrown);
+	},
+	  success:function(a,b) {
+	  alert("hooolaaaa");
+	},
+	  error:function(a,b,c) {
+	  alert(c);
 	}
-      })(scope));
-    
+	
+      });
+    /*jQuery.getJSON(this.uri+query, (function(_scope) {
+	  return function(data) {
+	    callback(data, _scope);
+	  }
+	  })(scope));*/
+  } else {
+    jQuery.getJSON(this.uri+query, (function(_scope) {
+	  return function(data) {
+	    callback(data, _scope);
+	  }
+	})(scope));
+  }
 };
 
 Resource.getScript = function(data, callback, scope) {
-  jQuery.getScript(this.uri+data, (function(_scope) {
-	return function(data) {
-	  //  alert(data);
-	  callback(data, _scope);
-	}
-      })(scope));
 
 }
 Resource.post = function() {

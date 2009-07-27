@@ -3292,6 +3292,7 @@ jQuery.extend({
 
 		// Build temporary JSONP function
 		if ( s.dataType == "json" && (s.data && s.data.match(jsre) || s.url.match(jsre)) ) {
+
 			jsonp = "jsonp" + jsc++;
 
 			// Replace the =? sequence both in the query string and the data
@@ -3302,10 +3303,10 @@ jQuery.extend({
 			// We need to make sure
 			// that a JSONP style response is executed properly
 			s.dataType = "script";
-
 			// Handle JSONP-style loading
 			window[ jsonp ] = function(tmp){
 				data = tmp;
+
 				success();
 				complete();
 				// Garbage collect
@@ -3575,6 +3576,7 @@ jQuery.extend({
 	},
 
 	httpData: function( xhr, type, s ) {
+
 		var ct = xhr.getResponseHeader("content-type"),
 			xml = type == "xml" || !type && ct && ct.indexOf("xml") >= 0,
 			data = xml ? xhr.responseXML : xhr.responseText;
@@ -3589,7 +3591,6 @@ jQuery.extend({
 
 		// The filter can actually parse the response
 		if( typeof data === "string" ){
-
 			// If the type is "script", eval it in global context
 			if ( type == "script" )
 				jQuery.globalEval( data );

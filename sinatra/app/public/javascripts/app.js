@@ -23,7 +23,6 @@ jQuery(document).ready(function($) {
   // load all product lists
   function product_list_callback (data, list) {
     var page_size = Conf.ProductList.page_size;
-    //alert(list.tpl.attr("id"));
     var feed = data.feed;
     var entries = feed.entry;
 
@@ -67,9 +66,10 @@ jQuery(document).ready(function($) {
 	proxy:ProductProxy,
 	tpl:Conf.ProductList.tpl,
 	callback: product_list_callback});
-  product_list_0.query(product_list_query, true);
+  product_list_0.query(google_query("macbook", 30));
 
   // product overlay
+  // event: when btn "meantoje" clicked slide #montaje-overlay
   $(".meantoje a").click(function() {
       $(this).css({
 	background:"#ccc",
@@ -82,14 +82,37 @@ jQuery(document).ready(function($) {
       $("#meantoje-overlay").slideToggle();
     });
 
-  jQuery('#search').keyup(function(e) {
+   jQuery('#search').keyup(function(e) {
       if(e.keyCode == 13) {
 	var query = jQuery('#search').val();
 	query=google_query(query, 30);
-	product_list_0.query(query, true);
+	product_list_0.query(query);
       }
       });
   
+   var last_x=0;
+   // slider for scrolling comments
+   $("#slider-vertical").slider({
+     orientation: "vertical",
+	 range: "min",
+	 min: 0,
+	 max: 540,
+	 value: 540,
+	 slide: function(event, ui) {
+	 //	   $("#amount").val(ui.value);
+	 //
+	 var x=540-ui.value;
+	 var dir=1;
+	 if (Math.abs(x-last_x)>6) {
+	   $("#murmullo .comments-container").scrollTo(x,540);
+	   //alert(x-last_x);
+	 }
+	 last_x=x;
+       }
+     });
+   //   $("#amount").val($("#slider-vertical").slider("value"));
+
+
 
 });
 

@@ -2,59 +2,12 @@
   %div.container.container_24
     %div.grid_24.search
       %p
-        tengo antojo de
+        tengoantojo de
         %input#search{:type=>"text", :name=>"search"}
     %div.clear &nbsp;
     #content.grid_13.content-container
       = #categorias_nav
-      %div#tabs
-        %ul.navigation#tab-ul
-          %li
-            %a{:id=>"search-btn",:href=>"#inicio"}
-              %em buscar
-          %li
-            %a{:id=>"favoritos-btn",:href=>"#favoritos"}
-              %em favoritos
-          %li
-            %a{:id=>"recomendados-btn",:href=>"#recomendados"}
-              %em recomendados
-          %li
-            %a{:id=>"promociones-btn",:href=>"#promociones"}
-              %em promociones
-        %div.scroll
-          %div.scrollContainer#listings-container
-            %div.panel.tab#inicio
-              %div.tab-container
-                =haml :categorias_nav
-                %div.clear &nbsp;
-                =product_list_home
-            %div.panel.tab#favoritos
-              %div.tab-container
-                =haml :categorias_nav
-                %div.clear &nbsp;
-                %div.tab-control-container
-                  %button#arriba Arriba
-                  %button#abajo Abajo
-                %div.product-list#product-list
-                  =mock_products 10
-            %div.panel.tab#recomendados
-              %div.tab-container
-                =haml :categorias_nav
-                %div.clear &nbsp;
-                %div.tab-control-container
-                  %button#arriba Arriba
-                  %button#abajo Abajo
-                %div.product-list#product-list
-                  =mock_products 10
-            %div.panel.tab#promociones
-              %div.tab-container
-                =haml :categorias_nav
-                %div.clear &nbsp;
-                %div.tab-control-container
-                  %button#arriba Arriba
-                  %button#abajo Abajo
-                %div.product-list#product-list
-                  =mock_products 10
+      =haml :left
     #right.grid_11
       =haml :right
 =js_tag "lib"
