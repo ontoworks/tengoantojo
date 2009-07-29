@@ -33,5 +33,9 @@ var ProductOverlay = function() {
     var brief = jQuery(".brief");
     brief.find(".nombre").html(product.find(".nombre").html());
     brief.find(".descripcion").html(product.find(".descripcion").html());
+
+   var n=5;
+     $("#product-overlay .comments-container").scrollTo(60*n,300);
+
   };
   

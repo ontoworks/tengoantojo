@@ -1,0 +1,32 @@
+%ul.perfil-navigation.ui-corner-all
+  %li
+    %a info
+  %li
+    %a comentarios
+  %li
+    %a contactos
+.perfil-basic-container
+  .perfil-basic-pic
+    .poster-pic
+    %p 
+      %span.bling-bling (( 
+      online
+      %span.bling-bling ))
+  .perfil-basic
+    %p#perfil-nombre.editable la bunuequita consentida
+    %p#perfil-brief.editable la mas hermosa del corral
+    .perfil-stats-icons
+      %ul
+        %li
+          %p 0 /
+        %li
+          %p 0 /
+        %li
+          %p 0
+    %p.miembro-desde-label miembro desde 12/06/2009
+.perfil-contacto
+  %p.perfil-geoname
+    ubicacion:
+    %span#perfil-geoname.editable Medell&iacute;n, Colombia
+  %input#perfil-geoname-edit.jeip-editfield{:type=>"text"}
+  #perfil-mapa

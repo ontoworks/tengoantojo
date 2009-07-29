@@ -90,29 +90,115 @@ jQuery(document).ready(function($) {
       }
       });
   
+
+   /*****
+    *
+    * sliders for scrolling comments
+    *
+    */
    var last_x=0;
-   // slider for scrolling comments
-   $("#slider-vertical").slider({
+   $("#murmullo").find("#slider-vertical").slider({
      orientation: "vertical",
 	 range: "min",
 	 min: 0,
-	 max: 540,
-	 value: 540,
+	 max: 1500,
+	 value: 1500,
 	 slide: function(event, ui) {
-	 //	   $("#amount").val(ui.value);
-	 //
-	 var x=540-ui.value;
-	 var dir=1;
-	 if (Math.abs(x-last_x)>6) {
-	   $("#murmullo .comments-container").scrollTo(x,540);
-	   //alert(x-last_x);
-	 }
-	 last_x=x;
-       }
+  	   var x=1500-ui.value;
+	   var dir=1;
+	   if (Math.abs(x-last_x)>15) {
+	     $("#murmullo .comments-container").scrollTo(x,300);
+           }
+	   last_x=x;
+         }
      });
-   //   $("#amount").val($("#slider-vertical").slider("value"));
 
+   $("#product-overlay").find("#slider-vertical").slider({
+     orientation: "vertical",
+	 range: "min",
+	 min: 0,
+	 max: 1500,
+	 value: 1500,
+	 slide: function(event, ui) {
+  	   var x=1500-ui.value;
+	   var dir=1;
+	   if (Math.abs(x-last_x)>15) {
+	     $("#product-overlay .comments-container").scrollTo(x,300);
+           }
+	   last_x=x;
+         }
+     });
+ 
+   /* 
+    * Google Maps
+    *
+    */
+   function initialize_google_maps() {
+     var latlng = new google.maps.LatLng(6.250, -75.580);
+     var myOptions = {
+       zoom: 15,
+       center: latlng,
+       mapTypeId: google.maps.MapTypeId.ROADMAP,
+       disableDefaultUI: true
+     };
+     var map = new google.maps.Map(document.getElementById("perfil-mapa"), myOptions);
+   }
+   initialize_google_maps();
 
+   /*
+    * edit in place
+    *
+    *
+    */
+   var geonames_options = {
+     savebutton_text: "ok",
+     cancelbutton_text: "x",
+     form_buttons: '<span><input type="button" id="save-#{id}" class="#{savebutton_class}" value="#{savebutton_text}" /> <input type="button" id="cancel-#{id}" class="#{cancelbutton_class}" value="#{cancelbutton_text}" /></span>',
+     text_form: '<input type="text" id="edit-#{id}" class="#{editfield_class}" value="#{value}" />',
+     mode_toggle: function( self ) {
+       initialize_google_maps();
+       $("#perfil-mapa").slideDown();
+       $("#perfil-geoname-edit").show();
+       $("#perfil-geoname-edit").focus()
+       $("#edit-perfil-geoname").hide();
 
-});
+     },
+     close: function(self) {
+       $("#perfil-mapa").slideUp();
+       $("#perfil-geoname-edit").hide();
+     },
+     cancel:function(self) {
+       this.close(self);
+     },
+     ok:function( self ) {
+       this.close(self);
+       alert($("#edit-perfil-geoname").val());
+     }
+   };
+
+   $("#perfil-nombre").eip("/perfil/nombre", geonames_options);
+
+   /* edit geoname */
+     $(".perfil-geoname").click(function() {
+	 //initialize_google_maps();
+	 //$("#perfil-mapa").slideDown();
+	 //$(this).unbind("click");
+       });
+     $("#perfil-geoname").eip("/perfil/geoname", geonames_options);
+
+       /* autocomplete for perfil-geo */
+     $("#perfil-geoname-edit").autocomplete({ 
+       serviceUrl:'/geoname/search?type=json&country=CO',
+	   transformer: function(query, data) {
+	   var geonames=data.geonames;
+	   var response={query:query,suggestions:[], data:[]};
+	   $(geonames).each(function() {
+	       response.suggestions.push(this.name+", "+this.countryName);
+	       response.data.push(this);
+	     });
+	   return response;
+	 }
+       });
+   
+  }); //ends
 

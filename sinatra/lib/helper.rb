@@ -2,8 +2,13 @@ helpers do
   include UIHelpers
   include AssetsHelpers
 
-  def haml_times(tpl, times)
-    (haml tpl.to_sym)*times
+  def haml_times(tpl, n)
+    html=""
+    n.times do |i|
+      @i=i
+      html=html+(haml tpl.to_sym)
+    end
+    html
   end
 
   def mock_products(count)

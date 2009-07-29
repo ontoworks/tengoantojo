@@ -35,9 +35,11 @@ IE8
     css_link "/javascripts/thirdparty/960grids/grids/grid"
   end
   
-  def js_tag(file)
-    file=file+".js" unless file =~ /\.js$/
-    "<script src=\"/javascripts/#{file}\" type=\"text/javascript\"></script>"
+  def js_tag(path)
+    file="/javascripts/" << path
+    file << ".js" unless file =~ /\.js$/
+    file=path if path =~ /^http/
+    "<script src=\"#{file}\" type=\"text/javascript\"></script>"
   end
   
   def yui(lib)
