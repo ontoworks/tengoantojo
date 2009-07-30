@@ -9,7 +9,6 @@
 */
 
 (function($) {
-
   $.fn.autocomplete = function(options) {
     return this.each(function() {
       return new Autocomplete(this, options);
@@ -138,7 +137,11 @@
             this.hide();
             return;
           }
+	    // SGL
+	    alert(this.selectedIndex);
+
           this.select(this.selectedIndex);
+
           if (e.keyCode === 9/* Event.KEY_TAB */) { return; }
           break;
         case 38: //Event.KEY_UP:

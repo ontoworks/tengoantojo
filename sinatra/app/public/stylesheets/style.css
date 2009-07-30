@@ -815,12 +815,7 @@ p.miembro-desde-label {
 		}
 
 #perfil-geoname-edit {
-    position:absolute;
-    top:1px;
-    left:66px;
     display:none;
-    /*height:20px;
-    width:163px;*/
 }
 
   /*custom*/
