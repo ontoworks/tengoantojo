@@ -1,4 +1,4 @@
-%div#right-tabs
+#right-tabs
   %ul#tab-ul.right-navigation
     %li
       %a.first.right-tab-btn{:href=>"#murmullo"}
@@ -12,13 +12,12 @@
     %li
       %a.right-tab-btn{:href=>"#inbox"}
         %em inbox
-  %div.right-scroll
-    %div.right-scrollContainer
-      %div.panel.tab#murmullo
+  .right-scroll
+    .right-scrollContainer
+      .panel.tab#murmullo
+        =haml :murmullo      
+      =haml :perfil_tabs
+      .panel.tab#tienda
         =haml :murmullo
-      %div.panel.tab#perfil
-        =haml :perfil
-      %div.panel.tab#tienda
-        =haml :murmullo
-      %div.panel.tab#inbox
+      .panel.tab#inbox
         =haml :murmullo

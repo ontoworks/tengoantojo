@@ -111,6 +111,18 @@ module UIHelpers
     assets
   end
 
+  def perfil
+    assets= Assets.new
+    assets.lib = ["jquery"]
+    assets.jquery_plugin = ["jeip/jeip",
+                           "autocomplete/jquery.autocomplete"]
+    assets.js_tag = ["http://maps.google.com/maps/api/js?sensor=false","perfil"]
+    assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
+                       "style",
+                       "jquery.autocomplete"]
+    assets
+  end
+
 #
 # given some assets and a component's tpl
 # render the component as a standalone page

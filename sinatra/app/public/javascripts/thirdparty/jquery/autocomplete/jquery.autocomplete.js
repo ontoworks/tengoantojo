@@ -138,7 +138,7 @@
             return;
           }
 	    // SGL
-	    alert(this.selectedIndex);
+	    //alert(this.selectedIndex);
 
           this.select(this.selectedIndex);
 
