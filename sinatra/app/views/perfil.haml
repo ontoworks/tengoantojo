@@ -20,6 +20,32 @@
               %li
                 %p 0
           %p.miembro-desde-label miembro desde 12/06/2009
+        .perfil-ubicacion
+          %p 
+            ubicaci&oacute;n:          
+            %span#perfil-geoname.editable Medell&iacute;n, Colombia
+          #perfil-mapa
+        .perfil-contacto
+          %p contacto
+          .perfil-contacto-table
+            %table
+              %tr
+                %td email:
+                %td 
+                  %p#perfil-email labunuequita@consentida
+              %tr
+                %td tel&eacute;fono:
+                %td 
+                  %p#perfil-telefono 2345678
+              %tr
+                %td celular:
+                %td
+                  %p#perfil-celular 3001234567
+              %tr
+                %td direcci&oacute;n:
+                %td
+                  %p#perfil-direccion calle 1 # 1-1
+
       #perfil-contacto.perfil-page
         %p.perfil-geoname
           ubicacion:
@@ -28,24 +54,7 @@
         #perfil-mapa
         .contacto-form
           %p contacto
-          %table
-            %tr
-              %td email:
-              %td 
-                %p#perfil-email labunuequita@consentida
-            %tr
-              %td tel&eacute;fono:
-              %td 
-                %p#perfil-telefono 2345678
-            %tr
-              %td celular:
-              %td
-                %p#perfil-celular 3001234567
-            %tr
-              %td direcci&oacute;n:
-              %td
-                %p#perfil-direccion calle 1 # 1-1
-  %ul.perfil-navigation.ui-corner-all
+  %ul.perfil-navigation
     %li
       %a.selected{:href=>"#perfil-basic"} info
     %li

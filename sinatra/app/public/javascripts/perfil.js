@@ -52,7 +52,6 @@ jQuery(document).ready(function($) {
      },
      close: function(self) {
        $("#perfil-mapa").fadeOut(1000);
-       $("#perfil-geoname-edit").hide();
      },
      cancel:function(self) {
        this.close(self);
