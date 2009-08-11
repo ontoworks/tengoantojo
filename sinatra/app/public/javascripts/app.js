@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) {
+
   /** 
    * @returns:
    * @author:
@@ -117,12 +118,12 @@ jQuery(document).ready(function($) {
      orientation: "vertical",
 	 range: "min",
 	 min: 0,
-	 max: 1500,
-	 value: 1500,
+	 max: 1200,
+	 value: 1200,
 	 slide: function(event, ui) {
-  	   var x=1500-ui.value;
+  	   var x=1200-ui.value;
 	   var dir=1;
-	   if (Math.abs(x-last_x)>15) {
+	   if (Math.abs(x-last_x)>2) {
 	     $("#product-overlay .comments-container").scrollTo(x,300);
            }
 	   last_x=x;

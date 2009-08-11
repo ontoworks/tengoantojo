@@ -1,0 +1,33 @@
+function categorias_scroller() {  
+  $("#inicio .categorias-container .categorias-lista").each(function() {
+      alert($(this).html());
+      //alert($(this).attr("id"));
+    });
+
+  $("#inicio .categorias-container").serialScroll({
+    target:'.categorias-scroll',
+    items:'.categorias-lista',
+    navigation:'#inicio .categorias-lista a',
+    axis:'xy',
+    duration:700,
+    force: true,
+    onBefore:function(e, elem, $pane, $items, pos) {
+      /**
+        * 'this' is the triggered element 
+        * e is the event object
+        * elem is the element we'll be scrolling to
+        * $pane is the element being scrolled
+        * $items is the items collection at this moment
+        * pos is the position of elem in the collection
+        * if it returns false, the event will be ignored
+      */
+      //those arguments with a $ are jqueryfied, elem isn't.
+      e.preventDefault();
+        if( this.blur )
+           this.blur();
+        },
+        onAfter:function( elem ){
+          //'this' is the element being scrolled ($pane) not jqueryfied
+    }
+  });
+}

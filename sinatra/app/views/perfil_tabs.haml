@@ -1,0 +1,54 @@
+.panel.tab#perfil
+  #perfil-content
+    .page-container
+      #perfil-basic.perfil-page
+        .perfil-basic-pic
+          .poster-pic
+          %p 
+            %span.bling-bling (( 
+            online
+            %span.bling-bling ))
+        .perfil-basic-content
+          %p#perfil-nombre.editable la bunuequita consentida
+          %p#perfil-brief.editable la mas hermosa del corral
+          .perfil-stats-icons
+            %ul
+              %li
+                %p 0 /
+              %li
+                %p 0 /
+              %li
+                %p 0
+          %p.miembro-desde-label miembro desde 12/06/2009
+      #perfil-contacto.perfil-page
+        %p.perfil-geoname
+          ubicacion:
+          %span#perfil-geoname.editable Medell&iacute;n, Colombia
+        %input#perfil-geoname-edit.jeip-editfield{:type=>"text"}
+        #perfil-mapa
+        .contacto-form
+          %p contacto
+          %table
+            %tr
+              %td email:
+              %td 
+                %p#perfil-email labunuequita@consentida
+            %tr
+              %td tel&eacute;fono:
+              %td 
+                %p#perfil-telefono 2345678
+            %tr
+              %td celular:
+              %td
+                %p#perfil-celular 3001234567
+            %tr
+              %td direcci&oacute;n:
+              %td
+                %p#perfil-direccion calle 1 # 1-1
+  %ul.perfil-navigation.ui-corner-all
+    %li
+      %a.selected{:href=>"#perfil-basic"} info
+    %li
+      %a{:href=>"#perfil-contacto"} comentarios
+    %li
+      %a{:href=>"#perfil-basic"} contactos

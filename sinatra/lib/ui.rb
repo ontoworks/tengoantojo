@@ -119,7 +119,8 @@ module UIHelpers
     assets.js_tag = ["http://maps.google.com/maps/api/js?sensor=false","perfil"]
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
                        "style",
-                       "jquery.autocomplete"]
+                       "jquery.autocomplete",
+                       "jquery-ui-1.7.2"]
     assets
   end
 

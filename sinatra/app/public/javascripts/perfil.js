@@ -72,30 +72,7 @@ jQuery(document).ready(function($) {
    $("#perfil-celular").eip("/perfil/celular", eip_options);
    $("#perfil-direccion").eip("/perfil/email", eip_options);
 
-
-   var SlideShow = function(o) {
-     var opt = {
-       items:o.items,
-       navigation:o.navigation,
-       target:o.target
-     };
-
-     $(opt.navigation).click(function(e) {
-	 var selected = $(this).attr("href");
-	 var current = $(o.navigation).filter(".selected").attr("href");
-	 if (current!=selected) {
-	   $(o.navigation).filter(".selected").removeClass("selected");
-	   $(this).addClass("selected");
-	   $(selected).hide();
-	   $(selected).fadeIn(1000);
-	   $(current).fadeOut();
-	 }
-	 e.preventDefault();
-       });
-   };
-
-
-   var perfil_slideshow = new SlideShow({
+   var perfil_slideshow = new Slideshow({
          items:".perfil-page",
 	 navigation:"#perfil .perfil-navigation a",
 	 target:"#perfil-content"

@@ -50,6 +50,10 @@ IE8
     js_tag "thirdparty/jquery/jquery-1.3"
   end
   
+  def jquery_min
+    js_tag "thirdparty/jquery/jquery-1.3.min"
+  end
+
   def jquery_plugin(plugin)
     plugin=plugin+".js" unless plugin =~ /\.js$/
     js_tag "thirdparty/jquery/#{plugin}"

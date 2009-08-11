@@ -1,0 +1,51 @@
+.brief
+  .brief-product
+    .brief-product-media
+      #media-full
+        /=haml :image_slideshow
+        =haml :galleria
+      %ul#product-image-list.image-overlay
+        %li
+          %a 
+            %img{:width=>"120", :height=>"120"}
+            .caption
+              %p &lt;  fotos  &gt; 
+              %p#media-full-expand +
+      .media-control
+        %ul
+          %li
+            %a
+              %em Fotos    
+          %li
+            %a
+              %em Videos
+          %li
+            %a
+              %em Show
+    .product-basic-info
+      %table
+        %tr
+          %td
+            %p.nombre
+        %tr
+          %td
+            %p.descripcion
+  .overlay-iconos-bottom
+    %ul
+      %li.feature-icon
+        =img "/images/motico.png"
+      %li.feature-icon
+        =img "/images/ollita.png"
+      %li.feature-icon
+        =img "/images/gorrito.png"
+      %li.feature-icon
+        =img "/images/hielo.png"
+      %li.feature-icon
+        =img "/images/mano.png"
+      %li.feature-icon
+        =img "/images/pluma.png"
+      %li.feature-icon
+        =img "/images/caja.png"
+      %li.feature-icon
+        =img "/images/bolitas.png"
+  =haml :meantoje
