@@ -67,10 +67,6 @@ module UIHelpers
     haml :product_table
   end
 
-  def product_list_home
-    haml :product_list
-  end
-
   def categorias_nav
     assets= Assets.new
     assets.lib = ["jquery"]

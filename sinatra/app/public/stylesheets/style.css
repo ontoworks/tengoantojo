@@ -8,6 +8,28 @@ body {
 }
 
 
+li {
+  display:inline-block;
+  *display:inline;
+  cursor:pointer;
+}
+
+li em {
+  font-style:normal;
+}
+
+li a {
+  display:block;
+  display:inline-block;
+  vertical-align:bottom;
+  /*zoom:1;*/
+}
+
+li a em {
+  display:block;
+  /*zoom:1;*/ 
+}
+
 a {
   text-decoration:none;
 }
@@ -477,32 +499,6 @@ p.comentarios-label {
   display: block;
 }
 
-li {
-  display:inline-block;
-  /*display:-moz-inline-stack;*/
-  *display:inline;
-/*  vertical-align:bottom;*/
-  cursor:pointer;
-  /*zoom:1;*/
-  margin:0 0.16em 0 0;
-  padding:1px 0 0;
-}
-
-li em {
-  font-style:normal;
-}
-
-li a {
-  display:block;
-  display:inline-block;
-  vertical-align:bottom;
-  /*zoom:1;*/
-}
-
-li a em {
-  display:block;
-  /*zoom:1;*/ 
-}
 
 #tab-ul {
   padding-left: 10px;
@@ -910,12 +906,12 @@ p.miembro-desde-label {
 }
 
 #product-image-slideshow li img.thumb {
-cursor:pointer;
-display:block;
-height:auto;
-left:auto;
-top:auto;
-width:auto;
+  cursor:pointer;
+  display:block;
+  height:auto;
+  left:auto;
+  top:auto;
+  width:auto;
 }
 
 .media-control {
@@ -989,3 +985,49 @@ width:auto;
 .jScrollPaneContainer {
  z-index:0;
 }
+
+/* bridge control */
+#bridge-control {
+  width:100%;
+  background:#7D7D7D;
+  height:12px;
+  padding:0.25em 0.25em;
+  font-size:10px;
+  color:#fff;
+}
+
+#bridge-control * {
+  float:left;
+}
+
+#bridge-control a {
+  color:#fff;
+}
+
+#bridge-control .ciudad {
+  font-size:12px;
+  padding:0.0em 0 0 3.2em;
+}
+
+#bridge-control .page {
+  width:20px;
+  height:12px;
+  background:#000;
+  /*opacity:0.5;*/
+  border:none;
+  color:#fff;
+  text-align:right;
+}
+
+#bridge-control .listing-navigation * {
+  float:left;
+}
+
+#bridge-control .nav-opts {
+  padding-left:310px;
+}
+
+#bridge-control .nav-opts li {
+  padding:0 0.10em;
+}
+/* end bridge control */
