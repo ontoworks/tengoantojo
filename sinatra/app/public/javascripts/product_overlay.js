@@ -34,42 +34,44 @@ var ProductOverlay = function() {
     brief.find(".nombre").html(product.find(".nombre").html());
     brief.find(".descripcion").html(product.find(".descripcion").html());
     brief.find("#product-image-list img").attr("src",image_url);
-    brief.find(".galleria img:first").attr("src",image_url);
+    brief.find(".galleria img:first").attr("src",image_url).attr("rel",image_url);
 
     $("#product-image-list").ImageOverlay({image_height:'120px',image_width:'120px'});
 
-   // scrolling slider for comments
-   var n=5;
-     $("#product-overlay .comments-container").scrollTo(60*n,300);
+    // scrolling slider for comments
+    var n=5;
+    $("#product-overlay .comments-container").scrollTo(60*n,300);
+    
+    /*
+     *  full media component
+     */
+    var media_full_close = function() {
+      $("#media-full").hide();
+      $("#media-full").animate({height:"120px", width:"120px"}, function() {
 
-    // full media component
+	  $("#media-full .galleria_container .galleria_wrapper").remove();
+	  $("#media-full .galleria_container .galleria-caption").remove();
+	  $("#media-full .galleria_container").remove();
+	  $("#media-full").hide();
+	});
+
+      $(".brief-product-media").removeClass("expanded");
+      $("#product-image-list").show();
+    };
+
     $("#media-full-expand").click(function() {
+	return false;
+	//$(".brief-product-media").css({position:"absolute", top:"22px", 
+	//    background:"#888", "z-index":4, height:"318px", width:"453px"});
+	$(".brief-product-media").addClass("expanded");
 
-	$(".brief-product-media").css({position:"absolute", top:"22px", background:"#888", "z-index":4});
-
-	$("#media-full").animate({height:"300px", width:"453px"} ,1000);
-	  //.css({background:"#fff", color:"#000"})
-
-	//alert("here");
-
+	$("#media-full").animate({height:"300px", width:"453px"});
+	$("#media-full-close").click(media_full_close).show();
 	$("#product-image-list").hide();
-
-	$("#media-full ul").galleria();
-
-
-
-	/*var product_image_slideshow = new Image_Slideshow({
-	  navigation:"#product-image-slideshow .thumb-list li",
-	  target:"#product-image-slideshow"
-	  });*/
 	
+	$("#media-full ul").galleria();
       });
-
-    $("#product-comments").jScrollPane();
-
-
-
-
-
+    
+    $("#product-comments").jScrollPane();    
   };
-  
+
