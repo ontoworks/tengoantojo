@@ -20,7 +20,7 @@ helpers do
     list = ""
     count.times do |i|
       @id="product-"+i.to_s
-      list << product_table
+      list << (haml :product_table)
     end
     #(haml :product_overlay)+
     list

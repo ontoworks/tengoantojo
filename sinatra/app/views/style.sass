@@ -38,9 +38,6 @@ a
 .search
   :background-color #fff
   :border 1px solid #fff
-  :padding 10px
-  :margin 0
-  :margin-bottom 5px
   :border-top 0
   :background transparent url(/images/firefox-header-background.png) no-repeat scroll left bottom
 
@@ -50,15 +47,20 @@ a
 
 
 #tab-ul
-  :border-color #FFFFFF
-  :border-width 0 0 2px
-  :padding-left 10px
+  :border-color #DADADA
+  :border-width 0 0 1px
+  :padding-left 0px
   :margin 0
   :list-style none
-  :border-bottom 1px solid #DADADA
+  :border-bottom 0px solid #DADADA
+  :border 1px solid #DADADA
+  :float right
+  
+  li
+    :display block
 
   a
-    :border-right 1px solid #DADADA
+    :border-right 0px solid #DADADA
     :font-size 13px
     :color #000
 
@@ -85,7 +87,6 @@ a
 
 #tabs
   :margin 0px
-
 
 #right
   :margin 0px
@@ -994,6 +995,29 @@ p
 =solid-border
   :border 1px solid #000000
 
+=dotted-border
+  :border 1px dotted #000000
+
+=navigation
+  +dotted-border
+  :margin-bottom 10px
+  li
+    +solid-border
+    :height 50px
+    :margin 5px
+
 .banner
   :height 550px
-  +solid-border
+  +dotted-border
+
+#global-nav
+  +navigation
+
+.logo
+  :font-size 20px
+  :padding 15px
+
+.time
+  +dotted-border
+  :height 50px
+  :padding 5px

@@ -51,22 +51,6 @@ module UIHelpers
     head
   end
 
-  def home
-    haml :home
-  end
-
-  def head
-    haml :head
-  end
-
-  def content
-    haml :body1
-  end
-
-  def product_table
-    haml :product_table
-  end
-
   def categorias_nav
     assets= Assets.new
     assets.lib = ["jquery"]
@@ -129,6 +113,13 @@ module UIHelpers
     @head = head_generator tpl, assets
     @body = haml tpl.to_sym
     haml :standalone
+  end
+
+  def navigation(id, clas, names)
+    @id=id
+    @class=clas
+    @names=names
+    haml :navigation
   end
 end
 

@@ -1,13 +1,20 @@
 %body
-  %div.container.container_50
-    %div.grid_50.search
-      %p 
-        tengoantojo de
-        %input{:type=>"text", :name=>"search"}
-    %div.clear &nbsp;
+  .container.container_50
+    .grid_8
+      .logo
+        %p
+          tengoantojo
+    .grid_34
+      =haml :global_nav
+    .grid_8
+      .time
+        %p Medell&iacute;n, Colombia
+        %p 23 C
+        %p 15:00
+    .clear &nbsp;
     #banner-left.grid_8
       =haml :banner
-    #banner-main.grid_34
+    #main.grid_34
       =haml :left
     #banner-right.grid_8
       =haml :banner
