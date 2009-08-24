@@ -106,7 +106,7 @@ a:hover {
 }
 
 .product-list .product .precio {
-    margin: 20px 0 0 5px;
+/*    margin: 20px 0 0 5px;*/
 }
 
 .product-list .product .pedir-btn {
@@ -181,6 +181,17 @@ a:hover {
 #ver-mas-prod p {
   font-size:10px;
   color:#92B7E8;
+}
+
+.product {
+  height:55px;
+}
+
+.product .hab-status {
+  font-size:12px;
+  color:green;
+  float:left;
+  margin-top:0.15em;
 }
 
 .product .precio {
@@ -397,8 +408,7 @@ a:hover {
 p.comentarios-label {
   background:#888;
   color:#fff;
-  padding: 2px 0 2px 10px;fil-basic-pic
-    . 
+  padding: 2px 0 2px 10px;
 }
 
 .post-comment-container {

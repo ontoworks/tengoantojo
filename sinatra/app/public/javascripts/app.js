@@ -32,7 +32,8 @@ jQuery(document).ready(function($) {
     var new_page = false;
     for (var i=0; i<entries.length; i++) {
       var entry = entries[i];
-      if (entry.g$item_type[0].$t=="Products") {
+
+      //if (entry.g$item_type[0].$t=="Products") {
 	new_page = product_count%page_size == 0 ? true : false;
 	if (new_page) {
 	  var page = Math.floor(product_count/page_size);
@@ -51,10 +52,10 @@ jQuery(document).ready(function($) {
 	product_list_page_tpl.append(product.html().click(show_product_overlay));
 
 	product_count++;
-      }
+	//}
     }
     $(".nombre").truncate({max_length: 50});
-    $(".descripcion").truncate({max_length: 100});
+    $(".descripcion").truncate({max_length: 90});
   };
 
   function google_query(q, max_results) {
@@ -68,6 +69,11 @@ jQuery(document).ready(function($) {
 	tpl:Conf.ProductList.tpl,
 	callback: product_list_callback});
   product_list_0.query(google_query("macbook", 30));
+
+  var product_list_0 = new ProductList({id:"mi-tienda-product-list",
+	proxy:ProductProxy,
+	tpl:Conf.ProductList.tpl,
+	callback: product_list_callback});
 
   // product overlay
   // event: when btn "meantoje" clicked slide #montaje-overlay

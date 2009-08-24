@@ -24,6 +24,10 @@ get '/product.json' do
   RestClient.get "http://www.google.com/base/feeds/snippets?"+request.query_string,:accept => "application/json"
 end
 
+get '/stylesheets/styles.css' do
+  style
+end
+
 def edit_in_place_echo
   "{html:'#{@echo}'}"
 end

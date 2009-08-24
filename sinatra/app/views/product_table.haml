@@ -1,23 +1,33 @@
-.product{:id=> @id} 
-  / .image-overlay
+.product{:id=> @id}
   %table{:cellpadding=>0, :cellspacing=>1, :width=>"100%"}
     %tbody
       %tr
         %td.product-image.ui-corner-left{:rowspan=>"2", :width=>"8%"}
           %div
             %img{:src=>"/images/pizzas.jpg", :height=>"35", :width=>"35"}/
-        %td{:rowspan=>"2", :width=>"62%"}
+        %td{:rowspan=>"2", :width=>"55%"}
           %p.nombre
             PIZZAS BU&Ntilde;PUM #
             =@id
           %p.descripcion So, we code web sites by hand. La mejor pizza de la ciudad y de los universos          
-        %td{:width=>"17%"}
-          %p.precio $999,999
-        %td{:width=>"13%", :valign=>"bottom"}
+        %td{:width=>"10%"}
+          %img{:src=>"/images/v5-ta-icono-producto-1.png"}
+        %td{:width=>"16%", :valign=>"bottom"}
           %img{:src=>"/images/corazon-icon.png"}/
           %img{:src=>"/images/dialogo-azul-icon.png"}/
+        %td{:width=>"11%"}
+          %p.hab-status principis&nbsp;
+          %img{:src=>"/images/online-spot.png"}
       %tr
         %td#ver-mas-prod
-          %p +productos
+          %ul
+            %li
+              %img{:src=>"/images/v5-ta-icono-producto-3.png"}
+            %li
+              %img{:src=>"/images/v5-ta-icono-producto-4.png"}
+            %li
+              %img{:src=>"/images/v5-ta-icono-producto-5.png"}
         %td
-          %a.comprar-btn{:href=>"#meantoje"} Me antoj&eacute;!
+          %p.precio $999,999
+        %td#ver-mas-prod
+          %p +productos

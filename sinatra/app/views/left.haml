@@ -1,49 +1,48 @@
-%div#tabs
+#tabs
   %ul.navigation#tab-ul
     %li
       %a#search-btn.first{:href=>"#inicio"}
         %em buscar
     %li
-      %a{:id=>"favoritos-btn",:href=>"#favoritos"}
+      %a#favoritos-btn{:href=>"#favoritos"}
         %em favoritos
     %li
-      %a{:id=>"recomendados-btn",:href=>"#recomendados"}
-        %em recomendados
+      %a#mi-tienda-btn{:href=>"#mi-tienda"}
+        %em mi tienda
     %li
       %a{:id=>"promociones-btn",:href=>"#promociones"}
         %em promociones
-  %div.scroll
-    %div.scrollContainer#listings-container
-      %div.panel.tab#inicio
-        %div.tab-container
+  .scroll
+    .scrollContainer#listings-container
+      .panel.tab#inicio
+        .tab-container
           =haml :tagcloud
-          /=haml :categorias_nav
-          %div.clear &nbsp;
           =haml :product_list
-      %div.panel.tab#favoritos
-        %div.tab-container
+      .panel.tab#favoritos
+        .tab-container
           =haml :categorias_nav
-          %div.clear &nbsp;
-          %div.tab-control-container
+          .clear &nbsp;
+          .tab-control-container
             %button#arriba Arriba
             %button#abajo Abajo
-          %div.product-list#product-list
+          .product-list#product-list
             =mock_products 10
-      %div.panel.tab#recomendados
-        %div.tab-container
-          =haml :categorias_nav
-          %div.clear &nbsp;
-          %div.tab-control-container
+      .panel.tab#mi-tienda
+        .tab-container
+          =haml :product_nav
+          .clear &nbsp;
+          .tab-control-container
             %button#arriba Arriba
             %button#abajo Abajo
-          %div.product-list#product-list
-            =mock_products 10
-      %div.panel.tab#promociones
-        %div.tab-container
+          .product-list#mi-tienda-product-list
+            =product_overlay
+            =haml :product_list_scroll
+      .panel.tab#promociones
+        .tab-container
           =haml :categorias_nav
-          %div.clear &nbsp;
-          %div.tab-control-container
+          .clear &nbsp;
+          .tab-control-container
             %button#arriba Arriba
             %button#abajo Abajo
-          %div.product-list#product-list
+          .product-list#product-list
             =mock_products 10

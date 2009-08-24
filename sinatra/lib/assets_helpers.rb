@@ -19,6 +19,11 @@ IE8
     dame_haml("%img#{id.nil? ? "" : "#"+id}{:src=>'#{uri}'}")
   end
   
+  def style
+    header 'Content-Type' => 'text/css; charset=utf-8'
+    sass :style
+  end
+
   def css_link(file)
     if file.index("/")==0
       href=file

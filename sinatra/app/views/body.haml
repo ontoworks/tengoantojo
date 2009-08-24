@@ -1,83 +1,13 @@
-%body.yui-skin-sam
-  %div.container.container_24
-    %h2.grid_24 tengoantojo.com
-    %div.grid_24.search
+%body
+  %div.container.container_50
+    %div.grid_50.search
       %p 
-        tengo antojo de
+        tengoantojo de
         %input{:type=>"text", :name=>"search"}
     %div.clear &nbsp;
-    #content.grid_13.content-container
-      = #categorias_nav
-      %div.yui-navset.yui-navset-top#tabs
-        %ul.yui-nav.navigation#tab-ul
-          %li.selected
-            %a{:id=>"search-btn",:href=>"#inicio"}
-              %em buscar
-          %li
-            %a{:id=>"favoritos-btn",:href=>"#favoritos"}
-              %em favoritos
-          %li
-            %a{:id=>"recomendados-btn",:href=>"#recomendados"}
-              %em recomendados
-          %li
-            %a{:id=>"promociones-btn",:href=>"#promociones"}
-              %em promociones
-        %div.scroll
-          %div
-          %div.yui-content.scrollContainer#listings-container
-            %div.panel.tab#inicio
-              %div.tab-container
-                =categorias_nav
-                %div.clear &nbsp;
-                %div.tab-control-container
-                %div.product-list#product-list-0
-                  %ul.product-list-navigation
-                    %li.selected 
-                      %a{:id=>"arriba-btn", :href=>"#page-0"} 
-                        %em <<
-                    %li 
-                      %a{:id=>"abajo-btn", :href=>"#page-1"}
-                        %em 0
-                    %li 
-                      %a{:id=>"abajo-btn", :href=>"#page-2"}
-                        %em >>
-                  =product_overlay
-                  .product-list-scroll
-                    .product-list-scrollContainer
-                      .product-list-page#page-0
-                        =mock_products 1
-                      .product-list-page#page-1
-                        =mock_products 1
-                      .product-list-page#page-2
-                        =mock_products 1
-            %div.panel.tab#favoritos
-              %div.tab-container
-                =categorias_nav
-                %div.clear &nbsp;
-                %div.tab-control-container
-                  %button#arriba Arriba
-                  %button#abajo Abajo
-                %div.product-list#product-list-1
-                  =mock_products 15
-            %div.panel.tab#recomendados
-              %div.tab-container
-                =categorias_nav
-                %div.clear &nbsp;
-                %div.tab-control-container
-                  %button#arriba Arriba
-                  %button#abajo Abajo
-                %div.product-list#product-list-2
-                  =mock_products 15
-            %div.panel.tab#promociones
-              %div.tab-container
-                =categorias_nav
-                %div.clear &nbsp;
-                %div.tab-control-container
-                  %button#arriba Arriba
-                  %button#abajo Abajo
-                %div.product-list#product-list-3
-                  =mock_products 15
-    #right.grid_11
-      %p Main B - Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat
-  = #product_overlay_fixedbox
-=js_tag "lib"
+    #banner-left.grid_8
+      =haml :banner
+    #banner-main.grid_34
+      =haml :left
+    #banner-right.grid_8
+      =haml :banner
