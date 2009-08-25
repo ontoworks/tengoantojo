@@ -8,7 +8,6 @@ var Conf = {};
 jQuery(document).ready(function($){
   myserialscroller();
   left_slider();
-  right_slider();
   //categorias_scroller();
 
   Conf = (function () {

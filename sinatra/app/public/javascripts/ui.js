@@ -25,6 +25,28 @@
        });
    };
 
+var Component_Loader = function(o) {
+};
+
+var Ajax_Slideshow = function(o) {
+  var opt = {
+    navigation:o.navigation,
+    target:o.target
+  };
+
+  var success = function(url) {
+    return function(data, textStatus) {
+      window[url]();
+    };
+  };
+
+  $(opt.navigation).click(function(e) {
+      var url = $(this).attr("href");
+      $(opt.target).load(url, success(url));
+      e.preventDefault();
+    });
+};
+
 var Image_Slideshow = function(o) {
   var opt = {
     navigation:o.navigation,
@@ -76,6 +98,5 @@ var Image_Slideshow = function(o) {
 	  });
       }
       e.preventDefault();
-    });
-  
+    });  
 };

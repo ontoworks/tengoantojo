@@ -60,4 +60,4 @@ function right_slider() {
   scrollOptions.duration = 1;
   $.localScroll.hash(scrollOptions);
 }
-right_slider();
+//right_slider();

@@ -1,4 +1,5 @@
 %ul{:id=>@id, :class=>@class}
-  - @names.each do |n|
-    %li 
-      =n
+  - @names.each do |o|
+    %li
+      %a{:href=>o[:url], :class=>"#{o[:selected] ? 'selected' : ''}"}
+        =o[:title]

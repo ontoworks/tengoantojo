@@ -1,4 +1,25 @@
+function marketplace() {
+  left_slider();
+}
+
+function social() {
+  right_slider();
+}
+
+function geocity() {
+}
+
+function events() {
+}
+
+function room() {
+}
+
+function global_nav() {
+}
+
 jQuery(document).ready(function($) {
+
 
   /** 
    * @returns:
@@ -136,5 +157,10 @@ jQuery(document).ready(function($) {
          }
      });
  
-  }); //ends
+   // global-nav navigation
+   var global_nav = new Ajax_Slideshow({
+     target:"#main",
+     navigation:"#global-nav a"
+     });
 
+}); //ends

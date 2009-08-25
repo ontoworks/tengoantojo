@@ -50,11 +50,11 @@ a
   :border-color #DADADA
   :border-width 0 0 1px
   :padding-left 0px
-  :margin 0
+  :margin-right 10px
   :list-style none
   :border-bottom 0px solid #DADADA
   :border 1px solid #DADADA
-  :float right
+  :float left 
   
   li
     :display block
@@ -86,7 +86,8 @@ a
 
 
 #tabs
-  :margin 0px
+  .scroll
+    :clear none
 
 #right
   :margin 0px
@@ -517,14 +518,13 @@ p
 
 
 .right-scroll
-  :width 452px
+  :width 550px
   :position relative
-  :clear left
 
 
 #right-tabs
   .panel
-    :width 450px
+    :width 550px
 
   #murmullo .murmullo
 
@@ -1001,10 +1001,11 @@ p
 =navigation
   +dotted-border
   :margin-bottom 10px
-  li
+  a
     +solid-border
     :height 50px
     :margin 5px
+    :padding 0em 0.25em
 
 .banner
   :height 550px
@@ -1012,6 +1013,9 @@ p
 
 #global-nav
   +navigation
+  .selected
+    :color #FFFFFF
+    :background-color #DADADA
 
 .logo
   :font-size 20px
@@ -1021,3 +1025,4 @@ p
   +dotted-border
   :height 50px
   :padding 5px
+

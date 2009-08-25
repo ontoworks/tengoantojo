@@ -55,4 +55,21 @@ end
 
 # end geonames
 
+# global components
+get '/marketplace' do
+  haml :left
+end
+
+get '/social' do
+  haml :right
+end
+
+get '/geocity' do
+end
+
+get '/events' do
+end
+
+get '/bedroom' do
+end
 
