@@ -5,6 +5,15 @@
  * @requires:
  */
 var Conf = {};
+
+/** 
+ * @returns:
+ * @author:
+ * @version:
+ * @requires:
+ */
+var Marketplace;
+
 jQuery(document).ready(function($){
   myserialscroller();
   left_slider();

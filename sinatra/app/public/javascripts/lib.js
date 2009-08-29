@@ -29,6 +29,30 @@ function augment(receivingClass, givingClass) {
  * @version:
  * @requires:
  */
+function register_proxy(proxies) {
+  $.each(proxies, function() {
+      augment(this,Resource);
+    });
+}
+
+/** 
+ * @returns:
+ * @author:
+ * @version:
+ * @requires:
+ */
+function google_query(q, max_results) {
+  var alt="json";
+  var query="?q="+q+"&alt="+alt+"&max-results="+max_results;
+  return query;
+}
+
+/** 
+ * @returns:
+ * @author:
+ * @version:
+ * @requires:
+ */
 var Resource = function() {
   this.uri = "";
 };
@@ -100,24 +124,22 @@ Query.prototype.query = function(query, jsonp) {
  * @version:
  * @requires:
  */
-var List = function() {
-  this.items = [];
+var UI = function(id) {
+  this.id = id;
+  this.tpl;
+  this.proxy;
 };
-List.prototype = {
-  add: function(item) {
-    this.items.push(item);
-  },
-  each: function() {
-  },
-  next: function() {
-  },
-  prev: function() {
-  },
-  page_up: function() {
-  },
-  page_down: function() {
+UI.prototype.layout = function() {
+  if (!this.tpl)
+    return $(this.id).clone();
+  else
+    return this.tpl;
+};
+UI.prototype.state = function() {
+  for(var i=0; this.items.length; i++) {
+    alert(this.items[i].id);
   }
-  };
+};
 
 /** 
  * @returns:
@@ -125,9 +147,46 @@ List.prototype = {
  * @version:
  * @requires:
  */
-var UI = function() {
-  this.tpl;
+var List = function() {
+  this.items = [];
+  
+  this.item_type;
 };
-UI.prototype.html = function() {
-  this.tpl;
-  };
+List.prototype = {
+  add: function(item) {
+    this.items.push(item);
+  },
+  each: function() {
+    $.each(this.items, function(e) {
+	return e;
+      });
+  },
+  next: function() {
+  },
+  prev: function() {
+  }
+};
+
+var Paged_List = function(o) {
+  this.id = o.id;
+  this.page_size = o.page_size;
+};
+augment(Paged_List, List);
+Paged_List.prototype = {
+  page_up: function() {
+  },
+  page_down: function() {
+  }
+};
+Paged_List.prototype._add = List.prototype.add;
+Paged_List.prototype.add = function(item) {
+  var count = this.items.length;
+  var page_n = Math.floor(count/this.page_size);
+  var page = $("#"+this.id).find(".product-list-page").get(page_n);
+  var new_page = count%this.page_size == 0 ? true : false;
+  if (new_page) {;
+    $(page).empty();
+  }
+  $(page).append(item.html());
+  this._add(item);
+};

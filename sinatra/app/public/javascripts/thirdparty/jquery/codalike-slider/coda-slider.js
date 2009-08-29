@@ -1,4 +1,5 @@
 function left_slider() {
+  //var left_slider 
     var $panels = $('#tabs .scrollContainer > div');
     var $container = $('#tabs .scrollContainer');
 

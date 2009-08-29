@@ -1,8 +1,28 @@
-var ProductOverlay = function() {
-  
+  /** 
+   * @returns:
+   * @author:
+   * @version:
+   * @requires:
+   */
+var Product_Overlay = function() {
+    // product overlay
+    // event: when btn "meantoje" clicked slide #montaje-overlay
+    $(".meantoje a").click(function() {
+	$(".meantoje").toggleClass("on");
+	$(this).toggleClass("on");
+	$("#meantoje-overlay").slideToggle("fast");
+    });
 };
+augment(Product_Overlay, UI);
 
-  var show_product_overlay = function(e) {
+  /** 
+   * @returns:
+   * @author:
+   * @version:
+   * @requires:
+   * @comment: callback for click event (the click that triggers the overlay)
+   */
+Product_Overlay.prototype.show = function(e) {
     /* product overlay */
     jQuery(".product-overlay-bg").css({opacity:0.8});
 

@@ -237,10 +237,10 @@ a
   :padding 5px
   :margin 0px
   :font-color #fff
-  :top 22px
+  :top 20px
   :left 46px
   :width 0px
-  :height 554px
+  :height 440px
   :display none
   :z-index 2
 
@@ -261,6 +261,9 @@ a
     :border-color #fff
     :color #fff
 
+#product-overlay
+  .holder
+    :margin 0 10px 10px
 
 .scroll-slider-overlay
   :position absolute
@@ -367,11 +370,17 @@ a
   :height 21px
   :width 180px
   :padding-top 2px
-
+  &.on
+    :background #ccc
+    :color #000
+  
   a
     :color #fff
     :margin-left 55px
-
+    &.on
+      :background #ccc
+      :color #000
+      
 
 #meantoje-overlay
   :font-size 10px
@@ -467,7 +476,7 @@ p
 
 
 .product-list-scroll
-  :height 620px
+  :height 441px
   :overflow hidden
   :position relative
 
@@ -636,7 +645,7 @@ p
 
 #product-comments
   :background none
-  :height 247px
+  :height 133px
 
 
 #perfil
@@ -1026,3 +1035,7 @@ p
   :height 50px
   :padding 5px
 
+#geocity
+  .navigation 
+    :width 100%
+    +solid-border
