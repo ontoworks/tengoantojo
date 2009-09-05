@@ -1,3 +1,8 @@
+=solid-border
+  :border 1px solid #000000
+
+=dotted-border
+  :border 1px dotted #000000
 
 *
   :margin 0
@@ -45,6 +50,25 @@ a
     :font-size 25px
     :color #fff
 
+#marketplace-nav
+  :float right
+
+#product-nav
+  :float right
+
+#sections-nav
+  :clear left
+  li
+    :display block
+  a
+    :width 100%
+    +solid-border
+    :border-color #DADADA
+    :padding 0.25em 0em
+    :font-size 12px
+    :text-align right
+    em
+      :padding 0em 0.35em
 
 #tab-ul
   :border-color #DADADA
@@ -53,16 +77,19 @@ a
   :margin-right 10px
   :list-style none
   :border-bottom 0px solid #DADADA
-  :border 1px solid #DADADA
-  :float left 
   
   li
     :display block
+    :float left
 
   a
-    :border-right 0px solid #DADADA
+    :border 1px solid #DADADA
+    :border-right 1px solid #DADADA
     :font-size 13px
     :color #000
+    :height 25px
+    :width 25px
+    :margin-right 2px
 
     &.first
     em
@@ -237,7 +264,7 @@ a
   :padding 5px
   :margin 0px
   :font-color #fff
-  :top 20px
+  :top 47px
   :left 46px
   :width 0px
   :height 440px
@@ -287,7 +314,7 @@ a
 
 .overlay-iconos-top
   :left 50px
-  :top 30px
+  :top 57px
   :position absolute
   :z-index 4
   :display none
@@ -315,7 +342,7 @@ a
 
 .product-overlay-content
   :left 55px
-  :top 30px
+  :top 57px
   :width 470px
   :position absolute
   :z-index 3
@@ -1001,12 +1028,6 @@ p
   :height 17px
   :margin-bottom 3px
 
-=solid-border
-  :border 1px solid #000000
-
-=dotted-border
-  :border 1px dotted #000000
-
 =navigation
   +dotted-border
   :margin-bottom 10px
@@ -1039,3 +1060,12 @@ p
   .navigation 
     :width 100%
     +solid-border
+
+#market-search
+  +solid-border
+  :height 25px
+  :font-size 12px
+  :padding-left 3px
+  input
+    :height 13px
+    :margin-top 3px

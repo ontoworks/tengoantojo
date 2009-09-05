@@ -1,17 +1,5 @@
 #tabs
-  %ul.navigation#tab-ul
-    %li
-      %a#search-btn.first{:href=>"#inicio"}
-        %em buscar
-    %li
-      %a#favoritos-btn{:href=>"#favoritos"}
-        %em favoritos
-    %li
-      %a#mi-tienda-btn{:href=>"#mi-tienda"}
-        %em mi tienda
-    %li
-      %a{:id=>"promociones-btn",:href=>"#promociones"}
-        %em promociones
+  =haml :marketplace_nav
   .scroll
     .scrollContainer#listings-container
       .panel.tab#inicio
