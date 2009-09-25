@@ -23,8 +23,8 @@ jQuery(document).ready(function($){
     return {
       Product: {
         //uri: "http://www.google.com/base/feeds/snippets",
-        uri:"/product.json",
-        //uri:"/data/snippets.json",
+        //uri:"/product.json",
+	uri:"/data/snippets.json",
 	tpl: function() {
 	  return $(".product:first").clone();
 	 }

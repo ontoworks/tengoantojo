@@ -3,7 +3,7 @@
 class Assets
   def initialize
     # instance variables are pushed to iv_array when
-    # their respectives writers are called
+    # their respective writers are called
     @iv_array = []
 
     AssetsHelpers.instance_methods.each do |meth|

@@ -64,9 +64,6 @@ IE8
     js_tag "thirdparty/jquery/#{plugin}"
   end  
 
-  def jquery_ui
-  end
-
   def jquery_ui(widget=false)
     if widget
       jquery_plugin "jquery-ui-1.7.2/development-bundle/ui/ui."+widget

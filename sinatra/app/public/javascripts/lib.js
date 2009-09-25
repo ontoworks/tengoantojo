@@ -57,7 +57,6 @@ var Resource = function() {
   this.uri = "";
 };
 Resource.get = function(query, callback, scope, jsonp) {
-
   if (jsonp==true) {
     alert("here");
     var _callback = (function(_scope) {
@@ -87,22 +86,23 @@ Resource.get = function(query, callback, scope, jsonp) {
 	  }
 	  })(scope));*/
   } else {
+    var random=Math.round(Math.random()*100000000);
+    query += "&c="+random;
     jQuery.getJSON(this.uri+query, (function(_scope) {
 	  return function(data) {
 	    callback(data, _scope);
+	    _scope.jquery.trigger(jQuery.Event("ready"));
 	  }
 	})(scope));
   }
 };
 
-Resource.getScript = function(data, callback, scope) {
-
-}
 Resource.post = function() {
 };
 Resource.put = function() {
 };
 //Resource.delete = function() {}; // cannot be named like this
+
 
 /** 
  * @returns:
@@ -115,6 +115,8 @@ var Query = function() {
   this.uri;
 };
 Query.prototype.query = function(query, jsonp) {
+  var event_load = jQuery.Event("load");
+  this.jquery.trigger(event_load);
   this.proxy.get(query, this.callback, this, jsonp);
 };
 
@@ -125,9 +127,13 @@ Query.prototype.query = function(query, jsonp) {
  * @requires:
  */
 var UI = function(id) {
-  this.id = id;
+  this.id;
+  this.jquery;
   this.tpl;
   this.proxy;
+};
+UI.prototype.initialize = function() {
+  this.jquery = $("#"+this.id);
 };
 UI.prototype.layout = function() {
   if (!this.tpl)
@@ -149,7 +155,6 @@ UI.prototype.state = function() {
  */
 var List = function() {
   this.items = [];
-  
   this.item_type;
 };
 List.prototype = {
@@ -160,6 +165,9 @@ List.prototype = {
     $.each(this.items, function(e) {
 	return e;
       });
+  },
+  empty: function() {
+    this.items=new Array();
   },
   next: function() {
   },
@@ -172,11 +180,9 @@ var Paged_List = function(o) {
   this.page_size = o.page_size;
 };
 augment(Paged_List, List);
-Paged_List.prototype = {
-  page_up: function() {
-  },
-  page_down: function() {
-  }
+Paged_List.prototype.page_up = function() {
+},
+Paged_List.prototype.page_down = function() {
 };
 Paged_List.prototype._add = List.prototype.add;
 Paged_List.prototype.add = function(item) {

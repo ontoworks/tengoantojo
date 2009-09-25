@@ -37,15 +37,19 @@ var Ajax_Slideshow = function(o) {
   var success = function(url) {
     return function(data, textStatus) {
       window[url]();
+      $(opt.target).trigger(jQuery.Event("ready"));
     };
   };
 
   $(opt.navigation).click(function(e) {
       var url = $(this).attr("href");
+      $(opt.target).trigger(jQuery.Event("load"));
       $(opt.target).load(url, success(url));
       e.preventDefault();
     });
 };
+
+
 
 var Image_Slideshow = function(o) {
   var opt = {

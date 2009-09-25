@@ -1,0 +1,31 @@
+#marketplace-nav
+  .search-wrapper
+    %span.left
+    %input#search{:type=>"search"}
+    %span.right
+  %ul.navigation#tab-ul
+    %li
+      %a#search-btn.first{:href=>"#inicio"}
+        %em 
+    %li
+      %a#favoritos-btn{:href=>"#favoritos"}
+        %em 
+    %li
+      %a#mi-tienda-btn{:href=>"#mi-tienda"}
+        %em 
+    %li
+      %a{:id=>"promociones-btn",:href=>"#promociones"}
+        %em 
+  %ul#sections-nav
+    %li
+      %a.first
+        %em Libros
+    %li
+      %a
+        %em Servicios
+    %li
+      %a
+        %em Vehiculos
+    %li
+      %a
+        %em Ropa, Calzado

@@ -5,6 +5,7 @@
    * @requires:
    */
 var Product = function(o) {
+  this.id = o.id;
   this.name = o.name;
   this.description = o.description;
   this.price = o.price;
@@ -28,6 +29,14 @@ var ProductList = function(o) {
   // Query
   this.proxy = o.proxy;
   this.callback = o.callback;
+  // Call constructors in Mashups (bad practice??)
+  this.initialize();
+
+  this.jquery.bind("load", function() {
+      $(this).block({message:"cargando ..."});
+    }).bind("ready", function() {
+      $(this).unblock();
+    });
 };
 ProductList.prototype.render = function() {
   $("#"+this.id).find(".nombre").truncate({max_length: 50});
@@ -47,5 +56,11 @@ jQuery(document).ready(function($) {
     this.layout.find(".product-image img").attr("src", this.image_url);
     this.layout.find(".precio").html(this.price);
     return this.layout;
+  };
+
+  $.fn.ProductList = function(options) {
+    return this.each(function() {
+      return new ProductList(this, options);
+    });
   };
 });
