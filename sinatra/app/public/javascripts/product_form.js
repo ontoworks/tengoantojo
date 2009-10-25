@@ -1,0 +1,69 @@
+(function($) {
+  var $edit_product = $.edit_product = function( settings ){
+    //    $('body').tab_slider( settings );
+  };
+
+  $edit_product.defaults = {//the defaults are public and can be overriden.
+    width:526,
+    background:".product-form-bg"
+  };
+
+  $.fn.edit_product = function ( settings ) {
+    settings = $.extend( {}, $edit_product.defaults, settings );
+    return this.each(function() {
+	var eip_options = 
+	  {
+	  savebutton_text: "ok",
+	  cancelbutton_text: "x",
+	  form_buttons: '<span><input type="button" id="save-#{id}" class="#{savebutton_class}" value="#{savebutton_text}" /> <input type="button" id="cancel-#{id}" class="#{cancelbutton_class}" value="#{cancelbutton_text}" /></span>',
+	  text_form: '<input type="text" id="edit-#{id}" class="#{editfield_class}" value="#{value}" />'
+	  };
+
+	var eip_options_textarea = 
+	  {
+	  savebutton_text: "ok",
+	  cancelbutton_text: "x",
+	  form_buttons: '<span><input type="button" id="save-#{id}" class="#{savebutton_class}" value="#{savebutton_text}" /> <input type="button" id="cancel-#{id}" class="#{cancelbutton_class}" value="#{cancelbutton_text}" /></span>',
+	  form_type: "textarea"
+	  };
+
+
+	// this is repeated code from product_overlay
+	jQuery(settings.background).css({opacity:0.8});
+	var product_overlay_bg = jQuery(settings.background+":first");
+	product_overlay_bg.css({width:"0px"});
+	product_overlay_bg.animate({ width:settings.width+"px" });
+	overlays=jQuery(this);
+	overlays.show();
+	jQuery(".cerrar").click(function(){
+	    overlays.hide();
+	    product_overlay_bg.hide();
+	    jQuery(".product-image.selected").css({background:"#fff", opacity:1});
+	  });
+
+	var brief = jQuery(".brief");
+	var image_url = "/images/pizzas.jpg";
+
+	var nombre=brief.find(".nombre");
+	nombre.html("Nombre del producto");
+	nombre.eip("/perfil/nombre", eip_options);
+	brief.find(".descripcion").html("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.").eip("/perfil/nombre", eip_options_textarea);
+	brief.find(".precio").html("$999,999.00").eip("/perfil/nombre", eip_options);
+
+	brief.find("#product-image-list img").attr("src",image_url);
+	brief.find(".galleria img:first").attr("src",image_url).attr("rel",image_url);
+
+	$(".condicion").eip( "/perfil/nombre", {
+	  form_type: "select",
+	  select_options: {
+	    nuevo    : "Nuevo",
+	    usado   : "Usado"
+		}
+	  } );
+      });
+  }
+})(jQuery);
+
+function product_form() {
+    $("#product-form").edit_product({});
+}

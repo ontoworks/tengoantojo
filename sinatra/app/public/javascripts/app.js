@@ -57,18 +57,30 @@ jQuery(document).ready(function($) {
     };
 
     var mitienda_view = function() {
+      $("#add-product-btn").click(function() {
+	  $(".product-form").edit_product({});
+	});
     };
 
     var promociones_view = function() {
     };
 
+    // initialize slides
     inicio_view();
+    mitienda_view();
+
+    // should not go here
     left_slider();
   };
 });
 
 function social() {
-  right_slider();
+  $("#right-tabs")
+    .tab_slider({
+      panels: $('#right-tabs .right-scrollContainer > div'),
+	  scroll: $('#right-tabs .right-scroll').css('overflow', 'hidden'),
+	  container: $('#right-tabs .right-scrollContainer')
+	  });
 }
 
 function geocity() {

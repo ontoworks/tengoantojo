@@ -82,6 +82,6 @@ IE8
 # encloses a text within a javascript script tag
 #
   def script(text)
-    "<script type=\"text/javascript\">#{text}</script>"
+    "<script type=\"text/javascript\">jQuery(document).ready(function() {#{text};});</script>"
   end
 end

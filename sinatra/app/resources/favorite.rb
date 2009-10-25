@@ -29,7 +29,7 @@ put '/favoritos/:id' do
   begin
     exists=@favoritos[params[:id]].get
   rescue
-    write "no existe, pero 'q importa"
+    write "no existe"
   end
   unless exists
     @favoritos[params[:id]].put request.body.string

@@ -1,5 +1,5 @@
 # dynamically guess what helpers have been called
-# by creating accessor methods in runtime
+# by creating accessor methods at runtime
 class Assets
   def initialize
     # instance variables are pushed to iv_array when
@@ -60,7 +60,43 @@ module UIHelpers
     assets.js_tag = ["categorias_scroller"]
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
                        "style"]
-    assets.script = "jQuery(document).ready(function() {categorias_scroller();})"
+    assets.script = "categorias_scroller()"
+    assets
+  end
+
+  def tab_slider
+    assets= Assets.new
+    assets.lib = ["jquery"]
+    assets.jquery_plugin = ["scrollto/1.4.1/jquery.scrollTo-min",
+                            "localscroll/1.2.7/jquery.localscroll-min",
+                            "codalike-slider/jquery.serialScroll-1.2.1"]
+    assets.js_tag = ["tab_slider"]
+    assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
+                       "style"]
+    assets.script = "tab_slider()"
+    assets
+  end
+
+  def category_select
+    assets= Assets.new
+    assets.lib = ["jquery"]
+    assets.js_tag = ["category_select"]
+    assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
+                       "styles"]
+    assets.script = "category_select('.category-select', {})"
+    assets
+  end
+
+
+  def mi_tienda
+    assets= Assets.new
+    assets.lib = ["jquery"]
+    assets.jquery_plugin = ["jeip/jeip"]
+    assets.js_tag = ["product_form"]
+#    assets.js_tag << "http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed"
+    assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
+                       "styles"]
+    assets.script = "product_form()"
     assets
   end
 
@@ -72,9 +108,9 @@ module UIHelpers
                             "codalike-slider/jquery.serialScroll-1.2.1",
                             "codalike-slider/coda-slider"]
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
-                       "style",
+                       "styles",
                        "codaslider"]
-    assets.script = "jQuery(document).ready(function() {left_slider();})"
+    assets.script = "left_slider()"
     assets
   end
 
@@ -86,8 +122,8 @@ module UIHelpers
                             "codalike-slider/jquery.serialScroll-1.2.1"]
     assets.js_tag = ["tab_slider"]
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
-                       "style"]
-    assets.script = "jQuery(document).ready(function() {right_slider();})"
+                       "styles"]
+    assets.script = "right_slider()"
     assets
   end
 
@@ -104,6 +140,7 @@ module UIHelpers
     assets
   end
 
+
 #
 # given some assets and a component's tpl
 # render the component as a standalone page
@@ -111,7 +148,7 @@ module UIHelpers
   def standalone(tpl)
     assets = send(tpl)
     @head = head_generator tpl, assets
-    @body = haml tpl.to_sym
+    @component = haml tpl.to_sym
     haml :standalone
   end
 

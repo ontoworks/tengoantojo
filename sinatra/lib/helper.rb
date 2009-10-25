@@ -20,30 +20,27 @@ helpers do
     list = ""
     count.times do |i|
       @id="product-"+i.to_s
-      list << (haml :product_table)
+      list << product
     end
-    #(haml :product_overlay)+
+    if count == 0
+      list << (haml :empty_list)      
+      list << (product :klass => [:hidden])
+    end
     list
+  end
+
+  def product(*args)
+    klass=[]
+    if args[0].nil?
+      "NIL"
+    else
+      klass=args[0].delete(:klass)
+    end
+    haml :product_table, {}, :klass => klass.join(" ")
   end
 
   def dame_haml(textohaml)
     Haml::Engine.new(textohaml).render    
-  end
-
-  def product_show_container
-    product_list+product_pagination
-  end
-
-  def product_overlay
-    haml :product_overlay
-  end
-
-  def product_list_pages(pages)
-    (haml :product_list_page)*pages
-  end
-
-  def product_overlay_fixedbox
-    haml :product_overlay_fixedbox
   end
 end
 #end

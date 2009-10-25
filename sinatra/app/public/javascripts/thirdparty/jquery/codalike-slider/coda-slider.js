@@ -41,9 +41,8 @@ function left_slider() {
 
     // go find the navigation link that has this target and select the nav
     function trigger(data) {
-        var el = $('#tabs .navigation').find('a[href$="' + data.id + '"]').get(0);
-        selectNav.call(el);
-	//alert(el);
+      //var el = $('#tabs .navigation').find('a[href$="' + data.id + '"]').get(0);
+      //selectNav.call(el);
     }
 
     if (window.location.hash) {

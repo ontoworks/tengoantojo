@@ -1,0 +1,9 @@
+.mi-tienda
+  .menu
+    %a#add-product-btn{:href=>"#", :title=>"Agregar producto"}
+      %img{:src=>"/images/add.png"}
+    %div 
+      %p Agregar producto
+  .product-list#mi-tienda-product-list
+    =haml :product_form, :locals => {:id => "product-form"}
+    =product_list 0

@@ -48,119 +48,117 @@ $.jScrollPane = {
 };
 $.fn.jScrollPane = function(settings)
 {
-	settings = $.extend({}, $.fn.jScrollPane.defaults, settings);
+  settings = $.extend({}, $.fn.jScrollPane.defaults, settings);
 
-	var rf = function() { return false; };
+  var rf = function() { return false; };
 	
-	return this.each(
-		function()
-		{
-			var $this = $(this);
-			var paneEle = this;
-			var currentScrollPosition = 0;
-			var paneWidth;
-			var paneHeight;
-			var trackHeight;
-			var trackOffset = settings.topCapHeight;
-			
-			if ($(this).parent().is('.jScrollPaneContainer')) {
-				currentScrollPosition = settings.maintainPosition ? $this.position().top : 0;
-				var $c = $(this).parent();
-				paneWidth = $c.innerWidth();
-				paneHeight = $c.outerHeight();
-				$('>.jScrollPaneTrack, >.jScrollArrowUp, >.jScrollArrowDown, >.jScollCap', $c).remove();
-				$this.css({'top':0});
-			} else {
-				$this.data('originalStyleTag', $this.attr('style'));
-				// Switch the element's overflow to hidden to ensure we get the size of the element without the scrollbars [http://plugins.jquery.com/node/1208]
-				$this.css('overflow', 'hidden');
-				this.originalPadding = $this.css('paddingTop') + ' ' + $this.css('paddingRight') + ' ' + $this.css('paddingBottom') + ' ' + $this.css('paddingLeft');
-				this.originalSidePaddingTotal = (parseInt($this.css('paddingLeft')) || 0) + (parseInt($this.css('paddingRight')) || 0);
-				paneWidth = $this.innerWidth();
-				paneHeight = $this.innerHeight();
-				var $container = $('<div></div>')
-					.attr({'className':'jScrollPaneContainer'})
-					.css(
-						{
-							'height':paneHeight+'px', 
-							'width':paneWidth+'px'
-						}
-					);
-				if (settings.enableKeyboardNavigation) {
-					$container.attr(
-						'tabindex', 
-						settings.tabIndex
-					);
-				}
-				$this.wrap($container);
-				// deal with text size changes (if the jquery.em plugin is included)
-				// and re-initialise the scrollPane so the track maintains the
-				// correct size
-				$(document).bind(
-					'emchange', 
-					function(e, cur, prev)
-					{
-						$this.jScrollPane(settings);
-					}
-				);
-				
-			}
-			trackHeight = paneHeight;
-			
-			if (settings.reinitialiseOnImageLoad) {
-				// code inspired by jquery.onImagesLoad: http://plugins.jquery.com/project/onImagesLoad
-				// except we re-initialise the scroll pane when each image loads so that the scroll pane is always up to size...
-				// TODO: Do I even need to store it in $.data? Is a local variable here the same since I don't pass the reinitialiseOnImageLoad when I re-initialise?
-				var $imagesToLoad = $.data(paneEle, 'jScrollPaneImagesToLoad') || $('img', $this);
-				var loadedImages = [];
-				
-				if ($imagesToLoad.length) {
-					$imagesToLoad.each(function(i, val)	{
-						$(this).bind('load readystatechange', function() {
-							if($.inArray(i, loadedImages) == -1){ //don't double count images
-								loadedImages.push(val); //keep a record of images we've seen
-								$imagesToLoad = $.grep($imagesToLoad, function(n, i) {
-									return n != val;
-								});
-								$.data(paneEle, 'jScrollPaneImagesToLoad', $imagesToLoad);
-								var s2 = $.extend(settings, {reinitialiseOnImageLoad:false});
-								$this.jScrollPane(s2); // re-initialise
-							}
-						}).each(function(i, val) {
-							if(this.complete || this.complete===undefined) { 
-								//needed for potential cached images
-								this.src = this.src; 
-							} 
-						});
-					});
-				};
-			}
-
-			var p = this.originalSidePaddingTotal;
-			var realPaneWidth = paneWidth - settings.scrollbarWidth - settings.scrollbarMargin - p;
-
-			var cssToApply = {
-				'height':'auto',
-				'width': realPaneWidth + 'px'
-			}
-
-			if(settings.scrollbarOnLeft) {
-				cssToApply.paddingLeft = settings.scrollbarMargin + settings.scrollbarWidth + 'px';
-			} else {
-				cssToApply.paddingRight = settings.scrollbarMargin + 'px';
-			}
-
-			$this.css(cssToApply);
-
-			var contentHeight = $this.outerHeight();
-			var percentInView = paneHeight / contentHeight;
-
-			if (percentInView < .99) {
-				var $container = $this.parent();
-				$container.append(
-					$('<div></div>').addClass('jScrollCap jScrollCapTop').css({height:settings.topCapHeight}),
-					$('<div></div>').attr({'className':'jScrollPaneTrack'}).css({'width':settings.scrollbarWidth+'px'}).append(
-						$('<div></div>').attr({'className':'jScrollPaneDrag'}).css({'width':settings.scrollbarWidth+'px'}).append(
+  return this.each(function() {
+    var $this = $(this);
+    var paneEle = this;
+    var currentScrollPosition = 0;
+    var paneWidth;
+    var paneHeight;
+    var trackHeight;
+    var trackOffset = settings.topCapHeight;
+    
+    if ($(this).parent().is('.jScrollPaneContainer')) {
+      currentScrollPosition = settings.maintainPosition ? $this.position().top : 0;
+      var $c = $(this).parent();
+      paneWidth = $c.innerWidth();
+      paneHeight = $c.outerHeight();
+      $('>.jScrollPaneTrack, >.jScrollArrowUp, >.jScrollArrowDown, >.jScollCap', $c).remove();
+      $this.css({'top':0});
+    } else {
+      $this.data('originalStyleTag', $this.attr('style'));
+      // Switch the element's overflow to hidden to ensure we get the size of the element without the scrollbars [http://plugins.jquery.com/node/1208]
+      $this.css('overflow', 'hidden');
+      this.originalPadding = $this.css('paddingTop') + ' ' + $this.css('paddingRight') + ' ' + $this.css('paddingBottom') + ' ' + $this.css('paddingLeft');
+      this.originalSidePaddingTotal = (parseInt($this.css('paddingLeft')) || 0) + (parseInt($this.css('paddingRight')) || 0);
+      paneWidth = $this.innerWidth();
+      paneHeight = $this.innerHeight();
+      var $container = $('<div></div>')
+	.attr({'className':'jScrollPaneContainer'})
+	.css(
+	     {
+	       'height':paneHeight+'px', 
+		 'width':paneWidth+'px'
+		 }
+	     );
+      if (settings.enableKeyboardNavigation) {
+	$container.attr(
+			'tabindex', 
+			settings.tabIndex
+			);
+      }
+      $this.wrap($container);
+      // deal with text size changes (if the jquery.em plugin is included)
+      // and re-initialise the scrollPane so the track maintains the
+      // correct size
+      $(document).bind(
+		       'emchange', 
+		       function(e, cur, prev)
+		       {
+			 $this.jScrollPane(settings);
+		       }
+		       );
+      
+    }
+    trackHeight = paneHeight;
+    
+    if (settings.reinitialiseOnImageLoad) {
+      // code inspired by jquery.onImagesLoad: http://plugins.jquery.com/project/onImagesLoad
+      // except we re-initialise the scroll pane when each image loads so that the scroll pane is always up to size...
+      // TODO: Do I even need to store it in $.data? Is a local variable here the same since I don't pass the reinitialiseOnImageLoad when I re-initialise?
+      var $imagesToLoad = $.data(paneEle, 'jScrollPaneImagesToLoad') || $('img', $this);
+      var loadedImages = [];
+      
+      if ($imagesToLoad.length) {
+	$imagesToLoad.each(function(i, val)	{
+	    $(this).bind('load readystatechange', function() {
+		if($.inArray(i, loadedImages) == -1){ //don't double count images
+		  loadedImages.push(val); //keep a record of images we've seen
+		  $imagesToLoad = $.grep($imagesToLoad, function(n, i) {
+		      return n != val;
+		    });
+		  $.data(paneEle, 'jScrollPaneImagesToLoad', $imagesToLoad);
+		  var s2 = $.extend(settings, {reinitialiseOnImageLoad:false});
+		  $this.jScrollPane(s2); // re-initialise
+		}
+	      }).each(function(i, val) {
+		  if(this.complete || this.complete===undefined) { 
+		    //needed for potential cached images
+		    this.src = this.src; 
+		  } 
+		});
+	  });
+      };
+    }
+    
+    var p = this.originalSidePaddingTotal;
+    var realPaneWidth = paneWidth - settings.scrollbarWidth - settings.scrollbarMargin - p;
+    
+    var cssToApply = {
+      'height':'auto',
+      'width': realPaneWidth + 'px'
+    }
+    
+    if(settings.scrollbarOnLeft) {
+      cssToApply.paddingLeft = settings.scrollbarMargin + settings.scrollbarWidth + 'px';
+    } else {
+      cssToApply.paddingRight = settings.scrollbarMargin + 'px';
+    }
+    
+    $this.css(cssToApply);
+    
+    var contentHeight = $this.outerHeight();
+    var percentInView = paneHeight / contentHeight;
+    
+    if (percentInView < .99) {
+      var $container = $this.parent();
+      $container.append(
+			$('<div></div>').addClass('jScrollCap jScrollCapTop').css({height:settings.topCapHeight}),
+			$('<div></div>').attr({'className':'jScrollPaneTrack'}).css({'width':settings.scrollbarWidth+'px'}).append(
+																   $('<div></div>').attr({'className':'jScrollPaneDrag'}).css({'width':settings.scrollbarWidth+'px'}).append(
 							$('<div></div>').attr({'className':'jScrollPaneDragTop'}).css({'width':settings.scrollbarWidth+'px'}),
 							$('<div></div>').attr({'className':'jScrollPaneDragBottom'}).css({'width':settings.scrollbarWidth+'px'})
 						)

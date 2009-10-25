@@ -17,15 +17,7 @@
           .product-list#product-list
             =mock_products 10
       .panel.tab#mi-tienda
-        .tab-container
-          =haml :product_nav
-          .clear &nbsp;
-          .tab-control-container
-            %button#arriba Arriba
-            %button#abajo Abajo
-          .product-list#mi-tienda-product-list
-            =product_overlay
-            =haml :product_list_scroll
+        =haml :mi_tienda
       .panel.tab#promociones
         .tab-container
           =haml :categorias_nav
