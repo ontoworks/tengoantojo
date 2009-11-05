@@ -1,0 +1,17 @@
+:3382
+app
+XMLHttpRequest status=0 readyState=0 multipart=false
+channel=null
+
+spec
+XMLHttpRequest readyState=0 status=0 multipart=false
+channel=null
+
+:3389
+app
+XMLHttpRequest channel=[xpconnect wrapped nsIChannel]
+channel=[xpconnect wrapped nsIChannel] name=http://localhost:4567/categories status=0
+
+spec
+XMLHttpRequest readyState=1
+channel=[xpconnect wrapped nsIChannel] name=http://localhost:4567/categories status=0

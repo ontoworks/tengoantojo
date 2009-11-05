@@ -17,6 +17,7 @@ set :root, File.dirname(__FILE__)
 
 configure :development do
   set :couchdb_server, 'http://127.0.0.1:5984'
+
   Compass.configuration.parse(File.join(Sinatra::Application.root, 'config', 'compass.config'))
 end
 
@@ -176,4 +177,45 @@ get '/events' do
 end
 
 get '/bedroom' do
+end
+
+def couchdb_view_url(db,design,view,*params)
+  url="#{options.couchdb_server}/#{db.to_s}/_design/#{design.to_s}/_view/#{view.to_s}"
+  if params[0]
+    query="?"
+    params[0].each do |k,v|
+      query << "#{k}=#{v}&"
+    end
+    query=query.gsub(/&$/,'')
+    url << query
+  end
+  URI.escape(url)
+end
+
+def couchdb_doc_url(db,id)
+  "#{options.couchdb_server}/#{db.to_s}/#{id}"
+end
+
+get '/categories.json' do
+  RestClient.get couchdb_view_url(:categories, :tree, :main)
+end
+
+get '/categories' do
+  embed :category_select
+end
+
+get '/categories/:id' do
+  @id=params[:id]
+  embed :category_select
+end
+
+get '/categories/:id/children' do
+  query={:startkey=>"[\"#{params[:id]}\"]",:endkey=>"[\"#{params[:id]}\",{}]"}
+  o_json=RestClient.get couchdb_view_url(:categories, :tree, :children, query)
+  list= (JSON.parse o_json)["rows"]
+  category_list=[]
+  list.each do |c|
+    category_list << {"id"=>c["id"], "key"=>c["value"]}
+  end
+  haml :category_list, {:locals => { :category_list => category_list } }
 end

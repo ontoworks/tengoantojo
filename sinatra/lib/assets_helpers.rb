@@ -47,6 +47,10 @@ IE8
     "<script src=\"#{file}\" type=\"text/javascript\"></script>"
   end
   
+  def jspec_ui(lib)
+    js_tag "ui/lib/#{lib}"
+  end
+ 
   def yui(lib)
     js_tag "thirdparty/yui/build/#{lib}"
   end

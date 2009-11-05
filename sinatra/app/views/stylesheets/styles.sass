@@ -1175,7 +1175,7 @@ p
 
 // category-select
 .category-select
-  :width 350px
+  :width 320px
   :padding 5px
   +dotted-border
   .search-wrapper
@@ -1183,20 +1183,32 @@ p
     :background #CCC
     :height 19px
     +dotted-border
+    input
+      :width 200px
   .breadcrumb
     :padding 5px
     +dotted-border
+    :font-size 0.75em
   .category-list
+    :height 314px
+    :overflow auto
     :padding 5px
     +dotted-border
+    li:hover
+      :background-color #CCC
+      a,p
+        :color #FFF  
     .category
+      :width 280px
       :padding 5px
       +dotted-border
-      a
+      a, p
         :font-family "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif
         :color #000
+        :font-size 12px
+        :float left
       .show-children-btn
-        :margin-left 230px
+        :margin-left 0px
 
 .search-wrapper
   .sbox_l

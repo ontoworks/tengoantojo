@@ -1,0 +1,7 @@
+.category-list
+  - category_list.each do |c|
+    %ul
+      %li.category
+        %a{:href=>"/categories/#{c["id"]}"} 
+          =c["key"]
+        %p &nbsp;>

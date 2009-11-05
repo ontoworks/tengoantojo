@@ -1,0 +1,10 @@
+.category-list
+  - category_list.each do |c|
+    .category{:id=>c["id"]}
+      %table{:width=>"100%"}
+        %tr
+          %td{:width=>"95%"}
+            %a{:href=>"#"}
+              = c["key"]
+          %td{:width=>"5%"}
+            %a.show-children-btn{:href=>"#"} >

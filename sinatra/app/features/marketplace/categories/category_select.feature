@@ -1,7 +1,7 @@
 Feature: "Category Select Component"
-  In order to associate a product to a category
-  It is necessary a component to have the user pick a category
+  In order to associate items to categories
+  It is necessary an UI to have the user pick a category
 
-  Scenario: "Show main categories"
+  Scenario: "There must exist a component for browsing categories"
     Given I open component "Category Select"
-    And 
+    Then I should see UI for component "Category Select"

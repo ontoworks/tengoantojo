@@ -2,18 +2,5 @@
   =haml :search_wrapper
   .breadcrumb
     %ul
-      %li A
-      %li >
-      %li B
-      %li >
-      %li C
-  .category-list
-    .category#category-0
-      %a{:href=>"#"} Category 0
-      %a.show-children-btn{:href=>"#"} >
-    .category#category-1
-      %a{:href=>"#"} Category 1
-      %a.show-children-btn{:href=>"#"} >
-    .category#category-2
-      %a{:href=>"#"} Category 2
-      %a.show-children-btn{:href=>"#"} >
+      %li Inicio
+  =haml :category_list, :locals=>{:category_list=>category_list, :id=>id}

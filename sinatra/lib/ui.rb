@@ -31,6 +31,7 @@ module UIHelpers
     head = ""
     head << "%head\n"
     head << "  %title #{title}\n"
+    head << "  %meta{\"http-equiv\"=>\"Content-Type\", :content=>\"text/html;charset=utf-8\"}"
     assets.helpers.each do |lib|
       lib.gsub!(/@/, "")
       puts lib
@@ -42,6 +43,7 @@ module UIHelpers
   def head_generator(title, assets)
     head = ""
     head << "<head>\n"
+    head << "  <meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\"/>"
     head << "  <title>#{title}</title>\n"
     assets.helpers.each do |lib|
       lib.gsub!(/@/, "")
@@ -79,12 +81,20 @@ module UIHelpers
 
   def category_select
     assets= Assets.new
-    assets.lib = ["jquery"]
-    assets.js_tag = ["category_select"]
+    assets.lib = ["ie8","jquery"]
+    assets.js_tag = ["ui/lib/category_select.core"]
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
                        "styles"]
     assets.script = "category_select('.category-select', {})"
-    assets
+
+    json={}
+    if @id
+      json=RestClient.get couchdb_doc_url(:categories, @id)
+    else
+      json=RestClient.get couchdb_view_url(:categories,:tree,:root)
+    end
+    list=JSON.parse json
+    [assets, {:category_list=>list["rows"], :id=>@id}]
   end
 
 
@@ -141,15 +151,23 @@ module UIHelpers
   end
 
 
-#
-# given some assets and a component's tpl
-# render the component as a standalone page
-#
-  def standalone(tpl)
-    assets = send(tpl)
+  #
+  # given some assets and a component's tpl
+  # render the component as a standalone page 
+  #
+  def design(tpl)
+    assets,locals = send(tpl)
     @head = head_generator tpl, assets
-    @component = haml tpl.to_sym
+    @component = haml tpl.to_sym, :locals =>locals
     haml :standalone
+  end
+
+  #
+  # the same as design, but it is expected
+  # to have its own behavior
+  #
+  def embed(tpl)
+    design(tpl)
   end
 
   def navigation(id, clas, names)
@@ -161,7 +179,7 @@ module UIHelpers
 end
 
 get '/design/:component' do
-  standalone params[:component]
+  design params[:component]
 end
 
 get '/ui/:component' do
