@@ -14,8 +14,8 @@ jQuery(document).ready(function($) {
       var product_overlay = new Product_Overlay({id:"product-overlay"});
 
       var product_list_callback = function(data, list) {
+	list.empty();
 	var entries = data.feed.entry;
-
 	for (var i=0; i<entries.length; i++) {
 	  var entry = entries[i];	
 	  if (entry.g$item_type[0].$t=="Products") {
@@ -24,7 +24,7 @@ jQuery(document).ready(function($) {
 	      id: uuid,
 	      name: entry.title.$t,
 	      description: entry.content.$t,
-		  //image_url:entry.g$image_link ? entry.g$image_link[0].$t : "",
+		image_url:entry.g$image_link ? entry.g$image_link[0].$t : "",
 		price:entry.g$price[0].$t});
 	  
 	    list.add(product);
@@ -45,9 +45,9 @@ jQuery(document).ready(function($) {
       this.id="inicio";
       this.items=[search, bridge_control, product_list, product_overlay];
 
-      jQuery('#search').keyup(function(e) {
+      jQuery('#srch_fld').keyup(function(e) {
         if(e.keyCode == 13) {
-          var query = jQuery('#search').val();
+          var query = $(this).val();
           product_list.query(google_query(query, 24));
         }
       });

@@ -167,7 +167,7 @@ List.prototype = {
       });
   },
   empty: function() {
-    this.items=new Array();
+    this.items=[];
   },
   next: function() {
   },
@@ -189,8 +189,9 @@ Paged_List.prototype.add = function(item) {
   var count = this.items.length;
   var page_n = Math.floor(count/this.page_size);
   var page = $("#"+this.id).find(".product-list-page").get(page_n);
+  //  alert(this.id);
   var new_page = count%this.page_size == 0 ? true : false;
-  if (new_page) {;
+  if (new_page) {
     $(page).empty();
   }
   $(page).append(item.html());

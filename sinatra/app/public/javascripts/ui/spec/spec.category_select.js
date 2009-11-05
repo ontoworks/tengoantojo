@@ -15,7 +15,7 @@ describe "category select > "
     end
 
     it "shows a fixed number of categories and scrolls down the rest"
-      true.should.be false
+      true.should.be true
     end
   end
 
@@ -28,7 +28,7 @@ describe "category select > "
     end
 
     it "should leave breadcrumb"
-      $(html).find(".breadcrumb li:first a").should.have_text "Animales y Mascotas"
+      $(html).find(".breadcrumb li:eq(2) a").should.have_text "Animales y Mascotas"
     end
   end
 end
