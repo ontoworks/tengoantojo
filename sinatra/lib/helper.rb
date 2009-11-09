@@ -12,11 +12,10 @@ helpers do
   end
 
   def mock_products(count)
-    #render_haml("%div.product-overlay")+(product_table)*count
-    product_list(count)
+    _product_list(count)
   end
 
-  def product_list(count)
+  def _product_list(count)
     list = ""
     count.times do |i|
       @id="product-"+i.to_s
@@ -43,4 +42,3 @@ helpers do
     Haml::Engine.new(textohaml).render    
   end
 end
-#end

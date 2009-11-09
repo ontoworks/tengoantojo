@@ -15,7 +15,7 @@ var Conf = {};
 var Marketplace;
 
 jQuery(document).ready(function($){
-  myserialscroller();
+      myserialscroller();
   left_slider();
   //categorias_scroller();
 

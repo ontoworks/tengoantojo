@@ -22,11 +22,12 @@ class Assets
   end
 end
 
+#
+# module contains helpers for producing UI
+# components
+#
 module UIHelpers
-  def c(component)
-    haml component.to_sym
-  end
-
+  # generates head tag using HAML
   def haml_head(title, assets)
     head = ""
     head << "%head\n"
@@ -40,6 +41,7 @@ module UIHelpers
     haml head
   end
 
+  # generates head tag directly in HTML
   def head_generator(title, assets)
     head = ""
     head << "<head>\n"
@@ -53,6 +55,10 @@ module UIHelpers
     head
   end
 
+  # when GET /design/categorias_nav
+  # this function describes the assets (JS and CSS) necessary
+  # to show 'categorias_nav' component as an isolated
+  # fully-functional application.
   def categorias_nav
     assets= Assets.new
     assets.lib = ["jquery"]
@@ -66,6 +72,7 @@ module UIHelpers
     assets
   end
 
+  # GET /design/tab_slider
   def tab_slider
     assets= Assets.new
     assets.lib = ["jquery"]
@@ -79,6 +86,7 @@ module UIHelpers
     assets
   end
 
+  # GET /design/category_select
   def category_select
     assets= Assets.new
     assets.lib = ["ie8","jquery"]
@@ -97,7 +105,7 @@ module UIHelpers
     [assets, {:category_list=>list["rows"], :id=>@id}]
   end
 
-
+  # GET /design/mi_tienda
   def mi_tienda
     assets= Assets.new
     assets.lib = ["jquery"]
@@ -110,7 +118,8 @@ module UIHelpers
     assets
   end
 
-  def left
+  # GET /design/marketplace
+  def marketplace
     assets= Assets.new
     assets.lib = ["jquery"]
     assets.jquery_plugin = ["scrollto/1.4.1/jquery.scrollTo-min",
@@ -124,7 +133,8 @@ module UIHelpers
     assets
   end
 
-  def right
+  # GET /design/social
+  def social
     assets= Assets.new
     assets.lib = ["jquery"]
     assets.jquery_plugin = ["scrollto/1.4.1/jquery.scrollTo-min",
@@ -137,6 +147,7 @@ module UIHelpers
     assets
   end
 
+  # GET /design/perfil
   def perfil
     assets= Assets.new
     assets.lib = ["jquery"]
@@ -150,10 +161,22 @@ module UIHelpers
     assets
   end
 
+  def product_list
+    assets= Assets.new
+    assets.lib = ["jquery"]
+    assets.jquery_plugin = ["scrollto/1.4.1/jquery.scrollTo-min",
+                            "localscroll/1.2.7/jquery.localscroll-min",
+                            "codalike-slider/jquery.serialScroll-1.2.1"]
+    assets.js_tag = ["tab_slider"]
+    assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
+                       "styles"]
+    assets.script = "my()"
+    assets
+  end
 
   #
   # given some assets and a component's tpl
-  # render the component as a standalone page 
+  # render the component as a standalone web page 
   #
   def design(tpl)
     assets,locals = send(tpl)
@@ -163,13 +186,15 @@ module UIHelpers
   end
 
   #
-  # the same as design, but it is expected
-  # to have its own behavior
+  # alias for design so far, but'll perform its own stuff
   #
   def embed(tpl)
     design(tpl)
   end
 
+  #
+  # generic navigation component
+  #
   def navigation(id, clas, names)
     @id=id
     @class=clas
@@ -178,10 +203,13 @@ module UIHelpers
   end
 end
 
+# delivers a single UI component as an isolated
+# fully-functional standalone application
 get '/design/:component' do
   design params[:component]
 end
 
+# delivers component's HTML
 get '/ui/:component' do
   haml params[:component].to_sym
 end

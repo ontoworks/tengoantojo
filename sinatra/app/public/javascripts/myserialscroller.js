@@ -2,10 +2,10 @@ function myserialscroller() {
         $('#product-list-0').serialScroll({
                 target:'.product-list-scroll',
                 items:'.product-list-page', // Selector to the items ( relative to the matched elements, '#sections' in this case )
-                prev:'#arriba',// Selector to the 'prev' button (absolute!, meaning it's relative to the document)
-                next:'#abajo',// Selector to the 'next' button (absolute too)
+                prev:'#prev',// Selector to the 'prev' button (absolute!, meaning it's relative to the document)
+                next:'#next',// Selector to the 'next' button (absolute too)
                 axis:'xy',// The default is 'y' scroll on both ways
-                navigation:'#product-list-navigation a',
+	      //                navigation:'#product-list-navigation a',
                 duration:700,// Length of the animation (if you scroll 2 axes and use queue, then each axis take half this time)
                 force:true, // Force a scroll to the element specified by 'start' (some browsers don't reset on refreshes)
                 

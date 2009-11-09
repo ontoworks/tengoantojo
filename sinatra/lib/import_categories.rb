@@ -1,3 +1,8 @@
+#
+# import_categories.rb
+#
+# import categories into couchdb
+#
 require 'rest_client'
 require 'json'
 
@@ -2789,12 +2794,13 @@ require 'json'
 
 [5,46304,'Ferrari','72500','K','Ford','72498','K','Honda','72501','K','Otros','72502','K']]
 
-def send_subcategories
+def send_categories
   @couchdb=RestClient::Resource.new "http://localhost:5984/categories"
   @root={}
   @path={}
   
 
+  # import categories into couchdb
   @categories.each do |c|
     o={:name=>c[:name],:foreign_id=>c[:id],:name_path=>[c[:name]]}
     json_o=@couchdb.post o.to_json
@@ -2806,6 +2812,7 @@ def send_subcategories
     @root[c[:id]]=o
   end
 
+  # import subcategories into couchdb
   @subcategories.each do |c|
     depth,parent_id=c.slice! 0,2
     parent_id=parent_id.to_s

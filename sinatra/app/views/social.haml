@@ -1,0 +1,23 @@
+#right-tabs
+  %ul#tab-ul.right-navigation
+    %li
+      %a.first.right-tab-btn{:href=>"#murmullo"}
+        %em murmullo
+    %li
+      %a.right-tab-btn{:href=>"#perfil"}
+        %em mi perfil
+    %li
+      %a.right-tab-btn{:href=>"#tienda"}
+        %em mi tienda
+    %li
+      %a.right-tab-btn{:href=>"#inbox"}
+        %em inbox
+  .right-scroll
+    .right-scrollContainer
+      .panel.tab#murmullo
+        =haml :murmullo      
+      =haml :perfil
+      .panel.tab#tienda
+        =haml :murmullo
+      .panel.tab#inbox
+        =haml :murmullo

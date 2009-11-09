@@ -1,0 +1,29 @@
+#tabs
+  =haml :marketplace_nav
+  .scroll
+    .scrollContainer#listings-container
+      .panel.tab#inicio
+        .tab-container
+          =haml :tagcloud
+          =haml :bridge_control
+          =haml :product_list
+      .panel.tab#favoritos
+        .tab-container
+          =haml :categorias_nav
+          .clear &nbsp;
+          .tab-control-container
+            %button#arriba Arriba
+            %button#abajo Abajo
+          .product-list#product-list
+            =mock_products 10
+      .panel.tab#mi-tienda
+        =haml :mi_tienda
+      .panel.tab#promociones
+        .tab-container
+          =haml :categorias_nav
+          .clear &nbsp;
+          .tab-control-container
+            %button#arriba Arriba
+            %button#abajo Abajo
+          .product-list#product-list
+            =mock_products 10
