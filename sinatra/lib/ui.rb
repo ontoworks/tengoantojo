@@ -133,6 +133,19 @@ module UIHelpers
     assets
   end
 
+  def marketplace_home
+    assets= Assets.new
+    assets.lib = ["jquery"]
+    assets.jquery_plugin = ["scrollto/1.4.1/jquery.scrollTo-min",
+                            "localscroll/1.2.7/jquery.localscroll-min",
+                            "codalike-slider/jquery.serialScroll-1.2.1"]
+    assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
+                       "styles"]
+    assets.js_tag = ["tab_slider","marketplace_home"]
+    assets.script="marketplace_home()"
+    assets
+  end
+
   # GET /design/social
   def social
     assets= Assets.new

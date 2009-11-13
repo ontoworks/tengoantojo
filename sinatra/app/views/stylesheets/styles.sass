@@ -58,12 +58,17 @@ a
 
 #marketplace-nav
   :float right
+  .navigation
+    :clear left
+
+#social-nav
+  :float left
 
 #product-nav
   :float right
 
 #sections-nav
-  :clear left
+  :clear both
   li
     :display block
   a
@@ -80,7 +85,6 @@ a
   :border-color #DADADA
   :border-width 0 0 1px
   :padding-left 0px
-  :margin-top 75px
   :margin-right 10px
   :list-style none
   :border-bottom 0px solid #DADADA
@@ -107,7 +111,7 @@ a
 
     a
       :border-bottom 0
-
+      :display inline
 
 #content
   :float left
@@ -589,6 +593,13 @@ p
 
   #murmullo .murmullo
 
+  #tab-ul
+    :float left
+    li
+      :float none
+      a
+        :width 100%
+
 #murmullo
   :padding 0 10px
   :background transparent url(/images/firefox-personal-bg.jpg) no-repeat scroll center top
@@ -957,7 +968,7 @@ p
     :text-align right
 
   .listing-navigation
-    :margin-right 300px
+    :margin-right 250px
 
     *
       :float left
@@ -1128,7 +1139,7 @@ p
     // *margin-right:-2px
     // *margin-left:10px
     // :position absolute
-    :width 96px
+    :width 50px
     :top 35px
     :right -5px
     :border 0px

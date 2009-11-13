@@ -6,23 +6,19 @@
       %p Tel: 2345678
       %p Dir: Cll. 1 # 1-1
       %p.title Datos del comprador
-      %table
-        %tr
-          %td Nombre:
-          %td
-            %input{:type=>"text"}
-        %tr
-          %td Tel&eacute;fono:
-          %td
-            %input{:type=>"text"}
-        %tr
-          %td E-mail:
-          %td
-            %input{:type=>"text"}
-        %tr
-          %td Cantidad
-          %td
-            %input{:type=>"text"}
-      %p Comentarios:
-      %textarea
+      .meantoje-form
+        %div
+          %p Nombre:
+          %input{:type=>"text"}
+        %div
+          %p Tel&eacute;fono:
+          %input{:type=>"text"}
+        %div
+          %p E-mail:
+          %input{:type=>"text"}
+        %div 
+          %p Cantidad
+          %input{:type=>"text"}
+        %p Comentarios:
+        %textarea
   %a{:href=>"#meantoje"} Me antoj&eacute;!!

@@ -9,6 +9,42 @@ jQuery(document).ready(function($) {
     var default_nav = new UI({id:"tab-ul"});
 
     var inicio_view = function() {
+      var as_favorite = function(e) {
+	var image_on = "/images/corazon-solido-icon-2.png";
+	var image_off = "/images/corazon-icon.png";
+	var product = jQuery(e.target).closest(".product");
+	var as_favorite = product.find(".as-favorite");
+	var url="http://172.16.77.1:4567/favoritos/"+product.attr("id");
+	
+	as_favorite.toggleClass("on");
+	if (as_favorite.hasClass("on")) {
+	  product.find(".as-favorite img").attr("src", image_on);
+	  var data=$.toJSON({"user":1});
+	  $.ajax({
+	    url:url,
+		dataType:"json",
+		contentType:"application/json",
+		data:data,
+		type:'PUT',
+		complete:function(data) {
+		//	    alert(data);
+	      }
+	    });
+	} else {
+	  product.find(".as-favorite img").attr("src", image_off);
+	  $.ajax({
+	    url:url,
+		dataType:"json",
+		contentType:"application/json",
+		data:data,
+		type:'DELETE',
+		complete:function(data) {
+		//	    alert(data);
+	      }
+	    });
+	}
+      };
+      
       var search = new UI({id:"tab-ul"});
       var bridge_control = new UI();
       var product_overlay = new Product_Overlay({id:"product-overlay"});
@@ -30,6 +66,10 @@ jQuery(document).ready(function($) {
 	    list.add(product);
 	  }
 	}
+	$("#inicio .product-image").die('click');
+	$("#inicio .as-favorite").die('click', as_favorite);
+	$("#inicio .product-image").live('click', product_overlay.show);
+	$("#inicio .as-favorite").live('click', as_favorite);
 
 	// refactor this
 	list.render();
@@ -51,6 +91,7 @@ jQuery(document).ready(function($) {
           product_list.query(google_query(query, 24));
         }
       });
+      marketplace_home();
     };
 
     var favoritos_view = function() {
@@ -77,10 +118,13 @@ jQuery(document).ready(function($) {
 function social() {
   $("#right-tabs")
     .tab_slider({
-      panels: $('#right-tabs .right-scrollContainer > div'),
-	  scroll: $('#right-tabs .right-scroll').css('overflow', 'hidden'),
-	  container: $('#right-tabs .right-scrollContainer')
+      panels: $('.right-scrollContainer > div'),
+	  scroll: $('.right-scroll').css('overflow', 'hidden'),
+	  container: $('.right-scrollContainer'),
+	  navigation: "#social-nav a",
+	  horizontal:true
 	  });
+  perfil();
 }
 
 function geocity() {
@@ -110,44 +154,10 @@ jQuery(document).ready(function($) {
 
   marketplace();
 
-  var as_favorite = function(e) {
-    var image_on = "/images/corazon-solido-icon-2.png";
-    var image_off = "/images/corazon-icon.png";
-    var product = jQuery(e.target).closest(".product");
-    var as_favorite = product.find(".as-favorite");
-    var url="http://172.16.77.1:4567/favoritos/"+product.attr("id");
-    
-    as_favorite.toggleClass("on");
-    if (as_favorite.hasClass("on")) {
-      product.find(".as-favorite img").attr("src", image_on);
-      var data=$.toJSON({"user":1});
-      $.ajax({
-	url:url,
-	  dataType:"json",
-	  contentType:"application/json",
-	  data:data,
-	  type:'PUT',
-	  complete:function(data) {
-	    //	    alert(data);
-	  }
-      });
-    } else {
-      product.find(".as-favorite img").attr("src", image_off);
-      $.ajax({
-	url:url,
-	  dataType:"json",
-	  contentType:"application/json",
-	  data:data,
-	  type:'DELETE',
-	  complete:function(data) {
-	    //	    alert(data);
-	  }
-      });
-    }
-  };
 
-  var product_overlay = new Product_Overlay({id:"product-overlay"});
+
+  //var product_overlay = new Product_Overlay({id:"product-overlay"});
   // live events
-  $("#inicio .product-image").live('click', product_overlay.show);
-  $("#inicio .as-favorite").live('click', as_favorite);
+    //  $("#inicio .product-image").live('click', product_overlay.show);
+    //  $("#inicio .as-favorite").live('click', as_favorite);
 }); //ends

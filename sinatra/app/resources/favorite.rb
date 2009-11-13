@@ -51,6 +51,6 @@ delete '/favoritos/:id' do
   end
   if exists
     rev=(JSON.parse exists)["_rev"]
-    @favoritos[params[:id]+"?rev="+rev.gsub(/\d-/,'')].delete
+    @favoritos[params[:id]+"?rev="+rev].delete
   end
 end

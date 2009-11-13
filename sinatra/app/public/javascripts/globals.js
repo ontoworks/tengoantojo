@@ -15,10 +15,6 @@ var Conf = {};
 var Marketplace;
 
 jQuery(document).ready(function($){
-      myserialscroller();
-  left_slider();
-  //categorias_scroller();
-
   Conf = (function () {
     return {
       Product: {

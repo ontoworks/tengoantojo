@@ -11,7 +11,9 @@
     step:1, //how many elements to scroll on each action
     lock:true,//ignore events if already animating
     cycle:true, //cycle endlessly ( constant velocity )
-    constant:true //use contant speed ?
+    constant:true, //use contant speed ?
+    horizontal:false,
+    navigation:""
   };
 
   $.fn.tab_slider = function ( settings ) {
@@ -22,7 +24,7 @@
 	var $scroll = settings.scroll;
    
 	var horizontal = true;
-	if (horizontal) {
+	if (settings.horizontal) {
 	  $panels.css({
 	      'float' : 'left',
 		'position' : 'relative' // IE fix to ensure overflow is hidden
@@ -34,7 +36,9 @@
 	var scrollOptions = {
 	  target: $scroll, // the element that has the overflow
 	  items: $panels,
-	  navigation: '.right-navigation a',
+	  next:settings.next,
+	  prev:settings.prev,
+	  navigation: settings.navigation,
 	  axis: 'xy',
 	  //onAfter: trigger, // our final callback
 	  //offset: offset,
@@ -43,17 +47,19 @@
 	};
 	
 	$(this).serialScroll(scrollOptions);
-
+	
 	$('.right-navigation').localScroll(scrollOptions);
       });
   }
-})(jQuery);
+ })(jQuery);
 
 function tab_slider() {
-    $("#right-tabs")
-      .tab_slider({
-        panels: $('#right-tabs .right-scrollContainer > div'),
-        scroll: $('#right-tabs .right-scroll').css('overflow', 'hidden'),
-        container: $('#right-tabs .right-scrollContainer')
-    });
+  $("#right-tabs")
+    .tab_slider({
+      panels: $('#right-tabs .right-scrollContainer > div'),
+	  scroll: $('#right-tabs .right-scroll').css('overflow', 'hidden'),
+	  container: $('#right-tabs .right-scrollContainer'),
+	  horizontal: true
+	  
+	  });
 }

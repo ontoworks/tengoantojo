@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+function perfil() {
    /* 
     * Google Maps
     *
@@ -77,6 +77,4 @@ jQuery(document).ready(function($) {
 	 navigation:"#perfil .perfil-navigation a",
 	 target:"#perfil-content"
 	 });
-   
-   
-  }); //ends
+} //ends
