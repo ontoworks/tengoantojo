@@ -7,18 +7,16 @@
       %p Dir: Cll. 1 # 1-1
       %p.title Datos del comprador
       .meantoje-form
-        %div
-          %p Nombre:
-          %input{:type=>"text"}
-        %div
-          %p Tel&eacute;fono:
-          %input{:type=>"text"}
-        %div
-          %p E-mail:
-          %input{:type=>"text"}
-        %div 
-          %p Cantidad
-          %input{:type=>"text"}
+        %p Nombre:
+        %input{:type=>"text"}
+        %p Tel&eacute;fono:
+        %input{:type=>"text"}
+        %p E-mail:
+        %input{:type=>"text"}
+        %p Cantidad
+        %input{:type=>"text"}
         %p Comentarios:
         %textarea
-  %a{:href=>"#meantoje"} Me antoj&eacute;!!
+        %div
+          %a#pedir-btn{:href=>"#pedir"} pedir
+  %a#meantoje-btn{:href=>"#meantoje"} Me antoj&eacute;!!

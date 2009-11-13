@@ -7,7 +7,6 @@ Feature: "Manage products"
     Given I go to the site
     And I click the "mi-tienda-btn" link
     And I click the "Agregar producto" link
-    # And I open the new product form ?? this one vs the last one
 
     # And I am logged in
     # And I am a seller

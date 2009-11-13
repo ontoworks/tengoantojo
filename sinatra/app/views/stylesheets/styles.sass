@@ -416,6 +416,12 @@ a
 .feature-icon
   :float left
 
+#meantoje-btn
+  :color #fff
+  :margin-left 55px
+  &.on
+    :background #ccc
+    :color #000
 
 .meantoje
   :float left
@@ -429,19 +435,11 @@ a
   &.on
     :background #ccc
     :color #000
-  
-  a
-    :color #fff
-    :margin-left 55px
-    &.on
-      :background #ccc
-      :color #000
-      
 
 #meantoje-overlay
   :font-size 10px
   :background #e2e2e2
-  :height 210px
+  :height 265px
   :position absolute
   :top 21px
   :width 180px
@@ -451,14 +449,24 @@ a
   .meantoje-datos
     :padding 0 5px
     :z-index 4
-
+    a#pedir-btn
+      :background-color #AAA
+      :color #FFF
+      :padding 0.55em 0.35em 0.35em
+      :margin-left 135px
+    p   
+      :color #000
+      :padding-top 0.25em
+    input,textarea
+      :background-color #CCC
+      :border 0
+      :width 170px
+      :color #444
+    textarea
+      :margin-bottom 6px
   p.title
     :font-size 13px
     :background #fff
-
-
-.meantoje-datos p
-  :color #000
 
 
 .cerrar

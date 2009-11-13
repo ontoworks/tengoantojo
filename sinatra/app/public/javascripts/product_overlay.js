@@ -7,10 +7,11 @@
 var Product_Overlay = function() {
     // product overlay
     // event: when btn "meantoje" clicked slide #montaje-overlay
-    $(".meantoje a").click(function() {
+    $(".meantoje a[href='#meantoje']").click(function(e) {
 	$(".meantoje").toggleClass("on");
 	$(this).toggleClass("on");
 	$("#meantoje-overlay").slideToggle("fast");
+	e.preventDefault();
     });
 };
 augment(Product_Overlay, UI);
