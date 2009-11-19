@@ -1,0 +1,14 @@
+{
+   "subs": {
+       "map": "function(doc) {\nemit(doc._id, doc.name)\n     }"
+   },
+   "all": {
+       "map": "function(doc) {     emit(doc.name_path, doc) }"
+   },
+   "root": {
+       "map": "function(doc) {\n         if(doc.depth==null)\n           emit(doc.name, null)\n       }"
+   },
+   "children": {
+       "map": "function(doc) { \n    emit([doc.id_path.slice(-2,-1)[0], doc.id_path, doc.leaf], doc.name)\n   }"
+   }
+}

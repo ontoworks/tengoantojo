@@ -82,6 +82,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       }, 
       mode_toggle: function(self) {
       },
+      rebind: false,
       //
       on_error			: function( msg ) {
 	alert( "Error: " + msg );
@@ -262,25 +263,26 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   };
   
   var _saveEdit = function( self, orig_option_value ) {
-    // Ontoworks for tengoantojo.com
-    // Santiago Gaviria
-    opt.ok(self);
     var orig_value = $( self ).html( );
     var new_value = $( "#edit-" + self.id ).attr( "value" );
     
+
     if( orig_value == new_value ) {
       $( "#editor-" + self.id ).fadeOut( "fast" );
       $( "#editor-" + self.id ).remove( );
       
+      // re-bind edit event
       $( self ).bind( opt.edit_event, function( e ) {
 	  _editMode( self );
-	} );
-      
+	  if (opt.rebind)
+	    opt.rebind();
+	});
       $( self ).removeClass( opt.mouseover_class );
       $( self ).fadeIn( "fast" );
-
+      
+      opt.ok(self);
       return true;
-			}
+    }
     
     $( "#editor-" + self.id ).after( _template( opt.saving, {
 	id			: self.id,
@@ -291,6 +293,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	$( "#saving-" + self.id).fadeIn( "fast" );
       } );
     
+
     var ajax_data = {
     url			: location.href,
     id			: self.id,
@@ -307,38 +310,46 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     }
 
     $.ajax( {
-      url		: opt.save_url,
+        url		: opt.save_url,
 	  type	: "POST",
 	  dataType: "json",
 	  data	: ajax_data,
 	  success	: function( data ) {
-	  $( "#editor-" + self.id ).fadeOut( "fast" );
-	  $( "#editor-" + self.id ).remove( );
+  	    $( "#editor-" + self.id ).fadeOut( "fast" );
+	    $( "#editor-" + self.id ).remove( );
 	  
-	  if( data.is_error == true ) {
-	    opt.on_error( data.error_text );
-	  }
-	  else {
-	    $( self ).html( data.html );
-	  }
-	  
-	  $( "#saving-" + self.id ).fadeOut( "fast" );
-	  $( "#saving-" + self.id ).remove( );
-	  
-	  $( self ).bind( opt.edit_event, function( e ) {
-	      _editMode( self );
-	    } );
-	  
-	  $( self ).addClass( opt.mouseover_class );
-	  $( self ).fadeIn( "fast" );
-
-	  if( opt.after_save != false ) {
-	    opt.after_save( self );
-	  }
-	  
-	  $( self ).removeClass( opt.mouseover_class );
+	    if( data.is_error == true ) {
+	      opt.on_error( data.error_text );
+	    }
+	    else {
+	      $( self ).html( data.html );
+	    }
+	    
+	    $( "#saving-" + self.id ).fadeOut( "fast" );
+	    $( "#saving-" + self.id ).remove( );
+	    
+	    // rebind edit event
+	    $( self ).bind( opt.edit_event, function( e ) {
+		_editMode( self );
+		opt.rebind();
+	      } );
+	    
+	    $( self ).addClass( opt.mouseover_class );
+	    $( self ).fadeIn( "fast" );
+	    
+	    if( opt.after_save != false ) {
+	      opt.after_save( self );
+	    }
+	    
+	    $( self ).removeClass( opt.mouseover_class );
 	} // success
       } ); // ajax
+
+    // Ontoworks for tengoantojo.com
+    // Santiago Gaviria
+    if (!opt.ok(self)) {
+      return true;
+    }
   }; // _saveEdit
   
   

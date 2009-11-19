@@ -1,0 +1,45 @@
+.brief
+  .brief-product
+    .brief-product-media
+      #media-full
+        /=haml :image_slideshow
+        =haml :galleria
+      %ul#product-image-list.image-overlay
+        %li
+          %a 
+            %img{:width=>"120", :height=>"120"}
+            .caption
+              %p &lt;  fotos  &gt; 
+              %p#media-full-expand +
+      .media-control
+        %ul
+          %li
+            %a
+              %em Fotos    
+          %li
+            %a
+              %em Videos
+          %li
+            %a
+              %em Show
+      %a#media-full-close cerrar
+    .product-basic-info
+      %table
+        %tr
+          %td
+            %a#product-name.nombre.editable{:href=>"#", :title=>"Edit Name"}
+          %td
+            %a#product-price.precio.editable{:href=>"#", :title=>"Edit Price"}
+              $999,999.99
+        %tr
+          %td{:colspan=>2}
+            %a#product-description.descripcion.editable{:href=>"#", :title=>"Edit Description"}
+        %tr
+          %td{:colspan=>2}
+            Tipo: 
+            %a#product-type.tipo.editable{:href=>"#", :title=>"Edit Product Type"} Tipo de producto
+            %iframe{:src=>"/categories", :style=>"border: 0; margin: 0; padding: 0; overflow: hidden;", :frameborder=>"0", :scrolling=>"no", :scrollbar=>"no"}
+        %tr
+          %td{:colspan=>2}
+            Condici&oacute;n: 
+            %a#product-condition.condicion.editable{:href=>"#", :title=>"Edit Condition"} Nuevo

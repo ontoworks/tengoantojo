@@ -29,16 +29,23 @@
 	  $click.addClass("selected");
 	  var id=$(this).find("a").attr("href");
 	  var $category_list=$(self).find(".category-list");
-	  $category_list.load("http://localhost:4567"+id+"/children .category", function(text) {
-	      $(self).find(".category").bind("click", callback);
-	      breadcrumb.push($click.find("a").html());
-	      $(self).find(".breadcrumb").html(render_breadcrumb());
+	  if ($click.hasClass("leaf")) {
+	    // Trigger an event to have the clients of this component
+	    // to know a category was selected and decide what to do 
+	    // with it
+	    var event=jQuery.Event("category_selected");
+	    $click.trigger(event,[$click.find("a").text()]);
+	  } else {
+	    $category_list.load(id+"/children .category", function(text) {
+		$(self).find(".category").bind("click", callback);
+		breadcrumb.push($click.find("a").html());
+		$(self).find(".breadcrumb").html(render_breadcrumb());
 	      });
+	  }
 	  e.preventDefault();
 	};
 	
 	$(self).find(".category").bind("click", callback);
-	//	$(self).find(".category")[a].attr("class");
       });
   }
  })(jQuery);

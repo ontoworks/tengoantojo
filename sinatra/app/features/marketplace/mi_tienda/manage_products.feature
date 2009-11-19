@@ -15,7 +15,7 @@ Feature: "Manage products"
     And I fill the "description" field with "Mi Primer producto creado usando BDD" 
     And I fill the "price" field with "$999,999.00"
     And I select "Nuevo" for the "condition" field
-    And I select category "Animales y Mascotas"
+    And I select category "Gatos" with parent category "Animales y Mascotas"
     And I fill the "quantity" field with "always"
     And I click the "Post Product" link
     Then I should see 'The product has been created'

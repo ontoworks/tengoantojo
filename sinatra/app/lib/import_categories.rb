@@ -2802,13 +2802,16 @@ def send_categories
 
   # import categories into couchdb
   @categories.each do |c|
-    o={:name=>c[:name],:foreign_id=>c[:id],:name_path=>[c[:name]]}
+    o={:name=>c[:name],:foreign_id=>c[:id],:name_path=>[c[:name]],:leaf=>true}
     json_o=@couchdb.post o.to_json
     new_o=JSON.parse json_o
     o[:_id]=new_o["id"]
     o[:_rev]=new_o["rev"]
+    # puts id_path to doc
     o[:id_path]=[new_o["id"]]
-    @couchdb[new_o["id"]].put o.to_json
+    update_json=@couchdb[new_o["id"]].put o.to_json
+    new_rev=(JSON.parse update_json)["rev"]
+    o[:_rev]=new_rev
     @root[c[:id]]=o
   end
 
@@ -2819,23 +2822,27 @@ def send_categories
     n=c.length/3
     n.times do |t|
       name, foreign_id, letter=c.slice! 0,3
+
       # if parent does not exist, create it
       unless @root[parent_id]
         # parent_id as name cause there's not given name
         # for this node: works as a container
-        puts parent_id
-        parent_o={:name=>parent_id,:foreign_id=>parent_id,:name_path=>[parent_id]}
+        parent_o={:name=>parent_id,:foreign_id=>parent_id,:name_path=>[parent_id],:leaf=>true}
         json_o=@couchdb.post parent_o.to_json
         new_o=JSON.parse json_o
         parent_o[:_id]=new_o["id"]
         parent_o[:_rev]=new_o["rev"]
         parent_o[:id_path]=[new_o["id"]]
-        @couchdb[new_o["id"]].put parent_o.to_json
+        # puts id_path to doc
+        update_json=@couchdb[new_o["id"]].put parent_o.to_json
+        new_rev=(JSON.parse update_json)["rev"]
+        parent_o[:_rev]=new_rev
         @root[parent_id]=parent_o
       end
+
       name_path=@root[parent_id][:name_path].clone
       name_path << name
-      o={:name=>name,:foreign_id=>foreign_id,:depth=>depth,:foreign_parent_id=>parent_id.to_s, :name_path=>name_path}
+      o={:name=>name,:foreign_id=>foreign_id,:depth=>depth,:foreign_parent_id=>parent_id.to_s, :name_path=>name_path, :leaf=>true}
       # post new category
       json_o=@couchdb.post o.to_json
       new_o=JSON.parse json_o
@@ -2844,8 +2851,17 @@ def send_categories
       o[:id_path]=@root[parent_id][:id_path].clone
       o[:id_path] << new_o["id"]
       # puts id_path to doc
-      @couchdb[new_o["id"]].put o.to_json
+      update_json=@couchdb[new_o["id"]].put o.to_json
+      new_rev=(JSON.parse update_json)["rev"]
+      o[:_rev]=new_rev
       @root[foreign_id]=o
+
+      # updates parent's leaf to false
+      if @root[parent_id][:leaf]
+        @root[parent_id][:leaf]=false
+        @couchdb[@root[parent_id][:_id]].put @root[parent_id].to_json
+      end
+
     end
   end
   "fin"

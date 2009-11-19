@@ -1,7 +1,8 @@
 .category-list
   - category_list.each do |c|
     %ul
-      %li.category
+      %li.category{:class=>"#{c["leaf"] ? "leaf" : ""}"}
         %a{:href=>"/categories/#{c["id"]}"} 
           =c["key"]
-        %p &nbsp;>
+        - unless c["leaf"]
+          %p &nbsp;>

@@ -40,6 +40,10 @@ When /^I select "([^\"]*)" for the "([^\"]*)" field$/ do |option, field|
   click_button "save-product-#{field}"
 end
 
-When /^I select category "([^\"]*)"$/ do |arg1|
-  pending
+When /^I select category "([^\"]*)" with parent category "([^\"]*)"$/ do |select,parent|
+  click_link "Edit Product Type"
+#  click_link_within ".category-select .category-list ul:nth-child(4) li", parent
+  selenium.click "//html/body/div/div[6]/div/div[2]/div/div[3]/div/div[2]/div/div/div/div/div[2]/div[4]/div/div[3]/ul[5]/li"
+  selenium.click "//html/body/div/div[6]/div/div[2]/div/div[3]/div/div[2]/div/div/div/div/div[2]/div[4]/div/div[3]/li[4]"
+  click_button "save-product-type"
 end

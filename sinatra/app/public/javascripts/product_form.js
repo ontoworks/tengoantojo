@@ -52,18 +52,27 @@
 
 	brief.find("#product-image-list img").attr("src",image_url);
 
-	brief.find("#product-type")
-	  .bind("mouseenter mouseleave", function(e) {
-	      $(this).toggleClass("jeip-mouseover")
-		})
-	  .bind("click", function() {
-	      $(this).unbind("click");
-	      $category_select= $(this).parent().find(".category-select");
-	      $category_select.load("/ui/category_select .category-select>*", function() {
-		  if ($category_select.css("display")=="none") $category_select.show();
-		  $category_select.category_select();
-		});
+	var $category_select= $("#product-type").parent().find(".category-select");
+	var product_type_click= function() {
+	  $category_select.load("/ui/category_select .category-select>*", function() {
+	      if ($category_select.css("display")=="none") $category_select.fadeIn();
+	      $category_select.category_select();
+	      $category_select.find(".category-list")
+		.bind("category_selected", function(e,name) {
+		    $("#edit-product-type").val(jQuery.trim(name));
+		    $category_select.fadeOut();
+		  });
 	    });
+	};
+	var type_eip_options= $.extend( {ok:{}, rebind:product_type_click}, eip_options );
+	type_eip_options.ok= function() {
+	  $category_select.fadeOut();
+          return false;
+	};
+
+	$("#product-type")
+	  .bind("click", product_type_click)
+	  .eip("/perfil/nombre", type_eip_options);
 	
 	$(".condicion").eip( "/perfil/nombre", {
 	    form_type: "select",

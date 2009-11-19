@@ -98,6 +98,7 @@ module UIHelpers
     json={}
     if @id
       json=RestClient.get couchdb_doc_url(:categories, @id)
+      puts json
     else
       json=RestClient.get couchdb_view_url(:categories,:tree,:root)
     end
