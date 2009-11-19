@@ -24,22 +24,18 @@
               %em Show
       %a#media-full-close cerrar
     .product-basic-info
-      %table
-        %tr
-          %td
-            %a#product-name.nombre.editable{:href=>"#", :title=>"Edit Name"}
-          %td
-            %a#product-price.precio.editable{:href=>"#", :title=>"Edit Price"}
-              $999,999.99
-        %tr
-          %td{:colspan=>2}
-            %a#product-description.descripcion.editable{:href=>"#", :title=>"Edit Description"}
-        %tr
-          %td{:colspan=>2}
-            Tipo: 
-            %a#product-type.tipo.editable{:href=>"#", :title=>"Edit Product Type"} Tipo de producto
-        %tr
-          %td{:colspan=>2}
-            Condici&oacute;n: 
-            %a#product-condition.condicion.editable{:href=>"#", :title=>"Edit Condition"} Nuevo
-
+      %div.name	
+        %a#product-name.nombre.editable{:href=>"#", :title=>"Edit Name"}
+          Un producto
+      %div.price
+        %a#product-price.precio.editable{:href=>"#", :title=>"Edit Price"}
+          $999,999.99
+      %div.description
+        %a#product-description.descripcion.editable{:href=>"#", :title=>"Edit Description"}
+      %div.type
+        %p.label Tipo: 
+        %a#product-type.tipo.editable{:href=>"#", :title=>"Edit Product Type"} Tipo de producto
+        .category-select o
+      %div.condition
+        %p.label Condici&oacute;n: 
+        %a#product-condition.condicion.editable{:href=>"#", :title=>"Edit Condition"} Nuevo

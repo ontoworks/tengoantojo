@@ -51,13 +51,25 @@
 	brief.find(".precio").html("$999,999.00").eip("/perfil/nombre", eip_options);
 
 	brief.find("#product-image-list img").attr("src",image_url);
-	brief.find(".galleria img:first").attr("src",image_url).attr("rel",image_url);
 
+	brief.find("#product-type")
+	  .bind("mouseenter mouseleave", function(e) {
+	      $(this).toggleClass("jeip-mouseover")
+		})
+	  .bind("click", function() {
+	      $(this).unbind("click");
+	      $category_select= $(this).parent().find(".category-select");
+	      $category_select.load("/ui/category_select .category-select>*", function() {
+		  if ($category_select.css("display")=="none") $category_select.show();
+		  $category_select.category_select();
+		});
+	    });
+	
 	$(".condicion").eip( "/perfil/nombre", {
-	  form_type: "select",
-	  select_options: {
-	    nuevo    : "Nuevo",
-	    usado   : "Usado"
+	    form_type: "select",
+	    select_options: {
+              nuevo   : "Nuevo",
+              usado   : "Usado"
 		}
 	  } );
       });

@@ -39,3 +39,7 @@ When /^I select "([^\"]*)" for the "([^\"]*)" field$/ do |option, field|
   select option, :from => "edit-product-#{field}"
   click_button "save-product-#{field}"
 end
+
+When /^I select category "([^\"]*)"$/ do |arg1|
+  pending
+end

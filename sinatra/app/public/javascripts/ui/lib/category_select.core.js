@@ -33,11 +33,12 @@
 	      $(self).find(".category").bind("click", callback);
 	      breadcrumb.push($click.find("a").html());
 	      $(self).find(".breadcrumb").html(render_breadcrumb());
-	    });
+	      });
 	  e.preventDefault();
 	};
 	
 	$(self).find(".category").bind("click", callback);
+	//	$(self).find(".category")[a].attr("class");
       });
   }
  })(jQuery);

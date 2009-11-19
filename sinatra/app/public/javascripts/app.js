@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
 	var image_off = "/images/corazon-icon.png";
 	var product = jQuery(e.target).closest(".product");
 	var as_favorite = product.find(".as-favorite");
-	var url="http://172.16.77.1:4567/favoritos/"+product.attr("id");
+	var url="/favoritos/"+product.attr("id");
 	
 	as_favorite.toggleClass("on");
 	if (as_favorite.hasClass("on")) {

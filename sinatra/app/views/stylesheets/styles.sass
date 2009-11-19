@@ -404,10 +404,15 @@ a
 
   .descripcion
     :font-size 12px
+    :display block
 
   .descripcion-td
     :vertical-align top
 
+  .category-select
+    .category-list
+      a
+        :font-size 10px
 
 .overlay-iconos-bottom
   :margin-left 15px
@@ -834,10 +839,52 @@ p
   :float left
   :position relative
 
-
 .product-basic-info
   :height 150px
+  .type
+    .category-select
+      :top -1px
+      :left 33px
+      :width 200px
+      :background-color #EEE
+      :opacity 1
+      .breadcrumb
+        a,p,li
+          :color #000
+      .search-wrapper
+        #srch_fld
+          :width 150px
+      .category-list
+        :height 212px
+        .category
+          :width 160px
+        a
+          :font-size 10px
+    
 
+
+  p
+    :display inline
+    :padding 0
+  div
+    :margin-bottom 5px
+  .condition
+    :display block
+
+#product-form
+  .product-basic-info
+    :width 360px
+    :margin-left 140px
+
+    .type
+      :position relative
+      .category-select
+        :position absolute
+        :top 0
+        :display none
+
+    .descripcion
+      :font-size 14px
 
 .image-overlay
   a
@@ -864,7 +911,7 @@ p
   :border 3px solid #888
   :float left
   :width 120px
-  :height 138px
+  :height 136px
 
 
 .expanded
@@ -1190,10 +1237,11 @@ p
       :border 1px solid #CCCCCC
 
   #edit-product-description
-    :width 380px
+    :width 360px
 
 // category-select
 .category-select
+  :background white
   :width 320px
   :padding 5px
   +dotted-border

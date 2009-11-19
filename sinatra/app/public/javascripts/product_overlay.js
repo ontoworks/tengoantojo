@@ -52,7 +52,7 @@ Product_Overlay.prototype.show = function(e) {
     // fill up overlay data from product data
     var brief = jQuery(".brief");
     var image_url = product.find(".product-image img").attr("src");
-    brief.find(".nombre").html(product.find(".nombre").html());
+    brief.find(".nombre").html(product.find(".nombre").html()).truncate({max_length: 140});
     brief.find(".descripcion").html(product.find(".descripcion").html());
     brief.find("#product-image-list img").attr("src",image_url);
     brief.find(".galleria img:first").attr("src",image_url).attr("rel",image_url);

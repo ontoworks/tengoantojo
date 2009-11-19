@@ -9,11 +9,11 @@ require 'json'
 set :app_file, __FILE__
 set :root, File.dirname(__FILE__)
 
-require '../lib/assets_helpers'
-require '../lib/ui'
-require '../lib/helper'
-require '../lib/couchdb'
-require '../lib/google_base'
+require 'lib/assets_helpers'
+require 'lib/ui'
+require 'lib/helper'
+require 'lib/couchdb'
+require 'lib/google_base'
 
 configure :development do
   set :couchdb_server, 'http://127.0.0.1:5984'

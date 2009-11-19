@@ -94,7 +94,7 @@ module UIHelpers
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
                        "styles"]
     assets.script = "category_select('.category-select', {})"
-
+  
     json={}
     if @id
       json=RestClient.get couchdb_doc_url(:categories, @id)
@@ -110,7 +110,7 @@ module UIHelpers
     assets= Assets.new
     assets.lib = ["jquery"]
     assets.jquery_plugin = ["jeip/jeip"]
-    assets.js_tag = ["product_form"]
+    assets.js_tag = ["ui/lib/category_select.core","product_form"]
 #    assets.js_tag << "http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed"
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
                        "styles"]
@@ -224,5 +224,6 @@ end
 
 # delivers component's HTML
 get '/ui/:component' do
-  haml params[:component].to_sym
+  assets,locals = send(params[:component])
+  haml params[:component].to_sym, :locals => locals
 end
