@@ -1,15 +1,13 @@
 !!! XML
 %entry{:xmlns=>'http://www.w3.org/2005/Atom', "xmlns:g"=>'http://base.google.com/ns/1.0'}
   %author
-    %name
-      =@entry.author[:name]
-    %email 
-      =@entry.author[:email]
-  %title{:type=>"text"} 
-    =@entry.title
-  %content{:type=>"xhtml"}
-    =haml :test_content
-  %g:item_language{:type=>"text"}
-    =@entry.g.item_language
-  %g:item_type{:type=>"text"}
-    =@entry.g.item_type
+    %name #{entry.author[:name]}
+    %email #{entry.author[:email]}
+  %title{:type=>"text"} #{entry.title}
+  %content{:type=>"text"} #{entry.description}
+  %g:item_language{:type=>"text"} #{entry.g.item_language}
+  %g:item_type{:type=>"text"} #{entry.g.item_type}
+  %g:product_type #{entry.g.product_type}
+  %g:condition #{entry.g.condition}
+  %g:id #{entry.g.id}
+  %g:price #{entry.g.price}

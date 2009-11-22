@@ -1,6 +1,7 @@
 helpers do
   include UIHelpers
   include AssetsHelpers
+  include CouchDBHelpers
 
   def haml_times(tpl, n)
     html=""

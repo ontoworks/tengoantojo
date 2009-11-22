@@ -223,8 +223,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	      
 	      // save
 	      if( opt.form_type != "textarea" && e.which == 13 ) {
-		//		alert("_saveEdit");
-		//_saveEdit( self, orig_option_value );
+		_saveEdit( self, orig_option_value );
 	      }
 	    } );
 	  
@@ -278,9 +277,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	    opt.rebind();
 	});
       $( self ).removeClass( opt.mouseover_class );
-      $( self ).fadeIn( "fast" );
+      $( self ).fadeIn( "fast", function() {opt.ok(self)} );
       
-      opt.ok(self);
       return true;
     }
     
@@ -335,7 +333,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	      } );
 	    
 	    $( self ).addClass( opt.mouseover_class );
-	    $( self ).fadeIn( "fast" );
+	    $( self ).fadeIn( "fast", function() {opt.ok(self)} );
 	    
 	    if( opt.after_save != false ) {
 	      opt.after_save( self );
@@ -344,12 +342,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	    $( self ).removeClass( opt.mouseover_class );
 	} // success
       } ); // ajax
-
-    // Ontoworks for tengoantojo.com
-    // Santiago Gaviria
-    if (!opt.ok(self)) {
-      return true;
-    }
   }; // _saveEdit
   
   

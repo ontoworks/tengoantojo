@@ -25,17 +25,28 @@
       %a#media-full-close cerrar
     .product-basic-info
       %div.name	
-        %a#product-name.nombre.editable{:href=>"#", :title=>"Edit Name"}
-          Un producto
-      %div.price
-        %a#product-price.precio.editable{:href=>"#", :title=>"Edit Price"}
-          $999,999.99
-      %div.description
-        %a#product-description.descripcion.editable{:href=>"#", :title=>"Edit Description"}
+        %p.label nombre
+        %div.input
+          %a#product-name.nombre.editable{:href=>"#", :title=>"Edit Name"}
+            Un producto
       %div.type
-        %p.label Tipo: 
-        %a#product-type.tipo.editable{:href=>"#", :title=>"Edit Product Type"} Tipo de producto
+        %p.label categor&iacute;a
+        %div.input
+          %a#product-category.tipo.editable{:href=>"#", :title=>"Edit Product Type"} Tipo de producto
         .category-select o
+      %div.price
+        %p.label precio
+        %div.input
+          %a#product-price.precio.editable{:href=>"#", :title=>"Edit Price"}
+            $999,999.99
+      %div.description
+        %p.label descripci&oacute;n
+        %div.input
+          %a#product-description.descripcion.editable{:href=>"#", :title=>"Edit Description"}
       %div.condition
-        %p.label Condici&oacute;n: 
-        %a#product-condition.condicion.editable{:href=>"#", :title=>"Edit Condition"} Nuevo
+        %p.label condici&oacute;n
+        %div.input
+          %a#product-condition.condicion.editable{:href=>"#", :title=>"Edit Condition"} Nuevo
+
+    .publish-product
+      %a#publish-product-btn{:href=>"#"} publicar producto

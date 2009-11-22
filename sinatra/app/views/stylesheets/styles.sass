@@ -1,3 +1,20 @@
+=corner-each(!tl, !tr, !br, !bl)
+  -moz-border-radius-topleft = !tl
+  -webkit-border-top-left-radius = !tl
+  -moz-border-radius-topright = !tr
+  -webkit-border-top-right-radius = !tr
+  -moz-border-radius-bottomleft = !bl
+  -webkit-border-bottom-left-radius = !bl
+  -moz-border-radius-bottomright = !br
+  -webkit-border-bottom-right-radius = !br
+
+=corner(!px)
+  -moz-border-radius = !px 
+  -webkit-border-radius = !px
+
+=corner-top(!px)
+  +corner-each(!px,!px,0,0)
+
 =solid-border
   :border 1px solid #000000
 
@@ -874,18 +891,47 @@ p
 #product-form
   .product-basic-info
     :width 360px
+    :height auto
     :margin-left 140px
-
+    .label
+      :background-color #ABC123
+      :display block
+      :font-size 10px
+      :padding-bottom 0
+      :padding-left 0.5em
+      :padding-right 0.15em
+      :padding-top 0.15em
+      :width 16%
+      +corner-top(4px)
+    div
+      :margin-bottom 8px
+      div.input
+        :padding-left 0.2em
+        :padding 0.25em 0 0.1em 0.2em
+        :border 1px solid #ABC123
+        :width 100%
+    .price
+      div
+        :height auto
     .type
       :position relative
       .category-select
         :position absolute
-        :top 19px
+        :top 38px
+        :left 0px
         :display none
 
     .descripcion
       :font-size 14px
-
+  .publish-product
+    :border 4px solid rgb(85,85,85)
+    :padding 10px
+    :background-color #ABC123
+    :font-size 18px
+    :width 138px
+    :margin-top 15px
+    :margin-left 339px
+    +corner(10px)
 .image-overlay
   a
     :margin 0
@@ -994,12 +1040,15 @@ p
 .jScrollPaneContainer
   :z-index 0
 
+#product-list-0
+  :top -19px
+  :background none
 
 #bridge-control
   :width 100%
   :background #7D7D7D
   :height 12px
-  :padding 0.25em 0.25em
+  :padding 0.25em 0.25em 0.25em 77px
   :font-size 10px
   :color #fff
   :border-top 1px solid #555
@@ -1237,7 +1286,7 @@ p
       :border 1px solid #CCCCCC
 
   #edit-product-description
-    :width 360px
+    :width 355px
 
 // category-select
 .category-select

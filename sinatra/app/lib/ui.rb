@@ -1,32 +1,34 @@
-# dynamically guess what helpers have been called
-# by creating accessor methods at runtime
-class Assets
-  def initialize
-    # instance variables are pushed to iv_array when
-    # their respective writers are called
-    @iv_array = []
 
-    AssetsHelpers.instance_methods.each do |meth|
-      self.class.send(:attr_reader, meth)
-      iv_writer = lambda { |x|
-        @iv_array = @iv_array | [meth]
-        instance_variable_set("@#{meth}", x)
-      }
-      self.class.send(:define_method, "#{meth}=", iv_writer)
-    end
-  end
-
-# returns helpers that've been called only.
-  def helpers
-    @iv_array
-  end
-end
 
 #
 # module contains helpers for producing UI
 # components
 #
 module UIHelpers
+  # dynamically guess what helpers have been called
+  # by creating accessor methods at runtime
+  class Assets
+    def initialize
+      # instance variables are pushed to iv_array when
+      # their respective writers are called
+      @iv_array = []
+
+      AssetsHelpers.instance_methods.each do |meth|
+        self.class.send(:attr_reader, meth)
+        iv_writer = lambda { |x|
+          @iv_array = @iv_array | [meth]
+          instance_variable_set("@#{meth}", x)
+        }
+        self.class.send(:define_method, "#{meth}=", iv_writer)
+      end
+    end
+
+    # returns helpers that've been called only.
+    def helpers
+      @iv_array
+    end
+  end
+
   # generates head tag using HAML
   def haml_head(title, assets)
     head = ""
@@ -106,6 +108,16 @@ module UIHelpers
     [assets, {:category_list=>list["rows"], :id=>@id}]
   end
 
+  def user
+    assets= Assets.new
+    assets.lib = ["jquery"]
+    assets.jquery_plugin = ["form/jquery.form"]
+    assets.js_tag = ["user"]
+    assets.css_link = ["user"]
+#    assets.script = ""
+    assets
+  end
+
   # GET /design/mi_tienda
   def mi_tienda
     assets= Assets.new
@@ -114,6 +126,7 @@ module UIHelpers
     assets.js_tag = ["ui/lib/category_select.core","product_form"]
 #    assets.js_tag << "http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed"
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
+                       "corner-radius",
                        "styles"]
     assets.script = "product_form()"
     assets

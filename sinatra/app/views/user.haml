@@ -1,0 +1,36 @@
+.user-form
+  %form#user-form{:action=>"/users", :method=>"POST"}
+    %li
+      %p username
+      %input{:type=>"", :name=>"user[username]"}
+    %li
+      %p password
+      %input{:type=>"", :name=>"user[password]"}
+    %li
+      %p name
+      %input{:type=>"", :name=>"user[name]"}
+    %li
+      %p last name
+      %input{:type=>"", :name=>"user[last_name]"}
+    %li
+      %p legal id
+      %input{:type=>"", :name=>"user[legal_id]"}
+    %li
+      %p landline phone
+      %input{:type=>"", :name=>"user[landline_phone]"}
+    %li
+      %p mobile phone
+      %input{:type=>"", :name=>"user[mobile_phone]"}
+    %li
+      %p email
+      %input{:type=>"", :name=>"user[email]"}
+    %li
+      %p street address
+      %input{:type=>"", :name=>"user[street_address]"}
+    %li
+      %p latlng
+      %input{:type=>"", :name=>"user[latlng]"}
+    %li
+      %p gbase account
+      %input{:type=>"", :name=>"user[google_base_subaccount]"}
+    %input{:type=>"submit", :value =>"save"}

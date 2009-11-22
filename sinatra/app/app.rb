@@ -1,23 +1,37 @@
 require 'rubygems'
-require 'sinatra'
 require 'haml'
+require 'sass'
+require 'sinatra'
 require 'rest_client'
 require 'uri'
 require 'json'
+
+enable :sessions
 
 # set sinatra's variables
 set :app_file, __FILE__
 set :root, File.dirname(__FILE__)
 
+require 'lib/couchdb'
+require 'lib/google_base'
 require 'lib/assets_helpers'
 require 'lib/ui'
 require 'lib/helper'
-require 'lib/couchdb'
-require 'lib/google_base'
+
+#require "dm-core"
+#require "sinatra-authentication"
+
+#use Rack::Session::Cookie, :secret => 'A1 sauce 1s so good you should use 1t on a11 yr st34ksssss'
 
 configure :development do
   set :couchdb_server, 'http://127.0.0.1:5984'
+  set :error_log_url, 'http://127.0.0.1:5984/errors'
 end
+
+def _post_error(msg)
+  RestClient.post options.error_log_url, {:path=>request.path_info,:msg=>msg}.to_json
+end
+
 
 get '/stylesheets/:name.css' do
   content_type 'text/css', :charset => 'utf-8'
@@ -25,9 +39,13 @@ get '/stylesheets/:name.css' do
 end
 
 get '/' do
+  session["user"]={"username"=>"santiago",
+                   "name"=>"Santiago",
+                   "last_name"=>"Gaviria",
+                   "email"=>"sgaviria@gmail.com",
+                   "google_base_subaccount"=>"6293664"}
   haml :home
 end
-
 
 def edit_in_place_echo
   "{html:'#{@echo}'}"
@@ -57,5 +75,7 @@ get '/social' do
   haml :social
 end
 
+load 'resources/user.rb'
 load 'resources/favorite.rb'
 load 'resources/category.rb'
+load 'resources/item.rb'

@@ -1,3 +1,23 @@
+describe "product form > "
+  before
+    $html = $(fixture('product_form'))
+  end
+
+  it "takes input from user to an object"
+    $product_form= $html.find("#product-form")
+    $product_form.edit_product()
+
+
+    $product_name=$product_form.find("#product-name")
+    $product_name.click()
+
+    $edit_product_name=$product_form.find("#edit-product-name")
+    alert($product_name.attr("id"))
+    $edit_product_name.find("#save-product-name").click()
+  //    alert($product_form.form_data.name)
+  end
+end
+
 describe "category select > "
   before
     html = $(fixture('category_select'))
