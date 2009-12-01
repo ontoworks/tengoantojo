@@ -4,7 +4,7 @@
 # module contains helpers for producing UI
 # components
 #
-module UIHelpers
+module UI
   # dynamically guess what helpers have been called
   # by creating accessor methods at runtime
   class Assets
@@ -119,17 +119,30 @@ module UIHelpers
   end
 
   # GET /design/mi_tienda
+  # contains: product_form
   def mi_tienda
     assets= Assets.new
     assets.lib = ["jquery"]
     assets.jquery_plugin = ["jeip/jeip"]
-    assets.js_tag = ["ui/lib/category_select.core","product_form"]
+    assets.js_tag = ["lib","ui/lib/category_select.core","product_form"]
 #    assets.js_tag << "http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed"
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
                        "corner-radius",
                        "styles"]
     assets.script = "product_form()"
-    assets
+    [assets, {:product_form=>{:id=>"product-form"}}]
+  end
+
+  def product_form()
+    assets= Assets.new
+    assets.lib = ["jquery"]
+    assets.jquery_plugin = ["blockUI/jquery.blockUI","jeip/jeip"]
+    assets.js_tag = ["lib","ui/lib/category_select.core","product_form"]
+    assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
+                       "corner-radius",
+                       "styles"]
+    assets.script = "product_form()"
+    [assets, {:id=>"product-form"}]
   end
 
   # GET /design/marketplace
@@ -201,27 +214,29 @@ module UIHelpers
     assets
   end
 
+module DesignHelpers
+  
   #
   # given some assets and a component's tpl
   # render the component as a standalone web page 
-  #
+  # => 
   def design(tpl)
     assets,locals = send(tpl)
     @head = head_generator tpl, assets
     @component = haml tpl.to_sym, :locals =>locals
     haml :standalone
   end
-
-  #
+  
+  # => 
   # alias for design so far, but'll perform its own stuff
-  #
+  # => 
   def embed(tpl)
     design(tpl)
   end
-
-  #
+  
+  # => 
   # generic navigation component
-  #
+  # => 
   def navigation(id, clas, names)
     @id=id
     @class=clas
@@ -229,7 +244,7 @@ module UIHelpers
     haml :navigation
   end
 end
-
+end
 # delivers a single UI component as an isolated
 # fully-functional standalone application
 get '/design/:component' do

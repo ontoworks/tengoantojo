@@ -1,4 +1,10 @@
-.product-form{:id=> id, :class => "hidden"}
+.product-form{:id=>id}
   .product-form-content
     =haml :edit_product_info
-.product-form-bg.ui-corner-bottom.ui-corner-tr
+  .product-saved-dialog{:class=>"hidden"}
+    %p Tu producto ha sido publicado
+    %p Deseas publicar otro?
+    %div
+      %a.si{:href=>"#"} S&iacute;
+      %a.no{:href=>"#"} No
+  .product-form-bg

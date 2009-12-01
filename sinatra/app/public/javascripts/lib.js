@@ -16,9 +16,8 @@ function augment(receivingClass, givingClass) {
       }
     }
     for (methodName in givingClass.prototype) {
-      if(!receivingClass.prototype[methodName]) {
+      if(!receivingClass.prototype[methodName])
 	receivingClass.prototype[methodName] = givingClass.prototype[methodName];
-      }
     }
   }
 }
@@ -175,6 +174,12 @@ List.prototype = {
   }
 };
 
+/** 
+ * @returns:
+ * @author: Santiago Gaviria
+ * @version:
+ * @requires:
+ */
 var Paged_List = function(o) {
   this.id = o.id;
   this.page_size = o.page_size;
@@ -196,4 +201,130 @@ Paged_List.prototype.add = function(item) {
   }
   $(page).append(item.html());
   this._add(item);
+};
+
+/** 
+ * @returns:
+ * @author: Santiago Gaviria
+ * @version:
+ * @requires:
+ */
+
+//
+// 
+// regex param makes sense of any of
+// these values:
+//
+// "alpha", 
+// "numeric",
+// "alphanumeric",
+// "email",
+// "currency"
+// 
+// or a custom regex e.g. /^hola mundo$/
+// to match the field's value against
+//
+var Form_Field= function(o) {
+  var default_matches= {
+    alpha:/\w+/,
+    numeric:/^\d+$/,
+    alphanumeric:/^[A-Z0-9\s]+/,
+    email:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/,
+    currency:/^([0-9]{1,3}(,[0-9]{3})*(\.[0-9]+)?|\.[0-9]+)$/
+  };
+  
+  var name=o.name ? o.name : "";
+  var label=o.label ? o.label : "";
+  var value=o.value ? o.value : "";
+  var match=o.match;
+  var empty_text=o.empty_text ? o.empty_text : "";
+  
+  function regex(key) {
+    if (default_matches[key])
+      return default_matches[key];
+    return key;
+  }
+  
+  // Getters and setters
+  this.name= function(val) {
+    if(arguments.length==0)
+      return name;
+    name=val;
+    return this;
+  };
+  this.label= function(val) {
+    if(arguments.length==0)
+      return label;
+    label=val;
+    return this;
+  };
+  this.value= function(val) {
+    if(arguments.length==0)
+      return value;
+    value=val;
+    return this;
+  };
+  this.match= function(val) {
+    if(arguments.length==0)
+      return regex(match);
+    match=val;
+    return this;
+  };
+  this.empty_text= function(val) {
+    if(arguments.length==0)
+      return empty_text;
+    empty_text=val;
+    return this;
+  };
+  
+  this.after_validate= o.after_validate ? o.after_validate : function(){};
+};
+// Validates there is a valid value
+// for this field
+Form_Field.prototype.is_valid= function() {
+  var valid=true;
+  if(this.match()) {
+    valid=this.value().match(this.match());
+  }
+  this.after_validate(this,valid);
+  return valid;
+};
+
+/** 
+ * @returns:
+ * @author: Santiago Gaviria
+ * @version:
+ * @requires: Form_Field
+ */
+var Form= function(data, options) {
+  this.fields= {};
+  this.valid= false;
+
+  for (var field in data) {
+    this.fields[field]= new Form_Field(data[field]);
+    this.fields[field].label(field);
+  }
+};
+Form.prototype.is_valid= function() {
+  var valid= true;
+  for (var label in this.fields) {
+    var field= this.fields[label];
+    if (!field.is_valid()) {
+      valid= false;
+    }
+  }
+  return valid;
+};
+Form.prototype.post= function(callback) {
+  if (this.is_valid()) {
+    var data={};
+    for (var label in this.fields) {
+      var field= this.fields[label];
+      data[field.name()]=field.value();
+    }
+    $.post("/santiago/items", data, callback);
+  }
+};
+Form.prototype.get_field= function(label) {
+  return this.fields[label];
 };

@@ -98,9 +98,18 @@ jQuery(document).ready(function($) {
     };
 
     var mitienda_view = function() {
+      var $product_form= $("#product-form").edit_product({});
+      $product_form.hide();
+
       $("#add-product-btn").click(function() {
-	  $(".product-form").edit_product({});
+	  if (!product_form) {
+	    $product_form.edit_product({});
+	  };
+	  $product_form.show();
+	  $(".product-form-bg").slideDown("slow");
 	});
+
+      $product_form;
     };
 
     var promociones_view = function() {

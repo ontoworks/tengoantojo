@@ -8,56 +8,100 @@
     background:".product-form-bg"
   };
 
-
   $.fn.edit_product = function ( settings ) {
-    settings = $.extend( {}, $edit_product.defaults, settings );
-    // form_data as instance variable so it may be
-    // seen from JSpec
-    this.form_data={};
     $this=this;
+
+    // this function is called every time a new
+    // product is to be published
+    function initialize_product_form() {
+      var after_validate= function(field, is_valid) {
+	if (is_valid) {
+	  $this.find("."+field.label()+" .label").css("float","none");
+	  $this.find("."+field.label()+" .input-error").hide();
+	} else {
+	  $this.find("."+field.label()+" .label").css("float","left");
+	  $this.find("."+field.label()+" .input-error").text("error al validar el valor en este campo");
+	  $this.find("."+field.label()+" .input-error").show();
+	}
+      };
+      
+      var fields={
+      name:{empty_text:"-- Escribe el nombre de tu producto --", match:"alpha", after_validate:after_validate},
+      description:{empty_text:"-- Escribe una descripci&oacute;n de tu producto --",match:"alpha", after_validate:after_validate},
+      category:{empty_text:"-- Elige una categor&iacute;a para tu producto --",match:"alpha", after_validate:after_validate},
+      condition:{empty_text:"-- nuevo? usado? reparado? --",match:/nuevo|usado/, after_validate:after_validate},
+      price:{empty_text:"-- Precio de venta al p&uacute;blico --",match:"currency", after_validate:after_validate}
+      };
+
+      var image_url = "/images/pizzas.jpg";
+      // product-name
+      $this.find("#product-name").html(fields.name.empty_text).css("font-style","italic");
+      // product-description
+      $this.find("#product-description").html(fields.description.empty_text).css("font-style","italic");
+      // product-price
+      $this.find("#product-price").html(fields.price.empty_text).css("font-style","italic");
+      $this.find("#product-condition").html(fields.condition.empty_text).css("font-style","italic");
+      $this.find("#product-category").html(fields.category.empty_text).css("font-style","italic");
+	// set image
+      $this.find("#product-image-list img").attr("src",image_url);
+      
+      return (new Form(fields));
+    }
+    
+    settings = $.extend( {}, $edit_product.defaults, settings );
     return this.each(function() {
-	var eip_options = 
-	  {
+	$(this)._cname= "product-form";
+	var form=initialize_product_form();
+
+	// Edit In Place options for all fields
+	var eip_options = {
 	  savebutton_text: "ok",
 	  cancelbutton_text: "x",
-	  form_buttons: '<span><input type="button" id="save-#{id}" class="#{savebutton_class}" value="#{savebutton_text}" /> <input type="button" id="cancel-#{id}" class="#{cancelbutton_class}" value="#{cancelbutton_text}" /></span>',
+	  form_buttons: '<span><input type="button" id="save-#{id}" class="#{savebutton_class}" value="#{savebutton_text}" /><input type="button" id="cancel-#{id}" class="#{cancelbutton_class}" value="#{cancelbutton_text}" /></span>',
+
+	  before_edit: function(el) {
+	    var field_label= el.id.split("-")[1];
+	    var field= form.get_field(field_label);
+	    $(el).html(field.value());
+	  },
 	  ok: function(el) {
 	      // el.id contains something like 'product-name'
-	      $this.form_data[el.id.split("-")[0]+"["+el.id.split("-")[1]+"]"] = $(el).text();
+	      // form.fields has keys like 'product[name]'
+	      var field_label= el.id.split("-")[1];
+	      var field_value= $(el).text();
+	      var field= form.get_field(field_label);
+	      $(el).css("font-style", "normal");
+	      // validate user input
+	      field
+	        .name(el.id.split("-")[0]+"["+field_label+"]")
+	        .value(field_value)
+	        .is_valid();
+	      if (jQuery.trim(field_value)=="") {
+		$(el).html(field.empty_text()).css("font-style","italic");
+	      }
 	    }
 	  };
-
 	var eip_options_text= $.extend({text_form: '<input type="text" id="edit-#{id}" class="#{editfield_class}" value="#{value}" />'}, eip_options);
 
 	var eip_options_textarea= $.extend({form_type: "textarea"},eip_options);
-	eip_options_textarea.form_buttons= '<span><input type="button" id="save-#{id}" class="#{savebutton_class}" value="#{savebutton_text}" /> <input type="button" id="cancel-#{id}" class="#{cancelbutton_class}" value="#{cancelbutton_text}" /></span>';	
-	
+	eip_options_textarea.form_buttons= '<span><input type="button" id="save-#{id}" class="#{savebutton_class}" value="#{savebutton_text}" /> <input type="button" id="cancel-#{id}" class="#{cancelbutton_class}" value="#{cancelbutton_text}" /></span>';
 
-	// this is repeated code from product_overlay
-	jQuery(settings.background).css({opacity:0.8});
-	var product_overlay_bg = jQuery(settings.background+":first");
-	product_overlay_bg.css({width:"0px"});
-	product_overlay_bg.animate({ width:settings.width+"px" });
-	overlays=jQuery(this);
+
+       	$(settings.background).css({opacity:0.8});
+	var product_overlay_bg = $(settings.background+":first");
+	product_overlay_bg.css({width:settings.width+"px"});
+	//	product_overlay_bg.animate({ width:settings.width+"px" });
+	//	product_overlay_bg.slideDown();
+	overlays=$(this);
 	overlays.show();
-	jQuery(".cerrar").click(function(){
+	/*$(".cerrar").click(function(){
 	    overlays.hide();
 	    product_overlay_bg.hide();
-	    jQuery(".product-image.selected").css({background:"#fff", opacity:1});
-	  });
+	    $(".product-image.selected").css({background:"#fff", opacity:1});
+	    });*/
 
-	var brief = jQuery(".brief");
-	var image_url = "/images/pizzas.jpg";
+	var $category_select= $this.find(".category-select");
 
-	var nombre=brief.find(".nombre");
-	nombre.html("Nombre del producto");
-	nombre.eip("/perfil/nombre", eip_options_text);
-	brief.find(".descripcion").html("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.").eip("/perfil/nombre", eip_options_textarea);
-	brief.find(".precio").html("$999,999.00").eip("/perfil/nombre", eip_options_text);
-
-	brief.find("#product-image-list img").attr("src",image_url);
-
-	var $category_select= brief.find(".category-select");
 	var product_type_click= function() {
 	  $category_select.load("/ui/category_select .category-select>*", function() {
 	      if ($category_select.css("display")=="none") $category_select.fadeIn();
@@ -69,7 +113,8 @@
 		  });
 	    });
 	};
-	var product= {};
+
+       	var product= {};
 	var category_eip_options= $.extend( {rebind:product_type_click}, eip_options, eip_options_text );
 	category_eip_options.ok= function(el) {
 	  eip_options.ok(el);
@@ -85,18 +130,40 @@
 	condition_eip_options.select_options= 
 	  {
 	    nuevo   : "nuevo",
-	    usado   : "usado"
+	    usado   : "usado",
+	    reparado   : "reparado"
 	  }
-	$("#product-condition").eip( "/perfil/nombre", condition_eip_options);
 
+	// product-name
+	$this.find("#product-name").eip("/perfil/nombre", eip_options_text);
+	$this.find("#product-description").eip("/perfil/nombre", eip_options_textarea);
+	$this.find("#product-price").eip("/perfil/nombre", eip_options_text);
+        $this.find("#product-condition").eip( "/perfil/nombre", condition_eip_options);
+
+	// click on "Publicar producto"
 	$("#publish-product-btn").click(function() {
-	    $.post("/santiago/items", $this.form_data, function(text) {
-		alert(text);
-	      });
+	    var callback= function(text) {
+	      $("#product-form .brief-product").block(
+	        { message:$(".product-saved-dialog"), 
+		    css: { width:"52%", "border-color":"#444","border-width":"5px"} });
+	      $this.find(".blockUI")
+	        .css({cursor: "auto", "background-color":"#FFF"})
+  	        .addClass("corner-all-8px");
+	    };
+	    form.post(callback);
+	  });
+
+	// product saved overlay
+	$this.find(".product-saved-dialog .si").click(function() {
+	    $("#product-form .brief-product").unblock();
+	    form=initialize_product_form();
+	  });
+	$this.find(".product-saved-dialog .no").click(function() {
+	    $("#product-form .brief-product").unblock();
 	  });
       });
   }
-})(jQuery);
+ })(jQuery);
 
 function product_form() {
     $("#product-form").edit_product({});

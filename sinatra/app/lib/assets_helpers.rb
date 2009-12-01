@@ -75,6 +75,7 @@ IE8
       jquery_plugin "jquery-ui-1.7.2/development-bundle/ui/ui.core"
     end
   end
+
 #
 # calls the helper method for a javascript lib VS(:jquery, :yui ...)
 #

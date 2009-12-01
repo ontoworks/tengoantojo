@@ -17,5 +17,5 @@ Feature: "Manage products"
     And I select "Nuevo" for the "condition" field
     And I select category "Gatos" with parent category "Animales y Mascotas"
     And I fill the "quantity" field with "always"
-    And I click the "Post Product" link
-    Then I should see 'The product has been created'
+    And I click the "Publicar Producto" link
+    Then I should see a dialog with message "The product has been created"

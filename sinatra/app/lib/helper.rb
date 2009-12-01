@@ -1,5 +1,6 @@
 helpers do
-  include UIHelpers
+  include UI
+  include UI::DesignHelpers
   include AssetsHelpers
   include CouchDBHelpers
 

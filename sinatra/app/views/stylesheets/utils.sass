@@ -1,0 +1,31 @@
+=corner-each(!tl, !tr, !br, !bl)
+  -moz-border-radius-topleft = !tl
+  -webkit-border-top-left-radius = !tl
+  -moz-border-radius-topright = !tr
+  -webkit-border-top-right-radius = !tr
+  -moz-border-radius-bottomleft = !bl
+  -webkit-border-bottom-left-radius = !bl
+  -moz-border-radius-bottomright = !br
+  -webkit-border-bottom-right-radius = !br
+
+=corner(!px)
+  -moz-border-radius = !px 
+  -webkit-border-radius = !px
+
+=corner-top(!px)
+  +corner-each(!px,!px,0,0)
+
+=corner-bottom(!px)
+  +corner-each(0,0,!px,!px)
+
+.corner-all-4px
+  +corner(4px)
+.corner-all-8px
+  +corner(8px)
+
+
+=solid-border
+  :border 1px solid #000000
+
+=dotted-border
+  :border 1px dotted #000000

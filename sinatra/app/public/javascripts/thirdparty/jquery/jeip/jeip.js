@@ -36,21 +36,21 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       select_options		: false,
       data			: false,
       form_type			: "text", // text, textarea, select // SG [map]
-      size				: false, // calculate at run time
+      size			: false, // calculate at run time
       max_size			: 60,
-      rows				: false, // calculate at run time
+      rows			: false, // calculate at run time
       max_rows			: 10,
-      cols				: 60,
+      cols			: 60,
       savebutton_text		: "SAVE",
-      savebutton_class	: "jeip-savebutton",
-      cancelbutton_text	: "CANCEL",
+      savebutton_class	        : "jeip-savebutton",
+      cancelbutton_text	        : "CANCEL",
       cancelbutton_class	: "jeip-cancelbutton",
       
       mouseover_class		: "jeip-mouseover",
       editor_class		: "jeip-editor",
       editfield_class		: "jeip-editfield",
       
-      saving_text			: "Saving ...",
+      saving_text		: "Saving ...",
       saving_class		: "jeip-saving",
       
       saving: '<span id="saving-#{id}" class="#{saving_class}" style="display: none;">#{saving_text}</span>',
@@ -64,11 +64,16 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       select_option_form	: '<option id="edit-option-#{id}-#{option_value}" value="#{option_value}" #{selected}>#{option_text}</option>',
       stop_select_form	: '</select>',
       
-      after_save			: function( self ) {
+      after_save: function( self ) {
 	for( var i = 0; i < 2; i++ ) {
 	  $( self ).fadeOut( "fast" );
 	  $( self ).fadeIn( "fast" );
 	}
+      },
+      // Hook to intercept the edit mode
+      // Ontoworks for tengoantojo.com
+      // Santiago Gaviria
+      before_edit: function(self) {
       },
       // Ontoworks for tengoantojo.com
       // Santiago Gaviria
@@ -108,6 +113,12 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     // Private functions
     var _editMode = function( self ) {
       $( self ).unbind( opt.edit_event );
+
+      // Santiago Gaviria for tengoantojo.com
+      // santiago@ontoworks.com
+      if (typeof opt.before_edit == "function") {
+      	opt.before_edit(self);
+      }
       
       $( self ).removeClass( opt.mouseover_class );
       $( self ).fadeOut( "fast", function( e ) {
@@ -116,7 +127,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	  
 	  var safe_value	= value.replace( /</g, "&lt;" );
 	  safe_value		= value.replace( />/g, "&gt;" );
-	  //safe_value		= value.replace( /"/g, "&qout;" );
+	  //	  safe_value		= value.replace( /"/g, "&qout;" );
 	  
 	  var orig_option_value = false;
 	  
@@ -167,7 +178,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	    $.each( opt.select_options, function( k, v ) {
 		var selected = '';
 		if( v == value ) {
-		  //						selected = 'selected="selected"';
+		  //selected = 'selected="selected"';
 		}
 		
 		if( value == v ) {
