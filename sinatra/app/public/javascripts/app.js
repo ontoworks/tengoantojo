@@ -98,18 +98,7 @@ jQuery(document).ready(function($) {
     };
 
     var mitienda_view = function() {
-      var $product_form= $("#product-form").edit_product({});
-      $product_form.hide();
-
-      $("#add-product-btn").click(function() {
-	  if (!product_form) {
-	    $product_form.edit_product({});
-	  };
-	  $product_form.show();
-	  $(".product-form-bg").slideDown("slow");
-	});
-
-      $product_form;
+      mi_tienda();
     };
 
     var promociones_view = function() {
@@ -163,10 +152,4 @@ jQuery(document).ready(function($) {
 
   marketplace();
 
-
-
-  //var product_overlay = new Product_Overlay({id:"product-overlay"});
-  // live events
-    //  $("#inicio .product-image").live('click', product_overlay.show);
-    //  $("#inicio .as-favorite").live('click', as_favorite);
 }); //ends

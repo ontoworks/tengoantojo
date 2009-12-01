@@ -114,7 +114,6 @@ module UI
     assets.jquery_plugin = ["form/jquery.form"]
     assets.js_tag = ["user"]
     assets.css_link = ["user"]
-#    assets.script = ""
     assets
   end
 
@@ -123,13 +122,13 @@ module UI
   def mi_tienda
     assets= Assets.new
     assets.lib = ["jquery"]
-    assets.jquery_plugin = ["jeip/jeip"]
-    assets.js_tag = ["lib","ui/lib/category_select.core","product_form"]
+    assets.jquery_plugin = ["blockUI/jquery.blockUI","jeip/jeip"]
+    assets.js_tag = ["lib","ui/lib/category_select.core","product_form","mi_tienda"]
 #    assets.js_tag << "http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed"
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
                        "corner-radius",
                        "styles"]
-    assets.script = "product_form()"
+    assets.script = "mi_tienda();"
     [assets, {:product_form=>{:id=>"product-form"}}]
   end
 

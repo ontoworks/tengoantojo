@@ -50,7 +50,7 @@
     
     settings = $.extend( {}, $edit_product.defaults, settings );
     return this.each(function() {
-	$(this)._cname= "product-form";
+	self=this;
 	var form=initialize_product_form();
 
 	// Edit In Place options for all fields
@@ -157,9 +157,13 @@
 	$this.find(".product-saved-dialog .si").click(function() {
 	    $("#product-form .brief-product").unblock();
 	    form=initialize_product_form();
+	    var yes_event= jQuery.Event("yes");
+	    $(self).trigger(yes_event);
 	  });
 	$this.find(".product-saved-dialog .no").click(function() {
 	    $("#product-form .brief-product").unblock();
+	    var no_event= jQuery.Event("no");
+	    $(self).trigger(no_event);
 	  });
       });
   }

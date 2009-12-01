@@ -47,13 +47,12 @@ get '/' do
   haml :home
 end
 
-def edit_in_place_echo
-  "{html:'#{@echo}'}"
+def edit_in_place_echo(echo)
+  {:html=>echo}.to_json
 end
 
 post '/perfil/:attr' do
-  @echo= params[:new_value]
-  edit_in_place_echo
+  edit_in_place_echo params[:new_value]
 end
 
 # geonames 
