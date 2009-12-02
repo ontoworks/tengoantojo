@@ -18,4 +18,10 @@ Feature: "Manage products"
     And I select category "Gatos" with parent category "Animales y Mascotas"
     And I fill the "quantity" field with "always"
     And I click the "Publicar Producto" link
-    Then I should see a dialog with message "The product has been created"
+    Then I should see a message telling "The product has been created"
+
+  Scenario: "List products"
+    Given I go to the site
+    And I click the "mi-tienda-btn" link
+    When I click the "Mis Productos" link
+    Then I should see a product with description "Mi Primer producto creado usando BDD"

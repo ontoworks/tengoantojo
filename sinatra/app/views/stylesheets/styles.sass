@@ -1138,6 +1138,7 @@ p
 
 // tienda
 .mi-tienda
+  :position relative
   .menu
     :border 1px solid #DDD
     :height 32px
@@ -1150,8 +1151,14 @@ p
       :float left
       :margin 8px
       :color white
-
-
+  #mi-tienda-product-list
+    :position absolute
+    :height 508px
+    .product
+      :background-color #F3F5F5
+      +corner(6px)
+      :border 1px solid #EEEEEE
+      :margin-bottom 5px
 // category-select
 .category-select
   :background white
@@ -1214,4 +1221,5 @@ p
       :font 11px/13px arial
       :color #000
 
+@import top_icons_menu
 @import product_form

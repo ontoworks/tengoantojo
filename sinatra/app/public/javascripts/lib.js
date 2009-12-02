@@ -52,6 +52,18 @@ function google_query(q, max_results) {
  * @version:
  * @requires:
  */
+function google_query_json(q, max_results) {
+  var alt="json";
+  var query="?q="+q+"&alt="+alt+"&max-results="+max_results;
+  return query;
+}
+
+/** 
+ * @returns:
+ * @author:
+ * @version:
+ * @requires:
+ */
 var Resource = function() {
   this.uri = "";
 };
@@ -194,11 +206,15 @@ Paged_List.prototype.add = function(item) {
   var count = this.items.length;
   var page_n = Math.floor(count/this.page_size);
   var page = $("#"+this.id).find(".product-list-page").get(page_n);
-  //  alert(this.id);
   var new_page = count%this.page_size == 0 ? true : false;
+
   if (new_page) {
+
+
     $(page).empty();
   }
+
+
   $(page).append(item.html());
   this._add(item);
 };

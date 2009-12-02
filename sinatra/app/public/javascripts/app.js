@@ -66,6 +66,7 @@ jQuery(document).ready(function($) {
 	    list.add(product);
 	  }
 	}
+
 	$("#inicio .product-image").die('click');
 	$("#inicio .as-favorite").die('click', as_favorite);
 	$("#inicio .product-image").live('click', product_overlay.show);
@@ -109,7 +110,15 @@ jQuery(document).ready(function($) {
     mitienda_view();
 
     // should not go here
-    left_slider();
+    $("#tabs")
+      .tab_slider({
+        panels: $('.scrollContainer > div'),
+	    scroll: $('.scroll').css('overflow', 'hidden'),
+	    container: $('.scrollContainer'),
+	    navigation: "#tab-ul a",
+	    horizontal:true
+	    });
+
   };
 });
 

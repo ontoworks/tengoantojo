@@ -63,7 +63,22 @@ module GData
     GBASE_URL= "http://www.google.com/base"
     GBASE_SNIPPETS_URL= "#{GBASE_URL}/snippets"
     GBASE_FEEDS_URL= "#{GBASE_URL}/feeds"
-    
+    GDATA_AUTH_HEADER_JSON=
+      {
+      :Authorization => "AuthSub token=\"CInwwZG2GBDa0_J9\"",
+      "X-Google-Key" => "key=ABQIAAAA7VerLsOcLuBYXR7vZI2NjhTRERdeAiwZ9EeJWta3L_JZVS0bOBRIFbhTrQjhHE52fqjZvfabYYyn6A",
+      "Content-Type" => "application/json",
+      :accept => "application/json"
+    }
+
+    class Snippets_Proxy
+      def get
+      end
+      
+      def get_json
+      end
+    end
+
     class Feeds_Proxy
       include CouchDB
 
@@ -71,10 +86,18 @@ module GData
         Haml::Engine.new(File.read("./views/#{template.to_s}.haml")).render(self, locals)
       end
 
-      def get(account)
-        RestClient.get "#{GBASE_FEEDS_URL}/#{account}/items", GDATA_AUTH_HEADER
+      def get(account,qs={})
+        if qs["json"]
+          RestClient.get "#{GBASE_FEEDS_URL}/#{account}/items?alt=#{qs["json"]}", GDATA_AUTH_HEADER_JSON
+        else
+          RestClient.get "#{GBASE_FEEDS_URL}/#{account}/items?#{query_string}", GDATA_AUTH_HEADER
+        end
       end
       
+      def get_json(account)
+        get(account,{:alt=>"json"})
+      end
+
       def post(account,item)
         entry = Atom_Entry.new(:google_product)
         entry.author= {:name=> item['author']['name'],

@@ -1,8 +1,9 @@
-.product-list#product-list-0
+.product-list{:id=>id}
   %ul
     %li
       %button#prev &nbsp;<&nbsp;
     %li
       %button#next &nbsp;>&nbsp;
-  =haml :product_overlay
+  - if defined? overlay
+    =haml overlay.to_sym
   =haml :product_list_scroll

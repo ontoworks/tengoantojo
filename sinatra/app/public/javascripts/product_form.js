@@ -50,7 +50,8 @@
     
     settings = $.extend( {}, $edit_product.defaults, settings );
     return this.each(function() {
-	self=this;
+	var self=this;
+
 	var form=initialize_product_form();
 
 	// Edit In Place options for all fields
