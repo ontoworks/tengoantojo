@@ -22,7 +22,7 @@ jQuery(document).ready(function($){
         uri:"/product.json",
 	//uri:"/data/snippets.json",
 	tpl: function() {
-	  return $(".product:first").clone();
+	  return $(".product:eq(0)").clone();
 	 }
       },
       ProductList: {

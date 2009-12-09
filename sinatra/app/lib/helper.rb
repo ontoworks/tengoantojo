@@ -17,7 +17,15 @@ helpers do
     _product_list(count)
   end
 
+  def list(tpl, n)
+    haml :list, :locals=>{:n=>n, :klass=>"", :tpl=>tpl}
+  end
+
   def _product_list(count)
+    list :product_table, count
+  end
+
+  def __product_list(count)
     list = ""
     count.times do |i|
       @id="product-"+i.to_s
@@ -25,7 +33,7 @@ helpers do
     end
     if count == 0
       list << (haml :empty_list)      
-      list << (product :klass => [:hidden])
+#      list << (product :klass => [:hidden])
     end
     list
   end

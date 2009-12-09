@@ -118,13 +118,6 @@ a
 .tab
   :background-color white
 
-
-#tabs
-  .scroll
-    :clear none
-    :height 565px
-    :overflow hidden
-
 #right
   :margin 0px
   :margin-left 10px
@@ -1112,11 +1105,6 @@ p
     :margin-top 9px
     :margin-left 11px
     :width 110px
-    // :margin-left 20px
-    // *margin-top: -1px
-    // *margin-right:-2px
-    // *margin-left:10px
-    // :position absolute
     :width 50px
     :top 35px
     :right -5px
@@ -1151,10 +1139,25 @@ p
       :float left
       :margin 8px
       :color white
+  .product-list-scroll
+    :height 491px
+    :overflow auto
+    .product-list-page
+      :margin 0
+  .jScrollPaneTrack
+    :background-color #EEEFFF
+    :border 1px solid #78BC10
+    :height 504px
+    +corner(8px)
+    .jScrollPaneDrag
+      +corner(8px)
+      :background-color #DDD
   #mi-tienda-product-list
-    :position absolute
     :height 508px
+    :width 536px
     .product
+      &:hover
+        :background-color #FFE365
       :background-color #F3F5F5
       +corner(6px)
       :border 1px solid #EEEEEE

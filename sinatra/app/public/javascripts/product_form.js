@@ -65,23 +65,31 @@
 	    var field= form.get_field(field_label);
 	    $(el).html(field.value());
 	  },
-	  ok: function(el) {
-	      // el.id contains something like 'product-name'
-	      // form.fields has keys like 'product[name]'
-	      var field_label= el.id.split("-")[1];
-	      var field_value= $(el).text();
-	      var field= form.get_field(field_label);
-	      $(el).css("font-style", "normal");
-	      // validate user input
-	      field
-	        .name(el.id.split("-")[0]+"["+field_label+"]")
-	        .value(field_value)
-	        .is_valid();
-	      if (jQuery.trim(field_value)=="") {
-		$(el).html(field.empty_text()).css("font-style","italic");
-	      }
+	  cancel: function(el) {
+	    var label= el.id.split("-")[1];
+	    var value= $(el).text();
+	    var field= form.get_field(label);
+	    if (jQuery.trim(value)=="") {
+	      $(el).html(field.empty_text()).css("font-style","italic");
 	    }
-	  };
+	  },
+	  ok: function(el) {
+	    // el.id contains something like 'product-name'
+	      // form.fields has keys like 'product[name]'
+	    var label= el.id.split("-")[1];
+	    var value= $(el).text();
+	    var field= form.get_field(label);
+	    $(el).css("font-style", "normal");
+	    // validate user input
+	    field
+	      .name(el.id.split("-")[0]+"["+label+"]")
+	      .value(value)
+	      .is_valid();
+	    if (jQuery.trim(value)=="") {
+	      $(el).html(field.empty_text()).css("font-style","italic");
+	    }
+	  }
+	};
 	var eip_options_text= $.extend({text_form: '<input type="text" id="edit-#{id}" class="#{editfield_class}" value="#{value}" />'}, eip_options);
 
 	var eip_options_textarea= $.extend({form_type: "textarea"},eip_options);
@@ -117,8 +125,15 @@
 
        	var product= {};
 	var category_eip_options= $.extend( {rebind:product_type_click}, eip_options, eip_options_text );
+	// ok
 	category_eip_options.ok= function(el) {
 	  eip_options.ok(el);
+	  $category_select.fadeOut();
+          return false;
+	};
+	// cancel
+	category_eip_options.cancel= function(el) {
+	  eip_options.cancel(el);
 	  $category_select.fadeOut();
           return false;
 	};
@@ -154,6 +169,9 @@
 	    form.post(callback);
 	  });
 
+	// bind to initiliaze the form externally
+        $(this).bind("initialize_product_form", function() {form=initialize_product_form()});
+
 	// product saved overlay
 	$this.find(".product-saved-dialog .si").click(function() {
 	    $("#product-form .brief-product").unblock();
@@ -163,6 +181,7 @@
 	  });
 	$this.find(".product-saved-dialog .no").click(function() {
 	    $("#product-form .brief-product").unblock();
+	    form=initialize_product_form();
 	    var no_event= jQuery.Event("no");
 	    $(self).trigger(no_event);
 	  });

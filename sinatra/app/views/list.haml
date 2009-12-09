@@ -1,0 +1,7 @@
+%div{:class=>klass}
+  - n.times do |i|
+    =haml tpl.to_sym, :locals=>{:klass=>""}
+  - if n==0
+    =haml :empty_list
+    %div.hidden
+      =haml tpl.to_sym, :locals=>{:klass=>""}

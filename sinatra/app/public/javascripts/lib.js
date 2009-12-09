@@ -209,12 +209,8 @@ Paged_List.prototype.add = function(item) {
   var new_page = count%this.page_size == 0 ? true : false;
 
   if (new_page) {
-
-
     $(page).empty();
   }
-
-
   $(page).append(item.html());
   this._add(item);
 };

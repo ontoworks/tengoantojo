@@ -65,10 +65,10 @@ jQuery(document).ready(function($) {
 	  
 	    list.add(product);
 	  }
-	}
+	};
 
 	$("#inicio .product-image").die('click');
-	$("#inicio .as-favorite").die('click', as_favorite);
+	$("#inicio .as-favorite").die('click');
 	$("#inicio .product-image").live('click', product_overlay.show);
 	$("#inicio .as-favorite").live('click', as_favorite);
 
@@ -95,19 +95,11 @@ jQuery(document).ready(function($) {
       marketplace_home();
     };
 
-    var favoritos_view = function() {
-    };
-
-    var mitienda_view = function() {
-      mi_tienda();
-    };
-
-    var promociones_view = function() {
-    };
-
     // initialize slides
     inicio_view();
-    mitienda_view();
+
+    // mi-tienda
+    var mi_tienda= $(".mi-tienda").mi_tienda();
 
     // should not go here
     $("#tabs")

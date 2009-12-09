@@ -94,6 +94,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       }
     }; // defaults
     
+
     if( options ) {
       $.extend( opt, options );
     }
@@ -110,10 +111,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	  } );
       } ); // this.each
     
+    var _ok= function (el) {
+      opt.ok(el);
+    };
+
     // Private functions
     var _editMode = function( self ) {
       $( self ).unbind( opt.edit_event );
-
+      
       // Santiago Gaviria for tengoantojo.com
       // santiago@ontoworks.com
       if (typeof opt.before_edit == "function") {
@@ -227,6 +232,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	    } );
 	  
 	  $( "#edit-" + self.id ).keydown( function( e ) {
+	      e.stopPropagation();
 	      // cancel
 	      if( e.which == 27 ) {
 		_cancelEdit( self );
@@ -265,13 +271,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       } );
     
     $( self ).removeClass( opt.mouseover_class );
-    $( self ).fadeIn( "fast" );
+    $( self ).fadeIn("fast", function() {opt.cancel(self)} );
     
     // Ontoworks for tengoantojo.com
     // Santiago Gaviria 
     opt.cancel(self);
   };
-  
+
   var _saveEdit = function( self, orig_option_value ) {
     var orig_value = $( self ).html( );
     var new_value = $( "#edit-" + self.id ).attr( "value" );
@@ -288,7 +294,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	    opt.rebind();
 	});
       $( self ).removeClass( opt.mouseover_class );
-      $( self ).fadeIn( "fast", function() {opt.ok(self)} );
+      $( self ).fadeIn( "fast", function() {_ok(self)} );
       
       return true;
     }
@@ -344,7 +350,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	      } );
 	    
 	    $( self ).addClass( opt.mouseover_class );
-	    $( self ).fadeIn( "fast", function() {opt.ok(self)} );
+	    $( self ).fadeIn( "fast", function() {_ok(self)} );
 	    
 	    if( opt.after_save != false ) {
 	      opt.after_save( self );

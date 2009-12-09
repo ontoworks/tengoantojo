@@ -29,9 +29,9 @@
     background: #FFFFFF url(images/content_pane-gradient.gif) repeat-x scroll left bottom;
 }
 
-.product-list-scrollContainer div.product-list-page {
+/*.product-list-scrollContainer div.product-list-page {
     width: 536px;
-}
+}*/
 
 #shade {
     background: #EDEDEC url(images/shade.jpg) no-repeat 0 0;

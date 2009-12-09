@@ -1,7 +1,7 @@
 # post item to Google Base account
 get "/items" do
   account=session['user']['google_base_subaccount']
-  entry = GData::Atom_Entry.new(:google_product)
+  entry= GData::Atom_Entry.new(:google_product)
   entry.title= "Mi Producto"
   entry.description= "Un producto muy bien descrito"
   entry.author= {:name=> "Santiago Gaviria",

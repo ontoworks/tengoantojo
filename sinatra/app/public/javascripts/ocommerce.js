@@ -48,14 +48,15 @@ augment(ProductList, UI);
 
 
 jQuery(document).ready(function($) {  
+  var layout = Conf.Product.tpl();
   Product.prototype.html = function() {
-    this.layout = Conf.Product.tpl();
-    this.layout.attr("id", this.id);
-    this.layout.find(".nombre").html(this.name);
-    this.layout.find(".descripcion").html(this.description);
-    this.layout.find(".product-image img").attr("src", this.image_url);
-    this.layout.find(".precio").html(this.price);
-    return this.layout;
+    layout=layout.clone();
+    layout.attr("id", this.id);
+    layout.find(".nombre").html(this.name);
+    layout.find(".descripcion").html(this.description);
+    layout.find(".product-image img").attr("src", this.image_url);
+    layout.find(".precio").html(this.price);
+    return layout;
   };
 
   $.fn.ProductList = function(options) {
