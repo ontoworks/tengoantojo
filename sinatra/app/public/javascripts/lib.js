@@ -121,6 +121,16 @@ Resource.put = function() {
  * @version:
  * @requires:
  */
+var Proxy= function() {
+};
+augment(Proxy, Resource);
+
+/** 
+ * @returns:
+ * @author:
+ * @version:
+ * @requires:
+ */
 var Query = function() {
   this.proxy;
   this.uri;
@@ -166,11 +176,16 @@ UI.prototype.state = function() {
  */
 var List = function() {
   this.items = [];
-  this.item_type;
+  this.item_type= "";
+  this._ids= {};
 };
 List.prototype = {
   add: function(item) {
     this.items.push(item);
+    this._ids[item.id]=this.items.length-1;
+  },
+  get: function(id) {
+    return this.items[this._ids[id]];
   },
   each: function() {
     $.each(this.items, function(e) {
@@ -179,6 +194,7 @@ List.prototype = {
   },
   empty: function() {
     this.items=[];
+    this._ids={};
   },
   next: function() {
   },
@@ -195,6 +211,7 @@ List.prototype = {
 var Paged_List = function(o) {
   this.id = o.id;
   this.page_size = o.page_size;
+  this.$pages_container=$("#"+this.id).find(".product-list-page");
 };
 augment(Paged_List, List);
 Paged_List.prototype.page_up = function() {
@@ -205,14 +222,14 @@ Paged_List.prototype._add = List.prototype.add;
 Paged_List.prototype.add = function(item) {
   var count = this.items.length;
   var page_n = Math.floor(count/this.page_size);
-  var page = $("#"+this.id).find(".product-list-page").get(page_n);
+  var page = this.$pages_container.get(page_n);
   var new_page = count%this.page_size == 0 ? true : false;
 
   if (new_page) {
     $(page).empty();
   }
-  $(page).append(item.html());
-  this._add(item);
+  $(page).append(item.render());
+  this._add(item.product());
 };
 
 /** 

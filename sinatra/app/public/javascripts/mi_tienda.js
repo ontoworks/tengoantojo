@@ -1,6 +1,15 @@
-
-var Google_Base_Product_List= function() {
-  var product_list_callback = function(data, list) {
+var Google_Base_Product_List= function(o) {  
+  this.id= o.id;
+  // UI
+  this.tpl = o.tpl;
+  this.jquery= o.jquery;
+  // List
+  this.page_size= o.page_size;
+  this.items= o.items || [];
+  this.$pages_container= $("#"+this.id).find(".product-list-page");
+  // Query
+  this.proxy= o.proxy;
+  this.callback= function(data, list) {
     list.empty();
     var entries = data.feed.entry;
     if (!entries) return false;
@@ -8,68 +17,60 @@ var Google_Base_Product_List= function() {
       var entry = entries[i];	
       if (entry.g$item_type[0].$t=="products") {
 	var uuid = (entry.id.$t).match(/\d+$/)[0];
-	var product = new Product({
-	  id: uuid,
+	var product = new UI_Product({
+              id: uuid,
 	      name: entry.title.$t,
 	      description: entry.content.$t,
+	      category: entry.g$product_type[0].$t,
+	      condition: entry.g$condition[0].$t,
 	      image_url:entry.g$image_link ? entry.g$image_link[0].$t : "/images/icons/box-label.png",
 	      price:entry.g$price[0].$t});
+	// TODO: take DOM operations to
+        // the UI component
 	list.add(product);
       }
     }
-	// refactor this
-    list.render();
-    $this.find(".product-list-scroll").jScrollPane({dragMaxHeight:100});
+    // refactor this
+    // TODO: take DOM operations to
+    // the UI component
+    //    list.render();
+    o.jquery.find(".product-list-scroll").jScrollPane({dragMaxHeight:100});
+    // Ugly hack to pixel-perfect the product-list's scroller
+    var height= parseInt(o.jquery.find(".jScrollPaneContainer")
+			 .css("height").match(/\d+/))+2;
+    o.jquery.find(".jScrollPaneContainer").css("height",height);
   }
 };
-Google_Base_Product_List.render= function(data) {
-};
-
 augment(Google_Base_Product_List, Paged_List);
 augment(Google_Base_Product_List, Query);
+augment(Google_Base_Product_List, UI);
 
-$.widget("product_list", {
-  _init: function() {
-      this._render= this.options.render;
-      this._list= new this.options.list({
-	proxy:options.proxy,
-	page_size:options.page_size
-	})
-      var product_list= new Google_Base_Product_List({
-	id:"",
-	proxy:settings.proxy,
-        page_size:8
-      });
-    },
-  destroy: function() {
-    },
-  query: function() {
-      this._list.query(google_query("colombia", 24));
-     }
-  });
+(function($) {
+var UI_Product_List= {
+ _init: function() {
+    this._list= new this.options.list({
+      jquery:this.element,
+	  id:this.element.attr("id"),
+	  proxy:this.options.proxy,
+	  page_size:this.options.page_size
+	  });
+    
+  },
+ items: function() {
+    return this._list;
+  },
+ destroy: function() {
+  }
+};
+
+$.widget("ui.product_list", UI_Product_List);
+
 $.extend($.ui.product_list, {
-  getter: "",
+  getter: "items",
   defaults: {
   }
-      
   });
-
-
-$.fn.product_list= function(settings) {
-  return this.each(function() {
-      var $this=$(this);
-      var $product_list= $("#product-list").product_list;
-      $product_list({list:Google_Base_Product_List});
-
-
-    /*      var product_list=new ProductList({id:"mi-tienda-product-list",
-	    proxy:settings.proxy,
-	    callback: product_list_callback,
-	    page_size:8});*/
-      //	product_list.query(google_query("macbook", 24));
-      $(this).bind("query", $product_list("query"));
-    });
-};
+ })(jQuery);
 
 $.fn.mi_tienda= function() {
   $("#sections-nav").hide();
@@ -81,12 +82,14 @@ $.fn.mi_tienda= function() {
   };
   register_proxy([Items_Proxy]);
   
-  var $product_list = $("#mi-tienda-product-list").product_list({
-    proxy:Items_Proxy
+  var $ui_product_list=$("#mi-tienda-product-list");
+  $ui_product_list.product_list({
+        proxy:Items_Proxy,
+	list: Google_Base_Product_List,
+	page_size: 24
 	});
 
-  var $ui_product_list= $("#mi-tienda-product-list").;
-
+  $product_list= $ui_product_list.product_list("items");
 
   var collapse_product_form= function() {
     $(".product-form-bg").slideUp("slow");
@@ -103,7 +106,7 @@ $.fn.mi_tienda= function() {
   $product_form.bind("no", function() {
       collapse_product_form();
       //      $product_list.trigger("query");
-      $ui_product_list("query");
+      $product_list.query(google_query("macbook", 24));
     });
   
   // when 'esc' pressed: collapse product form 
@@ -121,12 +124,18 @@ $.fn.mi_tienda= function() {
     });
   $("#my-products-btn").click(function() {
       //      $product_list.trigger("query");
-      $ui_product_list.trigger("query");
+      //for(var n in $product_list) alert(n);
+
+      $product_list.query(google_query("", 24));
     });
 
-  var edit_product_form= function() {
-    expand_product_form();
-    $product_form.trigger("");
+  var edit_product_form= function(e) {
+    expand_product_form("edit");
+    //    $product_form.trigger("");
+    var $product= $(e.target).closest(".product");
+    var _product= $product_list.get($product.attr("id"));
+    $product_form.trigger("set_field", _product);
+    //    alert(_product.condition);
   };
 
   // when click on a product the show product-form
@@ -134,10 +143,10 @@ $.fn.mi_tienda= function() {
   $ui_product_list.find(".product").die('click');
   $ui_product_list.find(".product").live('click', edit_product_form);
 
-  return { product_list:$ui_product_list, product_form:$product_form, el:this  }
+  return { product_list:$product_list, product_form:$product_form, el:this  };
 };
 
 function mi_tienda() {
   var mitienda=$(".mi-tienda").mi_tienda();
-  mitienda.product_list.trigger("query");
+  mitienda.product_list.query(google_query("", 24));
 }

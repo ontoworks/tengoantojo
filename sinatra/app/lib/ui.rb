@@ -122,7 +122,7 @@ module UI
   def mi_tienda
     assets= Assets.new
     assets.lib = ["jquery"]
-    assets.jquery_plugin = ["jScrollPane/jScrollPane","blockUI/jquery.blockUI","jeip/jeip","truncator/truncator","mousewheel/jquery.mousewheel"]
+    assets.jquery_plugin = ["ui/ui.core","jScrollPane/jScrollPane","blockUI/jquery.blockUI","jeip/jeip","truncator/truncator","mousewheel/jquery.mousewheel"]
     assets.js_tag = ["globals","lib","ocommerce","ui/lib/category_select.core","product_form","mi_tienda"]
 #    assets.js_tag << "http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed"
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",

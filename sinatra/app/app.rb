@@ -24,8 +24,8 @@ require 'lib/helper'
 #use Rack::Session::Cookie, :secret => 'A1 sauce 1s so good you should use 1t on a11 yr st34ksssss'
 
 configure :development do
-  set :couchdb_server, 'http://127.0.0.1:5984'
-  set :error_log_url, 'http://127.0.0.1:5984/errors'
+  set :couchdb_server, 'http://192.168.2.6:5984'
+  set :error_log_url, 'http://192.168.2.6:5984/errors'
 end
 
 def _post_error(msg)

@@ -26,11 +26,18 @@
       };
       
       var fields={
-      name:{empty_text:"-- Escribe el nombre de tu producto --", match:"alpha", after_validate:after_validate},
-      description:{empty_text:"-- Escribe una descripci&oacute;n de tu producto --",match:"alpha", after_validate:after_validate},
-      category:{empty_text:"-- Elige una categor&iacute;a para tu producto --",match:"alpha", after_validate:after_validate},
-      condition:{empty_text:"-- nuevo? usado? reparado? --",match:/nuevo|usado/, after_validate:after_validate},
-      price:{empty_text:"-- Precio de venta al p&uacute;blico --",match:"currency", after_validate:after_validate}
+        id: "",
+	image_url:"",
+        name: {empty_text:"-- Escribe el nombre de tu producto --", match:"alpha", 
+	       after_validate:after_validate},
+	description:{empty_text:"-- Escribe una descripci&oacute;n de tu producto --",
+		     match:"alpha", after_validate:after_validate},
+	category:{empty_text:"-- Elige una categor&iacute;a para tu producto --",
+		  match:"alpha", after_validate:after_validate},
+	condition:{empty_text:"-- nuevo? usado? reparado? --",match:/nuevo|usado/, 
+		   after_validate:after_validate},
+	price:{empty_text:"-- Precio de venta al p&uacute;blico --",match:"currency", 
+	       after_validate:after_validate}
       };
 
       var image_url = "/images/pizzas.jpg";
@@ -48,6 +55,10 @@
       return (new Form(fields));
     }
     
+    function set_field(label, value) {
+      $this.find("#product-"+label).html(value);
+    };
+
     settings = $.extend( {}, $edit_product.defaults, settings );
     return this.each(function() {
 	var self=this;
@@ -99,15 +110,8 @@
        	$(settings.background).css({opacity:0.8});
 	var product_overlay_bg = $(settings.background+":first");
 	product_overlay_bg.css({width:settings.width+"px"});
-	//	product_overlay_bg.animate({ width:settings.width+"px" });
-	//	product_overlay_bg.slideDown();
 	overlays=$(this);
 	overlays.show();
-	/*$(".cerrar").click(function(){
-	    overlays.hide();
-	    product_overlay_bg.hide();
-	    $(".product-image.selected").css({background:"#fff", opacity:1});
-	    });*/
 
 	var $category_select= $this.find(".category-select");
 
@@ -171,6 +175,18 @@
 
 	// bind to initiliaze the form externally
         $(this).bind("initialize_product_form", function() {form=initialize_product_form()});
+	// bind to set a field externally
+	$(this).bind("set_field", function(e,o) {
+	    for (var label in o) {
+	      var field= form.get_field(label);
+	      alert(label+"-"+field);
+	      var value= o[label];
+	      field
+		.name("product["+label+"]")
+		.value(value);
+	      $(this).find("#product-"+label).html(value);
+	    }
+	  });
 
 	// product saved overlay
 	$this.find(".product-saved-dialog .si").click(function() {

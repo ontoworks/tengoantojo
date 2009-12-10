@@ -72,7 +72,7 @@ IE8
     if widget
       jquery_plugin "jquery-ui-1.7.2/development-bundle/ui/ui."+widget
     else
-      jquery_plugin "jquery-ui-1.7.2/development-bundle/ui/ui.core"
+      jquery_plugin "ui/ui.core"
     end
   end
 

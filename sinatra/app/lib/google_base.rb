@@ -1,5 +1,5 @@
 module CouchDB
-  COUCHDB_SERVER= 'http://127.0.0.1:5984'
+  COUCHDB_SERVER= 'http://192.168.2.6:5984'
 
   def post_database(db, data)
     RestClient.post "#{COUCHDB_SERVER}/#{db}", data

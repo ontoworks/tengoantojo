@@ -80,7 +80,7 @@ $.fn.jScrollPane = function(settings)
 	.attr({'className':'jScrollPaneContainer'})
 	.css(
 	     {
-	       'height':(paneHeight+2)+'px', 
+	       'height':(paneHeight)+'px', 
 		 'width':paneWidth+'px'
 		 }
 	     );
