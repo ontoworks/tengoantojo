@@ -6,6 +6,9 @@ require 'rest_client'
 require 'uri'
 require 'json'
 
+# messaging
+require 'mq'
+
 enable :sessions
 
 # set sinatra's variables

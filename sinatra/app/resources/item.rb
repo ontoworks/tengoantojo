@@ -24,20 +24,35 @@ post '/:user/items' do
     params['product']['author']={}
     params['product']['author']['name']= "#{session['user']['name']} #{session['user']['last_name']}"
     params['product']['author']['email']= session['user']['email']
-    proxy= GData::Base::Feeds_Proxy.new
-    proxy.post session['user']['google_base_subaccount'], params['product']
+    proxy= GData::Base::Items_Proxy.new
+    if params['product']['uuid']
+      proxy.put session['user']['google_base_subaccount'], params['product']
+    else
+      proxy.post session['user']['google_base_subaccount'], params['product']
+    end
   end
 end
 
 get "/:user/items" do
   if session['user']['username']=="santiago"
-    proxy= GData::Base::Feeds_Proxy.new
+    proxy= GData::Base::Items_Proxy.new
     proxy.get session['user']['google_base_subaccount'], request.query_string
   else
     _post_error "@#{request.path_info} - Unauthorized user"
     redirect '/error', 404
   end
 end
+
+put '/:user/items/:id' do
+  if session['user']['username']==params[:user]
+    params['product']['author']={}
+    params['product']['author']['name']= "#{session['user']['name']} #{session['user']['last_name']}"
+    params['product']['author']['email']= session['user']['email']
+    proxy= GData::Base::Items_Proxy.new
+    proxy.put session['user']['google_base_subaccount'], params['product']
+  end
+end
+
 
 get '/search/:query' do
   Rest.get('http://www.google.com/base/feeds/snippets')

@@ -1,3 +1,5 @@
+!edit_color = #1589B5
+!new_color = #ABC123
 #product-form
   :position absolute
   :padding 5px
@@ -9,9 +11,9 @@
     :margin-left 140px
     .input
       .jeip-editfield
-        :width 300px        
+        :width 300px
     .label
-      :background-color #ABC123
+      background-color = !new_color
       :display block
       :font-size 10px
       :padding-bottom 0
@@ -33,7 +35,8 @@
       div.input
         :padding-left 0.2em
         :padding 0.25em 0 0.1em 0.2em
-        :border 1px solid #ABC123
+        :border 1px solid
+        border-color = !new_color
         :width 100%
     .price
       div
@@ -64,15 +67,26 @@
         :width 355px
       .descripcion
         :font-size 14px
+    .field
+      &.edit
+        .label
+          background-color = !edit_color
+        .input
+          border-color = !edit_color
+      
   .publish-product
     :border 4px solid rgb(85,85,85)
     :padding 10px
-    :background-color #ABC123
+    background-color = !new_color
     :font-size 18px
     :width 138px
     :margin-top 110px
     :margin-left 339px
     +corner(10px)
+    &.edit
+      background-color = !edit_color
+      #publish-product-btn
+        :margin-left 30px
   .product-form-content
     .brief
       :height auto

@@ -79,7 +79,7 @@ module GData
       end
     end
 
-    class Feeds_Proxy
+    class Items_Proxy
       include CouchDB
 
       def haml(template, locals={})
@@ -98,7 +98,28 @@ module GData
         get(account,{:alt=>"json"})
       end
 
+      def put(account, item)
+        entry=product_atom_entry(item);
+        entry.g.id= item["uuid"]
+        data= haml(:atom_entry, :entry => entry)
+        item['uuid']+"----"+data
+#        RestClient.put "#{GBASE_FEEDS_URL}/#{account}/items/#{item['uuid']}", data, GDATA_AUTH_HEADER
+      end
+
       def post(account,item)
+        entry=product_atom_entry(item);
+
+        # save id to couchdb
+        json_o=post_database(:products, "{}")
+        entry.g.id= (JSON.parse json_o)["id"]
+
+        data= haml(:atom_entry, :entry => entry)
+
+        RestClient.post "#{GBASE_FEEDS_URL}/#{account}/items", data, GDATA_AUTH_HEADER
+      end
+
+      private
+      def conversation_atom_entry(item)
         entry = Atom_Entry.new(:google_product)
         entry.author= {:name=> item['author']['name'],
           :email=> item['author']['email']}
@@ -109,13 +130,21 @@ module GData
         entry.g.price= item['price']+" cop"
         entry.g.condition= item['condition']
         entry.g.product_type= item['category']
+        entry
+      end
 
-        json_o=post_database(:products, "{}")
-        entry.g.id= (JSON.parse json_o)["id"]
-
-        data= haml(:atom_entry, :entry => entry)
-
-        RestClient.post "#{GBASE_FEEDS_URL}/#{account}/items", data, GDATA_AUTH_HEADER
+      def product_atom_entry(item)
+        entry = Atom_Entry.new(:google_product)
+        entry.author= {:name=> item['author']['name'],
+          :email=> item['author']['email']}
+        entry.title= item['name']
+        entry.content= item['description']
+        entry.g.item_type= "products"
+        entry.g.item_language= "es"
+        entry.g.price= item['price']+" cop"
+        entry.g.condition= item['condition']
+        entry.g.product_type= item['category']
+        entry
       end
     end    
     

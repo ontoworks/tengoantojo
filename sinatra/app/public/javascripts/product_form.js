@@ -14,6 +14,7 @@
     // this function is called every time a new
     // product is to be published
     function initialize_product_form() {
+      //      alert("initialize product-form");
       var after_validate= function(field, is_valid) {
 	if (is_valid) {
 	  $this.find("."+field.label()+" .label").css("float","none");
@@ -26,17 +27,18 @@
       };
       
       var fields={
-        id: "",
-	image_url:"",
-        name: {empty_text:"-- Escribe el nombre de tu producto --", match:"alpha", 
+        id:{},
+        uuid: {},
+	image_url:{},
+        name: {empty_text:"-- Escribe el nombre de tu producto --", matches:"alpha", 
 	       after_validate:after_validate},
 	description:{empty_text:"-- Escribe una descripci&oacute;n de tu producto --",
-		     match:"alpha", after_validate:after_validate},
+		     matches:"alpha", after_validate:after_validate},
 	category:{empty_text:"-- Elige una categor&iacute;a para tu producto --",
-		  match:"alpha", after_validate:after_validate},
-	condition:{empty_text:"-- nuevo? usado? reparado? --",match:/nuevo|usado/, 
+		  matches:"alpha", after_validate:after_validate},
+	condition:{empty_text:"-- nuevo? usado? reparado? --",matches:/nuevo|usado/, 
 		   after_validate:after_validate},
-	price:{empty_text:"-- Precio de venta al p&uacute;blico --",match:"currency", 
+	price:{empty_text:"-- Precio de venta al p&uacute;blico --",matches:"currency", 
 	       after_validate:after_validate}
       };
 
@@ -52,12 +54,8 @@
 	// set image
       $this.find("#product-image-list img").attr("src",image_url);
       
-      return (new Form(fields));
+      return (new Form(fields, {proxy:settings.proxy}));
     }
-    
-    function set_field(label, value) {
-      $this.find("#product-"+label).html(value);
-    };
 
     settings = $.extend( {}, $edit_product.defaults, settings );
     return this.each(function() {
@@ -178,13 +176,33 @@
 	// bind to set a field externally
 	$(this).bind("set_field", function(e,o) {
 	    for (var label in o) {
-	      var field= form.get_field(label);
-	      alert(label+"-"+field);
-	      var value= o[label];
-	      field
-		.name("product["+label+"]")
-		.value(value);
-	      $(this).find("#product-"+label).html(value);
+	      if (!label.match(/^_.*$/)) {
+		var field= form.get_field(label);
+		var value= o[label];
+		field
+		  .name("product["+label+"]")
+		  .value(value);
+		$(self).find("#product-"+label).html(value);
+	      }
+	    }
+	  });
+
+	// bind to change button's text
+	var $button= $(this).find("#publish-product-btn");
+	$(this).bind("new", function() {
+
+	  });
+	$(this).bind("edit", function() {
+	  });
+
+	// bind to select view: "new"|"edit"
+	$(this).bind("view", function(e,view) {
+	    if (view=="edit") {
+	      $(self).find(".field, .publish-product").addClass("edit");
+	      $button.text("actualizar");
+	    } else {
+	      $(self).find(".field, .publish-product").removeClass("edit");
+	      $button.text("publicar producto");
 	    }
 	  });
 

@@ -5,14 +5,14 @@
    * @requires:
    */
 var Product = function(o) {
-  this._id = o.id;
-  this.uuid= o.id;
-  this.name = o.name;
-  this.description = o.description;
-  this.price = o.price;
+  this.id= o.id;
+  this.uuid= o.uuid;
+  this.name= o.name;
+  this.description= o.description;
+  this.price= o.price;
   this.condition= o.condition;
   this.category= o.category;
-  this.image_url = o.image_url;
+  this.image_url= o.image_url;
 };
 
 
@@ -27,8 +27,7 @@ var UI_Product= function(o) {
   this._$layout= $(Reg.Product.tpl).clone();
 };
 UI_Product.prototype.render= function() {
-  alert(this.attr("uuid"));
-  this._$layout.attr("id", this.attr("uuid"));
+  this._$layout.attr("id", this.attr("id"));
   this._$layout.find(".nombre").html(this.attr("name"));
   this._$layout.find(".descripcion").html(this.attr("description"));
   this._$layout.find(".product-image img").attr("src", this.attr("image_url"));

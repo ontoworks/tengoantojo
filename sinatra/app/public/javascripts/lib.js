@@ -69,25 +69,19 @@ var Resource = function() {
 };
 Resource.get = function(query, callback, scope, jsonp) {
   if (jsonp==true) {
-    alert("here");
     var _callback = (function(_scope) {
 	  return function(data) {
-	    alert("here2??");
 	    callback(data, _scope);
 	  }
 	  })(scope);
-    alert(_callback);
     $.ajax({dataType:"jsonp",
 	  url: this.uri+query,
 	  type:"GET",
 	  error:function(data, textStatus, error_thrown) {
-	    alert(error_thrown);
 	},
 	  success:function(a,b) {
-	  alert("hooolaaaa");
 	},
 	  error:function(a,b,c) {
-	  alert(c);
 	}
 	
       });
@@ -108,7 +102,12 @@ Resource.get = function(query, callback, scope, jsonp) {
   }
 };
 
-Resource.post = function() {
+Resource.post = function(data, callback, scope) {
+  jQuery.post(this.uri, data, (function(_scope) {
+	return function(data) {
+	  callback(data, _scope);
+	}
+      })());
 };
 Resource.put = function() {
 };
@@ -164,7 +163,7 @@ UI.prototype.layout = function() {
 };
 UI.prototype.state = function() {
   for(var i=0; this.items.length; i++) {
-    alert(this.items[i].id);
+    //    alert(this.items[i].id);
   }
 };
 
@@ -265,7 +264,7 @@ var Form_Field= function(o) {
   var name=o.name ? o.name : "";
   var label=o.label ? o.label : "";
   var value=o.value ? o.value : "";
-  var match=o.match;
+  var matches=o.matches;
   var empty_text=o.empty_text ? o.empty_text : "";
   
   function regex(key) {
@@ -294,9 +293,10 @@ var Form_Field= function(o) {
     return this;
   };
   this.match= function(val) {
-    if(arguments.length==0)
-      return regex(match);
-    match=val;
+    if(arguments.length==0) {
+      return matches ? regex(matches) : null;
+    }
+    matches=val;
     return this;
   };
   this.empty_text= function(val) {
@@ -313,6 +313,7 @@ var Form_Field= function(o) {
 Form_Field.prototype.is_valid= function() {
   var valid=true;
   if(this.match()) {
+    //alert(this.label()+"--"+this.value()+"--"+this.match());
     valid=this.value().match(this.match());
   }
   this.after_validate(this,valid);
@@ -328,7 +329,7 @@ Form_Field.prototype.is_valid= function() {
 var Form= function(data, options) {
   this.fields= {};
   this.valid= false;
-
+  this.proxy= options.proxy;
   for (var field in data) {
     this.fields[field]= new Form_Field(data[field]);
     this.fields[field].label(field);
@@ -351,7 +352,7 @@ Form.prototype.post= function(callback) {
       var field= this.fields[label];
       data[field.name()]=field.value();
     }
-    $.post("/santiago/items", data, callback);
+    this.proxy.post(data, callback);
   }
 };
 Form.prototype.get_field= function(label) {
