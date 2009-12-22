@@ -1,8 +1,8 @@
 module CouchDB
-  COUCHDB_SERVER= 'http://192.168.2.6:5984'
+  COUCHDB_SERVER= 'http://localhost:5984'
 
   def post_database(db, data)
-    RestClient.post "#{COUCHDB_SERVER}/#{db}", data
+    RestClient.post "#{COUCHDB_SERVER}/#{db.to_s}", data
   end
 end
 
@@ -30,16 +30,19 @@ module GData
       # might be redesigned (dynamically?)
       case type
       when :google
-        self.class.send(:attr_accessor, Google_Atom_Entry::NAMESPACE)
-        self.send("#{Google_Atom_Entry::NAMESPACE}=",Google_Atom_Entry.new)
+        self.class.send(:attr_accessor, Google_Base_Entry::NAMESPACE)
+        self.send("#{Google_Base_Entry::NAMESPACE}=",Google_Base_Entry.new)
       when :google_product
         self.class.send(:attr_accessor, GData::Base::Google_Entry_Product::NAMESPACE)
         self.send("#{GData::Base::Google_Entry_Product::NAMESPACE}=",GData::Base::Google_Entry_Product.new)
+      when :google_conversation
+        self.class.send(:attr_accessor, GData::Base::Google_Entry_Product::NAMESPACE)
+        self.send("#{GData::Base::Google_Entry_Product::NAMESPACE}=",GData::Base::Google_Entry_Product.new)	
       end
     end
   end
   
-  class Google_Atom_Entry
+  class Google_Base_Entry
     NAMESPACE="g"
     attr_accessor :application,
                   :application_domain,
@@ -81,14 +84,14 @@ module GData
 
     class Items_Proxy
       include CouchDB
-
+      
       def haml(template, locals={})
         Haml::Engine.new(File.read("./views/#{template.to_s}.haml")).render(self, locals)
       end
 
       def get(account,qs={})
-        if qs["json"]
-          RestClient.get "#{GBASE_FEEDS_URL}/#{account}/items?alt=#{qs["json"]}", GDATA_AUTH_HEADER_JSON
+        if qs[:alt]=="json"
+          RestClient.get "#{GBASE_FEEDS_URL}/#{account}/items?alt=json", GDATA_AUTH_HEADER_JSON
         else
           RestClient.get "#{GBASE_FEEDS_URL}/#{account}/items?#{query_string}", GDATA_AUTH_HEADER
         end
@@ -107,48 +110,35 @@ module GData
       end
 
       def post(account,item)
-        entry=product_atom_entry(item);
+	entry= render_atom_entry(item)
+	# save id to couchdb
+	# this should not go here
+	json_o= post_database(item_type, "{}")
+	entry.g.id= (JSON.parse json_o)["id"]
 
-        # save id to couchdb
-        json_o=post_database(:products, "{}")
-        entry.g.id= (JSON.parse json_o)["id"]
+	data= haml(:atom_entry, :entry => entry)
 
-        data= haml(:atom_entry, :entry => entry)
-
-        RestClient.post "#{GBASE_FEEDS_URL}/#{account}/items", data, GDATA_AUTH_HEADER
+	RestClient.post "#{GBASE_FEEDS_URL}/#{account}/items", data, GDATA_AUTH_HEADER
       end
 
       private
-      def conversation_atom_entry(item)
-        entry = Atom_Entry.new(:google_product)
-        entry.author= {:name=> item['author']['name'],
-          :email=> item['author']['email']}
+      def render_atom_entry(item)
+        entry= Atom_Entry.new
         entry.title= item['name']
         entry.content= item['description']
-        entry.g.item_type= "products"
-        entry.g.item_language= "es"
-        entry.g.price= item['price']+" cop"
-        entry.g.condition= item['condition']
-        entry.g.product_type= item['category']
-        entry
-      end
-
-      def product_atom_entry(item)
-        entry = Atom_Entry.new(:google_product)
-        entry.author= {:name=> item['author']['name'],
-          :email=> item['author']['email']}
-        entry.title= item['name']
-        entry.content= item['description']
-        entry.g.item_type= "products"
-        entry.g.item_language= "es"
-        entry.g.price= item['price']+" cop"
-        entry.g.condition= item['condition']
-        entry.g.product_type= item['category']
-        entry
+        entry.g.item_type= item['item_type']
+        entry.g.item_language= item['item_language']
+	# products
+	if item["item_type"]=="products"
+	  entry.g.price= item['price']+" cop"
+	  entry.g.condition= item['condition']
+	  entry.g.product_type= item['category']
+	end
+	entry
       end
     end    
-    
-    class Google_Entry_Product < Google_Atom_Entry
+        
+    class Google_Entry_Product < Google_Base_Entry
       attr_accessor :id,
       :author,
       :brand,

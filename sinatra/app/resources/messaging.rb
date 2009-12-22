@@ -2,9 +2,10 @@
 
 
 # user sends a message to friend
-post '/:user/friends/:friend' do
-  AMQP.start(:host=> '192.168.2.6') do
+get '/:user/friends/:friend' do
+  AMQP.start(:host=> 'localhost') do
     amq= MQ.new
-    amq.queue('one').publish('message from #{params[:user] to #params{:friend}}')
+    amq.queue('santiago').publish("message from #{params[:user]} to #{params[:friend]}")
   end
+  "message from #{params[:user]} to #{params[:friend]}"
 end

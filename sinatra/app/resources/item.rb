@@ -21,14 +21,12 @@ end
 
 post '/:user/items' do
   if session['user']['username']==params[:user]
-    params['product']['author']={}
-    params['product']['author']['name']= "#{session['user']['name']} #{session['user']['last_name']}"
-    params['product']['author']['email']= session['user']['email']
+    item= params['product']
     proxy= GData::Base::Items_Proxy.new
-    if params['product']['uuid']
-      proxy.put session['user']['google_base_subaccount'], params['product']
+    if item['uuid']
+      proxy.put session['user']['google_base_subaccount'], item
     else
-      proxy.post session['user']['google_base_subaccount'], params['product']
+      proxy.post session['user']['google_base_subaccount'], item
     end
   end
 end

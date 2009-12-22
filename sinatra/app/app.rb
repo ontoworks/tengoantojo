@@ -21,20 +21,44 @@ require 'lib/assets_helpers'
 require 'lib/ui'
 require 'lib/helper'
 
+
 #require "dm-core"
 #require "sinatra-authentication"
 
 #use Rack::Session::Cookie, :secret => 'A1 sauce 1s so good you should use 1t on a11 yr st34ksssss'
 
 configure :development do
-  set :couchdb_server, 'http://192.168.2.6:5984'
-  set :error_log_url, 'http://192.168.2.6:5984/errors'
+  set :couchdb_server, 'http://localhost:5984'
+  set :error_log_url, 'http://localhost:5984/errors'
 end
 
 def _post_error(msg)
   RestClient.post options.error_log_url, {:path=>request.path_info,:msg=>msg}.to_json
 end
 
+thr= Thread.new { EM.run }
+#thr.join
+
+#AMQP.start {
+#  amq= MQ.new
+#  amq.queue('santiago').subscribe do |msg|
+    # valid message is a message with a given JSON representation
+    # in this case,
+    # from:
+    # to:
+    # msg: 
+#    msg= JSON.parse(msg)
+#    item= {}
+#    item["title"]= "Chat conversation with #{msg['from']}"
+#    item["description"]= "#{msg['msg']}"
+#    item["item_type"]= "conversations"
+#    item["label"]= "#{msg['from']}-#{msg['to']}"
+#    item["item_language"]= "es"
+
+#    proxy= GData::Base::Items_Proxy.new
+#    proxy.post "6197858", item
+#  end
+#}
 
 get '/stylesheets/:name.css' do
   content_type 'text/css', :charset => 'utf-8'
@@ -81,3 +105,4 @@ load 'resources/user.rb'
 load 'resources/favorite.rb'
 load 'resources/category.rb'
 load 'resources/item.rb'
+load 'resources/messaging.rb'
