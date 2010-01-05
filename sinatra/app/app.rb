@@ -6,8 +6,10 @@ require 'rest_client'
 require 'uri'
 require 'json'
 
-# messaging
+# AMQP messaging
 require 'mq'
+require 'minion'
+#include Minion
 
 enable :sessions
 
@@ -32,12 +34,12 @@ configure :development do
   set :error_log_url, 'http://localhost:5984/errors'
 end
 
+# jobs
+# IM jobs
+
 def _post_error(msg)
   RestClient.post options.error_log_url, {:path=>request.path_info,:msg=>msg}.to_json
 end
-
-thr= Thread.new { EM.run }
-#thr.join
 
 #AMQP.start {
 #  amq= MQ.new
@@ -106,3 +108,4 @@ load 'resources/favorite.rb'
 load 'resources/category.rb'
 load 'resources/item.rb'
 load 'resources/messaging.rb'
+

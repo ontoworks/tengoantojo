@@ -201,6 +201,7 @@ module UI
     assets
   end
 
+  # GET /design/product_list
   def product_list
     assets= Assets.new
     assets.lib = ["jquery"]
@@ -211,6 +212,14 @@ module UI
     assets.css_link = ["/javascripts/thirdparty/yui/build/fonts/fonts-min.css",
                        "styles"]
     assets.script = "my()"
+    assets
+  end
+
+  def chat
+    assets= Assets.new
+    assets.lib = ["jquery"]
+    assets.css_link = ["chat"]
+    assets.js_tag = ["thirdparty/jssocket/js/jquery.media","thirdparty/jssocket/js/jsonStringify","thirdparty/jssocket/js/jsSocket","chat"]
     assets
   end
 

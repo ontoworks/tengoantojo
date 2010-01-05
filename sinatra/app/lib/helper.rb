@@ -3,6 +3,7 @@ helpers do
   include UI::DesignHelpers
   include AssetsHelpers
   include CouchDBHelpers
+  include Minion
 
   def haml_times(tpl, n)
     html=""

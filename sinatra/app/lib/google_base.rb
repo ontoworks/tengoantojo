@@ -1,5 +1,5 @@
 module CouchDB
-  COUCHDB_SERVER= 'http://localhost:5984'
+  COUCHDB_SERVER= 'http://192.168.1.1:5984'
 
   def post_database(db, data)
     RestClient.post "#{COUCHDB_SERVER}/#{db.to_s}", data
@@ -12,7 +12,8 @@ module GData
     :Authorization => "AuthSub token=\"CInwwZG2GBDa0_J9\"",
     "X-Google-Key" => "key=ABQIAAAA7VerLsOcLuBYXR7vZI2NjhTRERdeAiwZ9EeJWta3L_JZVS0bOBRIFbhTrQjhHE52fqjZvfabYYyn6A",
     "Content-Type" => "application/atom+xml",
-    :accept => "application/atom+xml"
+    :accept => "application/atom+xml",
+    "GData-Version" => 2
   }
   
   class Atom_Entry
@@ -44,7 +45,8 @@ module GData
   
   class Google_Base_Entry
     NAMESPACE="g"
-    attr_accessor :application,
+    attr_accessor :id,
+                  :application,
                   :application_domain,
                   :contact_phone,
                   :customer_id,
@@ -71,7 +73,9 @@ module GData
       :Authorization => "AuthSub token=\"CInwwZG2GBDa0_J9\"",
       "X-Google-Key" => "key=ABQIAAAA7VerLsOcLuBYXR7vZI2NjhTRERdeAiwZ9EeJWta3L_JZVS0bOBRIFbhTrQjhHE52fqjZvfabYYyn6A",
       "Content-Type" => "application/json",
-      :accept => "application/json"
+      :accept => "application/json",
+      "GData-Version" => 2,
+      "If-None-Match" => "W/\"CEYBQn04fSp7ImA9WxBSFUQ.\""
     }
 
     class Snippets_Proxy
@@ -85,16 +89,22 @@ module GData
     class Items_Proxy
       include CouchDB
       
+      def initialize(options={})
+        @tpl_dir= options.delete(:tpl_dir) || "./views"
+      end
+
       def haml(template, locals={})
-        Haml::Engine.new(File.read("./views/#{template.to_s}.haml")).render(self, locals)
+        tpl= "#{@tpl_dir.to_s}/#{template.to_s}.haml"
+        Haml::Engine.new(File.read(tpl)).render(self, locals)
       end
 
       def get(account,qs={})
-        if qs[:alt]=="json"
-          RestClient.get "#{GBASE_FEEDS_URL}/#{account}/items?alt=json", GDATA_AUTH_HEADER_JSON
-        else
-          RestClient.get "#{GBASE_FEEDS_URL}/#{account}/items?#{query_string}", GDATA_AUTH_HEADER
-        end
+        headers= qs[:alt]=="json" ? GDATA_AUTH_HEADER_JSON : GDATA_AUTH_HEADER
+        query_string= ""
+        qs.each {|k,v| query_string << "#{k}=#{v}&" }
+        url= "#{GBASE_FEEDS_URL}/#{account}/items?"
+        url << URI.escape("#{query_string}")
+        RestClient.get url, headers
       end
       
       def get_json(account)
@@ -113,18 +123,17 @@ module GData
 	entry= render_atom_entry(item)
 	# save id to couchdb
 	# this should not go here
-	json_o= post_database(item_type, "{}")
-	entry.g.id= (JSON.parse json_o)["id"]
+        json_o= post_database(item["item_type"], "{}")
+        entry.g.id= (JSON.parse json_o)["id"]
 
 	data= haml(:atom_entry, :entry => entry)
-
 	RestClient.post "#{GBASE_FEEDS_URL}/#{account}/items", data, GDATA_AUTH_HEADER
       end
 
       private
       def render_atom_entry(item)
-        entry= Atom_Entry.new
-        entry.title= item['name']
+        entry= Atom_Entry.new(:google)
+        entry.title= item['title']
         entry.content= item['description']
         entry.g.item_type= item['item_type']
         entry.g.item_language= item['item_language']
@@ -139,8 +148,7 @@ module GData
     end    
         
     class Google_Entry_Product < Google_Base_Entry
-      attr_accessor :id,
-      :author,
+      attr_accessor :author,
       :brand,
       :color,
       :condition,

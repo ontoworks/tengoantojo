@@ -1,11 +1,13 @@
-
-
-
 # user sends a message to friend
-get '/:user/friends/:friend' do
-  AMQP.start(:host=> 'localhost') do
-    amq= MQ.new
-    amq.queue('santiago').publish("message from #{params[:user]} to #{params[:friend]}")
-  end
+post '/:user/friends/:friend' do
+  enqueue("chat_server_bus", {:to=>params[:friend], :from=>params[:user], :msg=>params[:msg]})
   "message from #{params[:user]} to #{params[:friend]}"
+end
+
+get '/:user/conversations' do
+  if params[:user]==session['user']['username']
+    query= "[item type:conversations]"
+    proxy= GData::Base::Items_Proxy.new
+    proxy.get "6197858", {:bq=>query, :alt=>"json"}
+  end
 end

@@ -34,7 +34,7 @@ end
 get "/:user/items" do
   if session['user']['username']=="santiago"
     proxy= GData::Base::Items_Proxy.new
-    proxy.get session['user']['google_base_subaccount'], request.query_string
+    proxy.get session['user']['google_base_subaccount'], params
   else
     _post_error "@#{request.path_info} - Unauthorized user"
     redirect '/error', 404
