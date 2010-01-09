@@ -37,6 +37,12 @@ end
 # jobs
 # IM jobs
 
+post '/xmpp-httpbind' do
+  payload= request.body.string
+  r= RestClient::Resource.new('http://192.168.1.1:5280/http-bind', :timeout=>120)
+  r.post payload
+end
+
 def _post_error(msg)
   RestClient.post options.error_log_url, {:path=>request.path_info,:msg=>msg}.to_json
 end
