@@ -1,5 +1,16 @@
-#chat-window aqui van los mensajes
-%br
-%input#chat-input{:type=>"text"}
-%br
-%button Enviar
+#login
+  %img#chat-status-icon{:src=>"/images/icono-offline.png"}
+  %p#chat-status-label Desconectado
+  %p JID:
+  %input#jid{:type=>'text'}
+  %p Password:
+  %input#pass{:type=>'password'}
+  %button#connect{:value=>'connect'} Conectar
+#chat-window
+  #chat-messages
+    .message
+      %p &nbsp;
+  %br
+  %textarea#chat-input
+  %br
+  %button Enviar

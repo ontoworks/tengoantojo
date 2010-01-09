@@ -11,3 +11,8 @@ get '/:user/conversations' do
     proxy.get "6197858", {:bq=>query, :alt=>"json"}
   end
 end
+
+post '/bosh/chat' do
+  r= RestClient::Resource.new "http://poor-kid:5280/http-bind", :timeout=>61
+  r.post request.body.string
+end
