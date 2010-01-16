@@ -220,9 +220,9 @@ module UI
     assets.lib = ["jquery"]
     assets.css_link = ["chat"]
     assets.js_tag = ["thirdparty/strophe/strophe.min",
-                     "thirdparty/strophe/basic" 
-                     #,"chat"
-                    ]
+                     "thirdparty/strophe/basic",
+                     "chat"]
+    assets.jquery_plugin= ["ui/ui.core", "ui/ui.draggable", "ui/ui.dropabble", "ui/ui.dialog"]
     assets
   end
 

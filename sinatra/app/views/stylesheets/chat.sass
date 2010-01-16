@@ -1,4 +1,10 @@
 @import utils
+body
+  :background-color #fff
+  :font-family "HelveticaNeue-Light","HelveticaNeue",Helvetica,Arial,sans-serif
+  :font-size 14px
+  :margin-top 0
+
 #login
   #chat-status-icon
     :float left
@@ -41,4 +47,28 @@
       :padding 3px
       :margin-left 5px
       :margin-top 4px
+#chat-friend-list
+  :border 1px solid #999
+  :width 210px
+  :height 300px
+  p
+    :margin 0
+    :letter-spacing 0.15em
+    &.title
+      :background-color #BFC5C6
+      :padding 5px
+    &.label
+      :background-color #EFF1F1
+      :padding 5px
+    &.item-friend
+      :letter-spacing 0.0em
+      :padding 5px
+      &.selected
+        :background-color #2DB9F5
+        :color #FFF
+  .chat-online-friends
+    img
+      :float left
+      :margin-top 3px
+      :padding 0 5px
       

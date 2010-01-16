@@ -1,44 +1,18 @@
-jsSocket.swf = '/javascripts/thirdparty/jssocket/flash/jsSocket.swf';
-
 jQuery(window).ready(function($) {
-    //    jsSocket.swf = '/javascripts/thirdparty/jssocket/flash/jsSocket.swf';
-    //    jsSocket.swf = '/javascripts/thirdoparty/jssocket/flash/jsSocket.swf';
-
-    /*    var socket = jsSocket();
-    socket.connect('localhost', 1234);
-    socket.send('hello world');*/
-      
-    var socket= jsSocket({port:1234});
-    socket.onData= function(data) {
-      if (data)
-	$("#chat-window").append("<p>"+data+"</p>");
-    };
-    socket.onStatus = function(type, val) {
-      $("#chat-window").append("<p>"+type+"</p>");
-
-      switch(type){
-      case 'connecting':   // connecting to the server
-      break
-      
-      case 'connected':    // connected
-      break
-      
-      case 'disconnected': // disconnected
-      break
-      
-      case 'waiting':      // waiting to reconnect in val seconds
-      break
-      
-      case 'failed':       // attempted max reconnects
-      break
-      }
-    };
+    $("#chat-window").dialog({width:230});
+    $("#chat-friend-list").find(".item-friend").live("click", function() {
+	var scope= this;
+	var blur_friend_callback= function() { $(scope).removeClass("selected")};
+	$("body").unbind("click", blur_friend_callback);
+	$("body").click(blur_friend_callback);
+	$("#chat-friend-list").find(".item-friend.selected").removeClass("selected");
+	$(this).addClass("selected");
+      });
     
-    $("button").click(function() {
-	var input= $("#chat-input").val();
-	socket.send(input);
-	/*	$.post("/carolina/friends/pablo", {msg: input}, function() {
-	    alert("mensaje enviado");
-	    });*/
+    $("#chat-friend-list").find(".item-friend").live("dblclick", function() {
+	var $chat_window= $("#chat-window").clone();
+        $chat_window.attr("id", "chat-window-"+$(this).find("p").text());
+	$("body").append($chat_window);
+	$chat_window.dialog({width:230});
       });
   });
