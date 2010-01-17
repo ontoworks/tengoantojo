@@ -1,22 +1,23 @@
-#login
-  %img#chat-status-icon{:src=>"/images/icono-offline.png"}
-  %p#chat-status-label Desconectado
-  %p JID:
-  %input#jid{:type=>'text'}
-  %p Password:
-  %input#pass{:type=>'password'}
-  %button#connect{:value=>'connect'} Conectar
-#chat-window
-  #chat-messages
-    .message
-      %p &nbsp;
-  %br
-  %textarea#chat-input
-  %br
-  %button Enviar
-#chat-friend-list
-  %p.title Contactos
-  .chat-online-friends
-    %p.label - Online
-  .chat-offline-friends
-    %p.label + Offline
+.chat
+  #login
+    %img#chat-status-icon{:src=>"/images/icono-offline.png"}
+    %p#chat-status-label Desconectado
+    %p JID:
+    %input#jid{:type=>'text'}
+    %p Password:
+    %input#pass{:type=>'password'}
+    %button#connect{:value=>'connect'} Conectar
+  .chat-window#chat-window
+    #chat-messages
+      .message
+        %p &nbsp;
+    %br
+    %textarea#chat-input
+    %br
+    %button Enviar
+  #chat-friend-list
+    %p.title Contactos
+    .chat-online-friends
+      %p.label - Online
+    .chat-offline-friends
+      %p.label + Offline
