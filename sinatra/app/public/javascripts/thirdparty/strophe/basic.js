@@ -10,11 +10,11 @@ function removeNL(s){
 function xmlInput(elem) {
   $(elem).find("bind").find("jid").each(function() {
       me= $(this).text();
+      $("#login").trigger(jQuery.Event("bind"), me);
     });
 }
 
-function onConnect(status)
-{
+function onConnect(status) {
   if (status == Strophe.Status.CONNECTING) {
     // CONNECTING
   } else if (status == Strophe.Status.CONNFAIL) {
@@ -35,54 +35,11 @@ function onConnect(status)
     var query_roster=  $build("query", {xmlns:Strophe.NS.ROSTER});
     iq_roster.cnode(query_roster.tree());
     connection.send(iq_roster);
-
-    // add handlers
-    connection.addHandler(onMessage, null, 'message', null, null,  null); 
-    connection.addHandler(onPresence, null, 'presence', null, null,  null);
-    connection.addHandler(onRoster, Strophe.NS.ROSTER, 'iq', null, null,  null);
     
     // change status to 'Online' in UI
     $("#chat-status-icon").attr("src","/images/icono-on-line.png");
     $("#chat-status-label").text("Conectado");
   }
-}
-
-function onRoster(elem) {
-  var query_el= elem.firstChild;
-  var next_item= query_el.firstChild;
-  while (next_item!=null) {
-    next_item= next_item.nextSibling;
-  }
-  return true;
-}
-
-function onPresence(elem) {
-  var next_elem= elem;
-  while (next_elem!=null) {
-    if (next_elem.tagName=="presence") {
-      var from= next_elem.getAttribute('from');
-      var buddy= from.split("@")[0];
-      
-      if (next_elem.getAttribute("type")=="unavailable") {
-	$("#buddy-"+buddy).remove();
-      } else {
-	if (me!=from && $("#buddy-"+buddy).length == 0) {
-	  $("#chat-friend-list .chat-online-friends").append("<p id=\"buddy-"+buddy+"\" class=\"item-friend\"><img src=\"/images/icono-on-line.png\"/>"+buddy+"</p>");
-	}
-      }
-    }
-    next_elem= next_elem.nextSibling;
-  }
-  return true;
-}
-
-function onMessage(msg) {
-  var to = msg.getAttribute('to');
-  var from = msg.getAttribute('from');
-  var type = msg.getAttribute('type');
-  var elems = msg.getElementsByTagName('body');
-    
-  return true;
 }
 
 $(document).ready(function () {

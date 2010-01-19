@@ -219,14 +219,17 @@ module UI
     assets= Assets.new
     assets.lib = ["jquery"]
     assets.css_link = ["/javascripts/thirdparty/jquery/ui/cupertino/ui.all.css",
-                       "/javascripts/thirdparty/jquery/achtung/ui.achtung-min.css",
+#                       "/javascripts/thirdparty/jquery/achtung/ui.achtung-min.css",
+                       "/javascripts/thirdparty/jquery/jgrowl/jquery.jgrowl.css",
                        "chat"]
     assets.js_tag = ["thirdparty/strophe/strophe.min",
                      "thirdparty/strophe/basic",
                      "chat"]
-    assets.jquery_plugin= ["ui/ui.core", "ui/ui.draggable", "ui/ui.resizable", "ui/ui.dialog", "achtung/ui.achtung-min"]
+    assets.jquery_plugin= ["ui/ui.core", "ui/ui.draggable", "ui/ui.resizable", "ui/ui.dialog", "jgrowl/jquery.jgrowl_minimized"]
     assets
   end
+
+
 
 module DesignHelpers
   
