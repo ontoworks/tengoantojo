@@ -192,6 +192,6 @@ jQuery(window).ready(function($) {
       });
     
     $("#login").bind("bind", function(e,jid) {
-	$("#chat-friend-list").show().buddy_list({user_jid:jid, connection:connection});
+       	$("#chat-friend-list").show().buddy_list({user_jid:jid, connection:connection});
       });
   });

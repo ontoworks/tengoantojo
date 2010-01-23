@@ -1,4 +1,30 @@
-!!! Strict
-%html{:xmlns=>"http://www.w3.org/1999/xhtml"}
-  =haml :head
-  =haml :body
+#first-real-overlay
+  
+#community
+  .container-1
+    .member-list
+      %ul
+        %li.member-item
+          rubris
+        %li.member-item
+          santiago
+    .sub-content
+      .post#post-1
+        %p rubris
+        %p Hola Mundo
+      .post#post-2
+        %p santiago
+        %p Hello World
+      .post#post-3
+        %p santiago
+        %p Ciao Mundo
+  .pub-input
+    %input{:type=>"text"}
+#topics
+#chat
+  =haml :chat
+#marketplace
+  =haml :marketplace
+#meerkat
+#dialog-overlay
+  %img{:src=>"/images/urbanitus/cachito.png"}

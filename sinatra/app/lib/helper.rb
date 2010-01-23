@@ -1,6 +1,7 @@
 helpers do
   include UI
   include UI::DesignHelpers
+  include UI::Components
   include AssetsHelpers
   include CouchDBHelpers
   include Minion

@@ -1,8 +1,7 @@
-#require 'rubygems'
+require 'sinatra'
 require 'haml'
 require 'sass'
-#require 'sinatra'
-#require 'sinatra/async'
+require 'compass'
 
 require 'rest_client'
 require 'uri'
@@ -12,6 +11,7 @@ require 'json'
 require 'mq'
 require 'minion'
 #include Minion
+
 
 
 require 'lib/couchdb'
@@ -25,6 +25,30 @@ require 'lib/helper'
 
 #use Rack::Session::Cookie, :secret => 'A1 sauce 1s so good you should use 1t on a11 yr st34ksssss'
 
+enable :sessions
+
+configure :development do
+  set :couchdb_server, 'http://localhost:5984'
+  set :error_log_url, 'http://localhost:5984/errors'
+
+  Compass.configuration do |config|
+    config.project_path = File.dirname(__FILE__)
+    config.sass_dir = File.join 'views','stylesheets'
+  end
+  
+  set :haml, { :format => :html5 }
+  set :sass, Compass.sass_engine_options
+end
+
+# set sinatra's variables
+set :app_file, __FILE__
+set :root, File.dirname(__FILE__)
+
+
+get '/screen.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  sass :screen
+end
 
 def _post_error(msg)
   RestClient.post options.error_log_url, {:path=>request.path_info,:msg=>msg}.to_json
