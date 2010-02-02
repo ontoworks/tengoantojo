@@ -2,26 +2,33 @@ var zmax = 0 ;
 function buildZMax() {
   var maxZ = Math.max.apply(null,$.map($('body > *'), function(e,n){
 	if($(e).css('position')=='absolute')
-	  return parseInt($(e).css('z-index'))||1 ;
-	})
+	  return parseInt($(e).css('z-index'))||1;
+      })
     );
   return maxZ;
 }
 
 jQuery(document).ready(function($) {
+    if(!session)
+      $("#login-modal").dialog({modal:true});
+    //    alert(jQuery.browser.safari);
     meerkat({
       background:'transparent url(/images/urbanitus/the-whole-place.png) center no-repeat'
 	  });
-
-    $("#topics").dialog({
-      width:150,
+    
+    /*    $("#topics").dialog({
+      autoOpen: false,
+      title:"topics",
+	  width:150,
 	  height:550,
 	  draggable:false,
 	  resizable:false,
 	  position:[0,0]
 	  });
     $("#chat").dialog({
-      width:240,
+      autoOpen: false,
+      title:"chat",
+	  width:240,
 	  height:550,
 	  draggable: true,
 	  resizable:true,
@@ -29,24 +36,79 @@ jQuery(document).ready(function($) {
       });
 
     $("#marketplace").dialog({
+      autoOpen: false,
+      title:"markerplace",
       width:710,
 	  height:550,
 	  draggable: true,
 	  resizable:true,
 	  position:[200,10]
+	  });*/
+
+    $.widget("ui.comic_dialog",{
+      _init: function() {
+	  var context= this;
+	  this.browser= this.options.browser;
+	  this.$tabs= $(this.options.navigation);
+
+	  // create ui.dialog widget
+	  this.element.dialog(this.options);
+
+	  var $ui_dialog=this.element.parent(".ui-dialog");
+	  $ui_dialog.prepend(this.$tabs);
+	  this.$tabs.removeClass("hidden").show();
+	  alert(this.$tabs.attr("class"));
+	  
+
+	  $(window).resize(function() {
+	      var width= $(window).width();
+	      var left= Math.floor((width-1000)/2)+215;
+	      $("#dialog-overlay").css("left",left);
+	    });
+
+	  for(browser in $.browser) {
+	    if (typeof this.browser[browser] == 'function') {
+	      if ($.browser[browser]) {
+		this.browser[browser]();
+	      }
+	    }
+	  }
+
+	  this.$tabs.find("li").click(function() {
+	      context.$tabs.find(".selected").removeClass("selected");
+	      $(this).addClass("selected");
+	    });
+
+	  this.$tabs.css("bottom","658px");
+	  $("#dialog-overlay").css("bottom", "166px");
+	},
+	  _mozilla: function() {}
       });
 
-    $("#community").dialog({
+    $("#community").comic_dialog({
+	//autoOpen: false,
+	  dialogClass: "communities",
+	  width:1000,
+	  height:400,
+	  draggable:false,
+	  resizable:false,
+	  position:[150,-245],
+	  browser: {
+	    mozilla: function() {}
+	  },
+	  navigation: ".tabs"
+      });
+
+    $("#marketplace").dialog({
+      dialogClass: "communities",
+      autoOpen: false,
+      title:"markerplace",
       width:710,
-	  height:505,
+	  height:550,
 	  draggable: true,
 	  resizable:true,
-	  position:[300,10]
-      });
-
-    var dialogs= ["#topics", "#chat", "#marketplace", "#community"];
-    var all_dialogs_selector= dialogs.join(",");
-    $(all_dialogs_selector).dialog("close");
+	  position:[200,10]
+	  });
 
     $("#meerkat").click(function(e) {
 	zmax=buildZMax();
@@ -101,4 +163,12 @@ jQuery(document).ready(function($) {
 	    menu[option].callback();
 	}
       });
+
+    // canvas shit
+    /*    var canvas= $("#canvas").get(0);
+    var context= canvas.getContext("2d");
+    canvas.setAttribute('width', 1200);
+    canvas.setAttribute('height', 464);
+    context.fillRect(150,51,1000,415);*/
+
 }); //ends

@@ -5,6 +5,7 @@ helpers do
   include AssetsHelpers
   include CouchDBHelpers
   include Minion
+  include Security
 
   def haml_times(tpl, n)
     html=""

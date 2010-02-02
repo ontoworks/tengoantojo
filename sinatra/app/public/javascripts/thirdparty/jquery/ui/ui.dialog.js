@@ -408,8 +408,12 @@ $.widget("ui.dialog", {
 
 		// prevent the dialog from being too high (make sure the titlebar
 		// is accessible)
-		pTop = Math.max(pTop, minTop);
-		this.uiDialog.css({top: pTop, left: pLeft});
+		if (pTop >= 0) {
+		  pTop = Math.max(pTop, minTop);
+		  this.uiDialog.css({top: pTop, left: pLeft});
+		} else {
+		  this.uiDialog.css({bottom: pTop*-1, left: pLeft});
+		}
 	},
 
 	_setData: function(key, value){

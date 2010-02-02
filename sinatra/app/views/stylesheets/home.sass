@@ -4,13 +4,11 @@
   :margin 0
   :padding 0
 
-
 body
   :background #fff url(/images/urbanitus/background-home.png) repeat scroll 0 0
   :font-family "HelveticaNeue-Light","HelveticaNeue",Helvetica,Arial,sans-serif
   :font-size 14px
   :margin-top 0
-
 
 li
   :display inline-block
@@ -27,7 +25,6 @@ li
 
     em
       :display block
-
 
 a
   :text-decoration none
@@ -54,13 +51,12 @@ a
   :background transparent
 
 #dialog-overlay
-  :bottom 175px
-  :left 356px
+  :bottom 167px
+  :left 355px
   :position absolute
 
 #community
   :width 650px
-  :border 1px solid #AAA
   :border-top none
   :padding 5px
   .container-1
@@ -86,3 +82,111 @@ a
   .pub-input
     input
       :width 600px
+.ui-dialog.communities
+  :border none
+  :background none
+  :padding-bottom 10px
+  .ui-widget-content
+    :background-color #000
+  .ui-dialog-titlebar
+    :font-size 10px
+    :border none
+    :background none
+    :padding 0
+#common-background
+  .left
+    +corner(4px)
+    :background-color #000
+    :opacity 0.2
+    :left 165px
+    :bottom 260px
+    :position absolute
+    :height 385px
+    :width 150px
+  .right
+    +corner(4px)
+    :background-color #000
+    :opacity 0.2
+    :left 335px
+    :bottom 260px
+    :position absolute
+    :height 377px
+    :width 810px
+
+#community-left
+  :position absolute
+  :height 400px
+  :bottom 235px
+  :left 177px
+  :z-index 2000
+
+  li.option-2
+    :background #777111
+    :display block
+    :color white
+    :padding 10px
+    :margin-bottom 10px
+    :width 106px
+    +corner(4px)
+
+  li.option
+    :opacity 0.3
+    :background #000
+    :display block
+    :color white
+    :padding 10px
+    :margin-bottom 10px
+    :width 106px
+    +corner(4px)
+
+.tabs
+  :height 25px
+  :bottom 660px
+  :left 177px
+  :z-index 2000
+
+  li.option
+    :opacity 0.7
+    :background #000
+    :padding 5px 10px
+    :width 106px
+    +corner-top(8px)
+    &.larger
+      :width 130px
+    &.selected
+      :opacity 0.5
+    a
+      :color white
+#myenv-profile
+  .north
+    .center,.east,.west
+      :position absolute
+      :z-index 3000
+    .east,.center
+      :bottom 490px
+      p
+        :background-color #000
+        :opacity 0.3
+        :width 300px
+        :padding 5px 10px
+        :color #FFF
+        :margin-bottom 10px
+        +corner(8px)
+    .west
+      :color #FFF
+      :left 165px
+      :bottom 445px
+      :height 200px
+      :width 200px
+      :background-color #000
+      :opacity 0.3
+      +corner(8px)
+      p
+        :margin 90px 0 0 90px
+    .center
+      :left 380px
+    .east
+      :left 780px
+#login-modal
+  :background-color #000
+  :z-index 3001

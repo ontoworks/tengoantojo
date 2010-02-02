@@ -1,0 +1,33 @@
+#login-modal
+  .login-box
+    %p email
+    %input{:type=>"text"}
+    %p password
+    %input{:type=>"password"}
+.tabs.hidden
+  %li.option.selected
+    %a{:href=>"#profile"} mi perfil
+  %li.option.larger
+    %a{:href=>"#social-networks"} mis redes sociales
+  %li.option
+    %a{:href=>"#channels"} mis canales
+  %li.option
+    %a{:href=>"#stuff"} mis cosas
+#myenv-profile
+  .north
+    .west
+      %p foto
+    .center
+      %p.name nombre
+      %p.nickname apodo
+      %p.birthdate cumpleaños
+      %p.email correo
+    .east
+      %p.name apellido
+      %p.nickname apodo
+      %p.birthdate cumpleaños
+      %p.email correo
+  .south
+#my-env-networks
+#my-env-channels
+#my-env-stuff

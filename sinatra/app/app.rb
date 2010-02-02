@@ -15,6 +15,7 @@ require 'minion'
 
 
 require 'lib/couchdb'
+require 'lib/security'
 require 'lib/google_base'
 require 'lib/assets_helpers'
 require 'lib/ui'
@@ -60,13 +61,16 @@ get '/stylesheets/:name.css' do
 end
 
 get '/' do
-  session["user"]={"username"=>"santiago",
-                   "name"=>"Santiago",
-                   "last_name"=>"Gaviria",
-                   "email"=>"sgaviria@gmail.com",
-                   "google_base_subaccount"=>"6293664"}
-  haml :home
+  session.empty?
+  if session.nil?
+    @session={}
+  else
+    @session=session
+  end
+  design "home"
 end
+
+
 
 def edit_in_place_echo(echo)
   {:html=>echo}.to_json

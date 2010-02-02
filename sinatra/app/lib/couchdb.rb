@@ -2,7 +2,21 @@ module CouchDBHelpers
   COUCHDB_SERVER= 'http://127.0.0.1:5984'
   
   def post_database(db, data)
-      RestClient.post "#{COUCHDB_SERVER}/#{db}", data
+    RestClient.post "#{COUCHDB_SERVER}/#{db}", data
+  end
+
+  def post_db(db, data)
+    RestClient.post couchdb_db_url(db), data.to_json
+  end
+
+  def query_view(db,design,view,*params)
+    r=RestClient.get couchdb_view_url(db,design,view,params)
+    data=JSON.parse r
+    if data["rows"].empty?
+      false
+    else
+      data
+    end
   end
 
   def couchdb_db_url(db)

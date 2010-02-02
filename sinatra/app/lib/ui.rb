@@ -35,6 +35,7 @@ module UI
     head << "%head\n"
     head << "  %title #{title}\n"
     head << "  %meta{\"http-equiv\"=>\"Content-Type\", :content=>\"text/html;charset=utf-8\"}"
+    head << "  "
     assets.helpers.each do |lib|
       lib.gsub!(/@/, "")
       puts lib
@@ -55,6 +56,16 @@ module UI
     end
     head << "</head>"
     head
+  end
+
+  #
+  def head_tpl(title,assets)
+    head=""
+    assets.helpers.each do |lib|
+      lib.gsub!(/@/, "")
+      assets.send(lib).each {|path| head << "  #{send(lib, path)}\n"}
+    end
+    haml :head, :locals=>{:assets=>head}
   end
 
   module Components
@@ -117,7 +128,7 @@ module UI
       [assets, {:product_form=>{:id=>"product-form"}}]
     end
     
-    def product_form()
+    def product_form
       assets= Assets.new
       assets.lib = ["jquery"]
       assets.jquery_plugin = ["blockUI/jquery.blockUI","jeip/jeip"]
@@ -228,6 +239,7 @@ module UI
       assets.css_link = ["/javascripts/thirdparty/jquery/ui/cupertino/ui.all.css",
                          "/javascripts/thirdparty/jquery/jgrowl/jquery.jgrowl.css",
                          "styles",
+                         "login",
                          "home",
                          "marketplace",
                          "chat",
@@ -236,6 +248,7 @@ module UI
       assets.js_tag = ["thirdparty/strophe/strophe.min",
                        "thirdparty/strophe/basic",
                        "chat",
+                       "login",
                        "home"]
       assets.script = "left_slider()"
       assets
@@ -269,7 +282,7 @@ module UI
     # => 
     def design(tpl)
       assets,locals = send(tpl)
-      @head = head_generator tpl, assets
+      @head = head_tpl tpl, assets
       @component = haml tpl.to_sym, :locals =>locals
       haml :standalone
     end
