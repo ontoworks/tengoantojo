@@ -10,7 +10,7 @@ function buildZMax() {
 
 jQuery(document).ready(function($) {
     if(!session)
-      $("#login-modal").dialog({modal:true});
+      $("#login-modal").dialog({modal:true, autoOpen:false});
     //    alert(jQuery.browser.safari);
     meerkat({
       background:'transparent url(/images/urbanitus/the-whole-place.png) center no-repeat'
@@ -56,33 +56,21 @@ jQuery(document).ready(function($) {
 
 	  var $ui_dialog=this.element.parent(".ui-dialog");
 	  $ui_dialog.prepend(this.$tabs);
-	  this.$tabs.removeClass("hidden").show();
-	  alert(this.$tabs.attr("class"));
-	  
+	  this.$tabs.removeClass("hidden");	  
+	  $ui_dialog.append($("#dialog-overlay"));
 
 	  $(window).resize(function() {
-	      var width= $(window).width();
-	      var left= Math.floor((width-1000)/2)+215;
-	      $("#dialog-overlay").css("left",left);
+	      //	      var width= $(window).width();
+	      //var left= Math.floor((width-1000)/2)+215;
+	      //$("#dialog-overlay").css("left",left);
 	    });
 
-	  for(browser in $.browser) {
-	    if (typeof this.browser[browser] == 'function') {
-	      if ($.browser[browser]) {
-		this.browser[browser]();
-	      }
-	    }
-	  }
-
+	  
 	  this.$tabs.find("li").click(function() {
 	      context.$tabs.find(".selected").removeClass("selected");
 	      $(this).addClass("selected");
 	    });
-
-	  this.$tabs.css("bottom","658px");
-	  $("#dialog-overlay").css("bottom", "166px");
-	},
-	  _mozilla: function() {}
+	}
       });
 
     $("#community").comic_dialog({
@@ -92,10 +80,7 @@ jQuery(document).ready(function($) {
 	  height:400,
 	  draggable:false,
 	  resizable:false,
-	  position:[150,-245],
-	  browser: {
-	    mozilla: function() {}
-	  },
+	  position:[150,-160],
 	  navigation: ".tabs"
       });
 
