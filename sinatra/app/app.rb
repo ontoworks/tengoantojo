@@ -12,8 +12,6 @@ require 'mq'
 require 'minion'
 #include Minion
 
-
-
 require 'lib/couchdb'
 require 'lib/security'
 require 'lib/google_base'

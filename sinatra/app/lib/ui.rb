@@ -235,7 +235,8 @@ module UI
                              "ui/ui.resizable", 
                              "ui/ui.dialog", 
                              "jgrowl/jquery.jgrowl_minimized", 
-                             "meerkat/meerkat-1.0"]
+                             "meerkat/meerkat-1.0",
+                             "jeip/jeip"]
       assets.css_link = ["/javascripts/thirdparty/jquery/ui/cupertino/ui.all.css",
                          "/javascripts/thirdparty/jquery/jgrowl/jquery.jgrowl.css",
                          "styles",

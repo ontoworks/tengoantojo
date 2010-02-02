@@ -84,16 +84,64 @@ jQuery(document).ready(function($) {
 	  navigation: ".tabs"
       });
 
+    var eip_options = {
+      savebutton_text: "ok",
+      cancelbutton_text: "x",
+      form_buttons: '<span><input type="button" id="save-#{id}" class="#{savebutton_class}" value="#{savebutton_text}" /> <input type="button" id="cancel-#{id}" class="#{cancelbutton_class}" value="#{cancelbutton_text}" /></span>',
+      text_form: '<input type="text" id="edit-#{id}" class="#{editfield_class}" value="#{value}" />'
+    };
+    //    $("#myenv-profile").find(".name").eip("/perfil/nombre", eip_options);
+
+    $.widget("ui.oeip", {
+      _init: function() {
+	  var self= this;
+	  var label= this.options.label;
+	  var edit_mode= false;
+	  
+	  // HTML parts
+	  this.$span= $("<span/>");
+	  this.$label= $("<p/>").attr("class", "oeip-label").text(label);
+	  this.$input= $("<input class='edit' id=\""+label+"-edit\" type=\"text\"/>").hide();
+	  this.$content= $("<p/>")
+	    .attr("class", "oeip-content")
+	    .text(this.options.empty_text)
+	    .css("font-style","italic");
+
+	  this.$input.blur(function() {
+	      self.$input.hide();
+	      var content= $.trim($(this).val());
+	      content = (content == "") ? self.options.empty_text : content;
+	      self.$content.text(content).show();
+	    });
+
+	  this.element
+	    .append(this.$label)
+	    .append(this.$span.append(this.$content).append(this.$input));
+
+	  this.element.click(function(e) {
+	      self.$input.show().focus();
+	      self.$content.hide();
+	    });
+       	}
+      });
+    
+    $("#myenv-profile").find(".name").oeip({label:"nombre", empty_text: "escribe tu nombre"});
+    $("#myenv-profile").find(".nickname").oeip({label:"apodo",empty_text: "escribe tu apodo"});
+    $("#myenv-profile").find(".birthdate").oeip({label:"cumpleaños",empty_text: "tu fecha de cumple"});
+    $("#myenv-profile").find(".email").oeip({label:"correo",empty_text: "correo electrónico"});
+    $("#myenv-profile").find(".location").oeip({label:"ubicación",empty_text: "dónde te encuentras"});
+    $("#myenv-profile").find(".gender").oeip({label:"género",empty_text: "macho o hembra"});
+    
     $("#marketplace").dialog({
       dialogClass: "communities",
       autoOpen: false,
       title:"markerplace",
       width:710,
-	  height:550,
-	  draggable: true,
-	  resizable:true,
-	  position:[200,10]
-	  });
+      height:550,
+      draggable: true,
+      resizable:true,
+      position:[200,10]
+    });
 
     $("#meerkat").click(function(e) {
 	zmax=buildZMax();
